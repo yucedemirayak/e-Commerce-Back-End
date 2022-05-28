@@ -1,0 +1,34 @@
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\bin\Debug\net6.0\eCommerce.Data.deps.json
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\bin\Debug\net6.0\eCommerce.Data.runtimeconfig.json
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\bin\Debug\net6.0\eCommerce.Data.dll
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\bin\Debug\net6.0\eCommerce.Data.pdb
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\bin\Debug\net6.0\eCommerce.Core.dll
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\bin\Debug\net6.0\eCommerce.Core.pdb
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.csproj.AssemblyReference.cache
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.AssemblyInfoInputs.cache
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.AssemblyInfo.cs
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.csproj.CoreCompileInputs.cache
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.csproj.CopyComplete
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.dll
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\refint\eCommerce.Data.dll
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.pdb
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.genruntimeconfig.cache
+C:\Users\yuced\Desktop\eCommerceBackEnd\eCommerce.Data\obj\Debug\net6.0\ref\eCommerce.Data.dll
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\bin\Debug\net6.0\eCommerce.Data.deps.json
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\bin\Debug\net6.0\eCommerce.Data.runtimeconfig.json
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\bin\Debug\net6.0\eCommerce.Data.dll
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\bin\Debug\net6.0\eCommerce.Data.pdb
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\bin\Debug\net6.0\eCommerce.Core.dll
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\bin\Debug\net6.0\eCommerce.Core.pdb
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.csproj.AssemblyReference.cache
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.AssemblyInfoInputs.cache
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.AssemblyInfo.cs
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.csproj.CoreCompileInputs.cache
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.csproj.CopyComplete
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.dll
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\refint\eCommerce.Data.dll
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.pdb
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\eCommerce.Data.genruntimeconfig.cache
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Data\obj\Debug\net6.0\ref\eCommerce.Data.dll
