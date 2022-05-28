@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "DwNnimi8lUv2bzl4RcxmpRwlWLti9CVXW9zQ5PwAkJ4CKPcy8Vbmjcss19XEnFk6HKQ3HjfrdPZ7AGzzu9X4+w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Core\\eCommerce.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\yuced\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
