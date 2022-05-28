@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "73DdRS9USNkoNme9fVGK+qJ+zNyuLU451FqZmd4y+ty4FdYIfHq7skMcworzRB3X9glyi0y0ca1W1WqpHmv1cA==",
+  "dgSpecHash": "UY+GCCY+u7kE1mSd2O+LmSYbUhqJT6jWqojoOPfEgS7ewxQF0JKR91ZxbJiIv/Uqor1THmVO7CJjLR/MIsasMA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Api\\eCommerce.Api.csproj",
+  "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\eCommerce.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yuced\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

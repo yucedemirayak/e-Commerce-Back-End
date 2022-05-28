@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E5EAayJ4903W2Nfg4QKI0mg3Ev2cXLw4XeUPNNOx3jWAnjq+Z7VWNR8oYlcxiO3n+MvJN0Ox+tiByTW8H2JYoA==",
+  "dgSpecHash": "i8lB40w07k9oz636XOfgGk/mF93U6Y59ve68jWdtH3x+0n+SaRLEaRVdudIBKweka+hCtVu4pQlvdUl4+QeumQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Services\\eCommerce.Services.csproj",
+  "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Services\\eCommerce.Services.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
