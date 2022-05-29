@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using eCommerce.Core.Models;
+
 
 namespace eCommerce.Core.Services
 {
     public interface IAdminService
     {
+        Task<Admin> CreateAdmin(Admin newAdmin);
+        Task<IEnumerable<Admin>> GetAll();
+        Task<IEnumerable<User>> GetAllUsers();
     }
 }
