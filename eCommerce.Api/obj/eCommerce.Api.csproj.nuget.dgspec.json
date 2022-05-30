@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\eCommerce.Api.csproj": {}
+    "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Api\\eCommerce.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\eCommerce.Api.csproj": {
+    "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Api\\eCommerce.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\eCommerce.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Api\\eCommerce.Api.csproj",
         "projectName": "eCommerce.Api",
-        "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\eCommerce.Api.csproj",
-        "packagesPath": "C:\\Users\\yuced\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\obj\\",
+        "projectPath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Api\\eCommerce.Api.csproj",
+        "packagesPath": "C:\\Users\\Serkan Serkanoğlu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\yuced\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Serkan Serkanoğlu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -32,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj": {
-                "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj"
+              "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Data\\eCommerce.Data.csproj": {
+                "projectPath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Data\\eCommerce.Data.csproj"
               }
             }
           }
@@ -93,25 +89,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj": {
+    "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Core\\eCommerce.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Core\\eCommerce.Core.csproj",
         "projectName": "eCommerce.Core",
-        "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj",
-        "packagesPath": "C:\\Users\\yuced\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\obj\\",
+        "projectPath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Core\\eCommerce.Core.csproj",
+        "packagesPath": "C:\\Users\\Serkan Serkanoğlu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Core\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\yuced\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Serkan Serkanoğlu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -157,25 +149,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj": {
+    "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Data\\eCommerce.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Data\\eCommerce.Data.csproj",
         "projectName": "eCommerce.Data",
-        "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj",
-        "packagesPath": "C:\\Users\\yuced\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\obj\\",
+        "projectPath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Data\\eCommerce.Data.csproj",
+        "packagesPath": "C:\\Users\\Serkan Serkanoğlu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Data\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\yuced\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Serkan Serkanoğlu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -189,8 +177,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj": {
-                "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj"
+              "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Core\\eCommerce.Core.csproj": {
+                "projectPath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Core\\eCommerce.Core.csproj"
               }
             }
           }
@@ -235,7 +223,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
