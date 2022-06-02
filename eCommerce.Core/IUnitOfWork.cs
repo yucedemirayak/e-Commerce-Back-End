@@ -2,10 +2,11 @@
 
 namespace eCommerce.Core
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IAdminRepository Admins { get; }
         IUserRepository Users { get; }
+
         Task<int> CommitAsync();
     }
 }

@@ -14,7 +14,9 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.5",
           "Microsoft.EntityFrameworkCore.Design": "6.0.5",
           "Swashbuckle.AspNetCore": "6.2.3",
-          "eCommerce.Data": "1.0.0"
+          "eCommerce.Core": "1.0.0",
+          "eCommerce.Data": "1.0.0",
+          "eCommerce.Services": "1.0.0"
         },
         "runtime": {
           "eCommerce.Api.dll": {}
@@ -546,6 +548,14 @@
         "runtime": {
           "eCommerce.Data.dll": {}
         }
+      },
+      "eCommerce.Services/1.0.0": {
+        "dependencies": {
+          "eCommerce.Core": "1.0.0"
+        },
+        "runtime": {
+          "eCommerce.Services.dll": {}
+        }
       }
     }
   },
@@ -932,6 +942,11 @@
       "sha512": ""
     },
     "eCommerce.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "eCommerce.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

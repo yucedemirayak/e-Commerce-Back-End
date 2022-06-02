@@ -776,6 +776,19 @@
         "runtime": {
           "bin/placeholder/eCommerce.Data.dll": {}
         }
+      },
+      "eCommerce.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "eCommerce.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/eCommerce.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/eCommerce.Services.dll": {}
+        }
       }
     }
   },
@@ -2215,6 +2228,11 @@
       "type": "project",
       "path": "../eCommerce.Data/eCommerce.Data.csproj",
       "msbuildProject": "../eCommerce.Data/eCommerce.Data.csproj"
+    },
+    "eCommerce.Services/1.0.0": {
+      "type": "project",
+      "path": "../eCommerce.Services/eCommerce.Services.csproj",
+      "msbuildProject": "../eCommerce.Services/eCommerce.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2225,7 +2243,9 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.5",
       "Swashbuckle.AspNetCore >= 6.2.3",
-      "eCommerce.Data >= 1.0.0"
+      "eCommerce.Core >= 1.0.0",
+      "eCommerce.Data >= 1.0.0",
+      "eCommerce.Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2260,8 +2280,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj": {
+              "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj"
+            },
             "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj": {
               "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj"
+            },
+            "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Services\\eCommerce.Services.csproj": {
+              "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Services\\eCommerce.Services.csproj"
             }
           }
         }

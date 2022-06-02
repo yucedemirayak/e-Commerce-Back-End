@@ -1,6 +1,6 @@
-﻿namespace eCommerce.Api.Resources
+﻿namespace eCommerce.Api.DTOs
 {
-    public class AdminResource
+    public class AdminDTO
     {
         public int Id { get; set; }
         public string FullName { get; set; }

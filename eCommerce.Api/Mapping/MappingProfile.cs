@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using eCommerce.Api.Resources;
+using eCommerce.Api.DTOs;
 using eCommerce.Core.Models;
 
 namespace eCommerce.Api.Mapping
@@ -8,11 +8,11 @@ namespace eCommerce.Api.Mapping
     {
         public MappingProfile()
         {
-            CreateMap<Admin, AdminResource>();
-            CreateMap<Admin, SaveAdminResource>();
+            CreateMap<Admin, AdminDTO>();
+            CreateMap<Admin, SaveAdminDTO>();
 
-            CreateMap<AdminResource, Admin>();
-            CreateMap<SaveAdminResource, Admin>();
+            CreateMap<AdminDTO, Admin>();
+            CreateMap<SaveAdminDTO, Admin>();
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using eCommerce.Api.Resources;
+﻿using eCommerce.Api.DTOs;
 using FluentValidation;
 
 namespace eCommerce.Api.Validations
 {
-    public class SaveAdminResourceValidator : AbstractValidator<SaveAdminResource>
+    public class SaveAdminDTOValidator : AbstractValidator<SaveAdminDTO>
     {
-        public SaveAdminResourceValidator()
+        public SaveAdminDTOValidator()
         {
             RuleFor(a => a.FullName)
                 .NotEmpty()

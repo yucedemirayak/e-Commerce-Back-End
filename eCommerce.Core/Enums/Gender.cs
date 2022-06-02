@@ -1,5 +1,4 @@
-﻿
-namespace eCommerce.Core.Enum
+﻿namespace eCommerce.Core.Enums
 {
     public enum Gender
     {

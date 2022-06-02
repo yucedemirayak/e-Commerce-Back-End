@@ -1,8 +1,10 @@
-﻿
+﻿using eCommerce.Core.Enums;
+
 namespace eCommerce.Core.Models
 {
     public class ShopOwner : BaseEntity
     {
+        public UserRole Role { get; set; } = UserRole.SHOPOWNER;
         public string ShopName { get; set; }
         public string ShopOwnerFirstName { get; set; }
         public string ShopOwnerLastName { get; set; }
@@ -11,7 +13,5 @@ namespace eCommerce.Core.Models
         public string Password { get; set; }
         public string PasswordSalt { get; set; }
         public int ContactNumber { get; set; }
-        
-
     }
 }

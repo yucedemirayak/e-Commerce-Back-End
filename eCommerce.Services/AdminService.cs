@@ -31,5 +31,10 @@ namespace eCommerce.Services
         {
             return await _unitOfWork.Users.GetAllAsync();
         }
+
+        public async Task<Admin> GetAdminByEmail(string email)
+        {
+            return await _unitOfWork.Admins.GetAdminByEmail(email);
+        }
     }
 }

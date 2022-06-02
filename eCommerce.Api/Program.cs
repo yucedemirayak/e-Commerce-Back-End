@@ -1,11 +1,15 @@
-using eCommerce.Data;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 using eCommerce.Core;
-using Microsoft.Extensions.FileProviders;
+using eCommerce.Core.Enums;
+using eCommerce.Core.Services;
+using eCommerce.Data;
+using eCommerce.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
 var _policyName = "e-CommerceAppPolicy";
@@ -22,7 +26,7 @@ builder.Services.AddAuthentication(x =>
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(x =>
 {
-    x.Audience = "e-CommerceApi";
+    x.Audience = "eCommerceApi";
     x.RequireHttpsMetadata = false;
     x.SaveToken = true;
     x.ClaimsIssuer = "issuer";
@@ -47,6 +51,11 @@ builder.Services.AddAuthentication(x =>
         }
     };
 
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Role", policy => policy.RequireClaim("Role", UserRole.ADMIN.ToString()));
 });
 
 builder.Services.AddDbContext<eCommerceDbContext>(options => options
@@ -89,9 +98,10 @@ builder.Services.AddSwaggerGen(c =>
                 });
 });
 
-//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-//builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddTransient<IAdminService, AdminService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
