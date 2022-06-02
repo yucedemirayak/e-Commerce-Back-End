@@ -1,7 +1,7 @@
 ﻿using eCommerce.Core.Enums;
 using System.Text.Json.Serialization;
 
-namespace eCommerce.Api.DTOs
+namespace eCommerce.Api.DTOs.Admin
 {
     public class SaveAdminDTO
     {

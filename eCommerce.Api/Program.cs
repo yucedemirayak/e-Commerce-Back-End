@@ -1,5 +1,4 @@
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
@@ -9,10 +8,10 @@ using eCommerce.Core.Enums;
 using eCommerce.Core.Services;
 using eCommerce.Data;
 using eCommerce.Services;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
-var _policyName = "e-CommerceAppPolicy";
+var _policyName = "eCommerceAppPolicy";
 
 var key = Encoding.ASCII.GetBytes(builder.Configuration["Application:Secret"]);
 builder.Services.AddCors(o => o.AddPolicy(_policyName, builder =>
@@ -22,11 +21,13 @@ builder.Services.AddCors(o => o.AddPolicy(_policyName, builder =>
 
 builder.Services.AddAuthentication(x =>
 {
-    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultAuthenticateScheme =
+    JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme =
+    JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(x =>
 {
-    x.Audience = "eCommerceApi";
+    x.Audience = "eCommerce";
     x.RequireHttpsMetadata = false;
     x.SaveToken = true;
     x.ClaimsIssuer = "issuer";
@@ -55,7 +56,8 @@ builder.Services.AddAuthentication(x =>
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("Role", policy => policy.RequireClaim("Role", UserRole.ADMIN.ToString()));
+    options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("Role", UserRole.ADMIN.ToString()));
+    options.AddPolicy("UserPolicy", policy => policy.RequireClaim("Role", UserRole.USER.ToString()));
 });
 
 builder.Services.AddDbContext<eCommerceDbContext>(options => options
@@ -102,6 +104,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddTransient<IAdminService, AdminService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

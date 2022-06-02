@@ -6,7 +6,6 @@ using Microsoft.IdentityModel.Tokens;
 using eCommerce.Api.DTOs;
 using eCommerce.Core.Services;
 
-
 namespace eCommerce.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -32,15 +31,36 @@ namespace eCommerce.Api.Controllers
             if (!BCrypt.Net.BCrypt.Verify(loginResource.Password + findedAdmin.PasswordSalt, findedAdmin.Password))
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, "Admin name or password incorrect."));
 
+            //var tokenHandler = new JwtSecurityTokenHandler();
+            //var key = Encoding.ASCII.GetBytes(_config["Application:Secret"]);
+            //var tokenDescriptor = new SecurityTokenDescriptor
+            //{
+            //    Audience = "eCommerceApi",
+            //    Issuer = "issuer",
+            //    Subject = new ClaimsIdentity(
+            //        new Claim[]{
+            //                 new Claim(ClaimTypes.Name, findedAdmin.FullName),
+            //                 new Claim("Role", findedAdmin.Role.ToString())
+            //        }
+            //    ),
+            //    Expires = DateTime.UtcNow.AddDays(1),
+
+            //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            //};
+
+            //var token = tokenHandler.CreateToken(tokenDescriptor);
+            //var tokenString = tokenHandler.WriteToken(token);
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_config["Application:Secret"]);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Audience = "eCommerceApi",
+                Audience = "eCommerce",
                 Issuer = "issuer",
                 Subject = new ClaimsIdentity(
                     new Claim[]{
                              new Claim(ClaimTypes.Name, findedAdmin.FullName),
+                             new Claim(ClaimTypes.Email, findedAdmin.Email),
                              new Claim("Role", findedAdmin.Role.ToString())
                     }
                 ),

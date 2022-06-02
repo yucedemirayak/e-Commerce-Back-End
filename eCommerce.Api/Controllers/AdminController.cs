@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using eCommerce.Api.DTOs;
+using eCommerce.Api.DTOs.Admin;
+using eCommerce.Api.DTOs.User;
 using eCommerce.Api.Validations;
 using eCommerce.Core.Enums;
 using eCommerce.Core.Models;
@@ -23,10 +25,6 @@ namespace eCommerce.Api.Controllers
             _userService = userService;
             _mapper = mapper;
         }
-
-        [Authorize("Role")]
-
-
         [HttpPost]
         public async Task<ActionResult<AdminDTO>> Post([FromBody] SaveAdminDTO admin)
         {
@@ -43,6 +41,26 @@ namespace eCommerce.Api.Controllers
             var adminDTO = _mapper.Map<Admin, AdminDTO>(addedAdmin);
 
             return Ok(ResponseDTO.GenerateResponse(adminDTO));
+        }
+
+        [HttpGet("getUsers")]
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "UserPolicy")]
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
+        {
+            var users = await _adminService.GetAllUsers();
+            var userDTOs = _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
+
+            return Ok(ResponseDTO.GenerateResponse(userDTOs));
+        }
+
+        [HttpGet("getAdmins")]
+        [Authorize(AuthenticationSchemes = "Bearer", Policy = "AdminPolicy")]
+        public async Task<ActionResult<IEnumerable<AdminDTO>>> GetAllAdmins()
+        {
+            var admins = await _adminService.GetAll();
+            var adminDTOs = _mapper.Map<IEnumerable<Admin>, IEnumerable<AdminDTO>>(admins);
+
+            return Ok(ResponseDTO.GenerateResponse(adminDTOs));
         }
     }
 }

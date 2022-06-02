@@ -1,4 +1,4 @@
-﻿namespace eCommerce.Api.DTOs
+﻿namespace eCommerce.Api.DTOs.Admin
 {
     public class AdminDTO
     {

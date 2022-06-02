@@ -13,5 +13,6 @@ namespace eCommerce.Data.Repositories
         {
             return await Context.Admins.FirstOrDefaultAsync(x => x.Email == email);
         }
+
     }
 }

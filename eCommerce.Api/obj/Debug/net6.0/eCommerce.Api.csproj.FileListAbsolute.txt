@@ -103,6 +103,7 @@ C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Api\obj\Debug\net6.0\
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Api\obj\Debug\net6.0\eCommerce.Api.genruntimeconfig.cache
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce API\eCommerce.Api\obj\Debug\net6.0\ref\eCommerce.Api.dll
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\appsettings.json
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Api.exe
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Api.deps.json
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Api.runtimeconfig.json
@@ -153,8 +154,10 @@ C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\ne
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Core.dll
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Data.dll
-C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Data.pdb
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Services.dll
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Core.pdb
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Data.pdb
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Services.pdb
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\net6.0\eCommerce.Api.csproj.AssemblyReference.cache
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\net6.0\eCommerce.Api.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\net6.0\eCommerce.Api.AssemblyInfoInputs.cache
@@ -171,6 +174,3 @@ C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\ne
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\net6.0\eCommerce.Api.pdb
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\net6.0\eCommerce.Api.genruntimeconfig.cache
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\net6.0\ref\eCommerce.Api.dll
-C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Services.dll
-C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Services.pdb
-C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\appsettings.json

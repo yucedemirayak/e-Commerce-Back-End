@@ -1,4 +1,4 @@
-﻿using eCommerce.Api.DTOs;
+﻿using eCommerce.Api.DTOs.Admin;
 using FluentValidation;
 
 namespace eCommerce.Api.Validations
@@ -23,7 +23,7 @@ namespace eCommerce.Api.Validations
                 .NotEmpty()
                 .WithMessage("Please enter your e-mail.")
                 .EmailAddress()
-                .WithMessage("Lütfen geçerli bir email adresi girin.");
+                .WithMessage("Please enter a valid e-mail adress.");
         }
     }
 }

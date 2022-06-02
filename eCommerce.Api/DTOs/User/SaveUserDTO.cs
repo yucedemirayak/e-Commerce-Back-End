@@ -1,18 +1,16 @@
 ﻿using eCommerce.Core.Enums;
 
-namespace eCommerce.Core.Models
+namespace eCommerce.Api.DTOs.User
 {
-    public class User : BaseEntity
+    public class SaveUserDTO
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string PasswordSalt { get; set; }
         public int PhoneNumber { get; set; }
         public Gender Gender { get; set; }
         public DateTime BirthDate { get; set; }
-
-        public UserRole Role { get; set; } = UserRole.USER;
+        public UserRole Role { get; set; }
     }
 }
