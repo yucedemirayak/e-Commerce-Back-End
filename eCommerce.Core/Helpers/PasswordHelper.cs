@@ -13,7 +13,7 @@
                 stringChars[i] = chars[random.Next(chars.Length)];
             }
 
-            var finalString = new String(stringChars);
+            var finalString = new string(stringChars);
 
             return finalString;
         }

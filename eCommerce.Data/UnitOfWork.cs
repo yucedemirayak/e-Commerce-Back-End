@@ -1,8 +1,31 @@
 ﻿
+using eCommerce.Core;
+using eCommerce.Core.Repositories;
+using eCommerce.Data.Repositories;
+
 namespace eCommerce.Data
 {
-    public interface UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
+        private readonly eCommerceDbContext _context;
+        private AdminRepository _adminRepository;
+        private UserRepository _userRepository;
+        public UnitOfWork(eCommerceDbContext context)
+        {
+            _context = context;
+        }
+        public IAdminRepository Admins => _adminRepository ?? new AdminRepository(_context);
 
+        public IUserRepository Users => _userRepository ?? new UserRepository(_context);
+
+        public async Task<int> CommitAsync()
+        {
+            return await _context.SaveChangesAsync();
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
     }
 }

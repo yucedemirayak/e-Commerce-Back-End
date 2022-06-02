@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "kVZU4sX44M01IYdgO7jt8P8zaPyidJwIyqPJh3vktp/NkhwL8czlYowkf48T2uBKRZm/b19x7HTaSZveDZjI/Q==",
+=======
+  "dgSpecHash": "rhW2okWqlWvGlsDNpghBIIcalQgoV5JiUd96Wjy2zzaSfdgpixPr5aD6M5xjQHW1AQpLM/x6JsvGXij7RFUAdw==",
+>>>>>>> feature/yuce
   "success": true,
   "projectFilePath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Api\\eCommerce.Api.csproj",
   "expectedPackageFiles": [

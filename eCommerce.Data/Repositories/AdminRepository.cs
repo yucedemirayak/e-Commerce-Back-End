@@ -9,9 +9,9 @@ namespace eCommerce.Data.Repositories
     public class AdminRepository : Repository<Admin>, IAdminRepository
     {
         public AdminRepository(eCommerceDbContext context) : base(context) { }
-        public async Task<Admin> GetAdminByName(string name)
+        public async Task<Admin> GetAdminByEmail(string email)
         {
-            return await Context.Admins.FirstOrDefaultAsync(x => x.Name == name);
+            return await Context.Admins.FirstOrDefaultAsync(x => x.Email == email);
         }
     }
 }

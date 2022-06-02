@@ -37,7 +37,7 @@ namespace eCommerce.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -48,6 +48,9 @@ namespace eCommerce.Data.Migrations
                     b.Property<string>("PasswordSalt")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedTime")
                         .HasColumnType("datetime2");
@@ -184,6 +187,9 @@ namespace eCommerce.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
                     b.Property<string>("ShopName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -272,6 +278,9 @@ namespace eCommerce.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Role")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedTime")

@@ -172,3 +172,5 @@ C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\ne
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\net6.0\eCommerce.Api.pdb
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\net6.0\eCommerce.Api.genruntimeconfig.cache
 C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\obj\Debug\net6.0\ref\eCommerce.Api.dll
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Services.dll
+C:\Users\yuced\Desktop\e-Commerce\e-Commerce Back-End\eCommerce.Api\bin\Debug\net6.0\eCommerce.Services.pdb
