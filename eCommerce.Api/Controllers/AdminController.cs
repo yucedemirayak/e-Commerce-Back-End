@@ -14,26 +14,24 @@ namespace eCommerce.Api.Controllers
     public class AdminController : Controller
     {
         private readonly IAdminService _adminService;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
-        public AdminController(IAdminService userService, IMapper mapper)
+        public AdminController(IAdminService adminService, IUserService userService, IMapper mapper)
         {
-            _adminService = userService;
+            _adminService = adminService;
+            _userService = userService;
             _mapper = mapper;
         }
 
         [Authorize("Role")]
-        [HttpGet]
-        public string Get()
-        {
-            return "hi";
-        }
+
 
         [HttpPost]
         public async Task<ActionResult<AdminDTO>> Post([FromBody] SaveAdminDTO admin)
         {
             var validator = new SaveAdminDTOValidator();
-            admin.Role = UserRole.USER;
+            admin.Role = UserRole.ADMIN;
             var validationResult = await validator.ValidateAsync(admin);
 
             if (!validationResult.IsValid)

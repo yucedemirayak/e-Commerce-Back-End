@@ -9,6 +9,6 @@ namespace eCommerce.Api.DTOs
         public string Password { get; set; }
         public string Email { get; set; }
         [JsonIgnore]
-        public UserRole Role { get; set; } = UserRole.USER;
+        public UserRole Role { get; set; } = UserRole.ADMIN;
     }
 }
