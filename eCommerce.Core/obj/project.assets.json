@@ -52,19 +52,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Serkan Serkanoğlu\\.nuget\\packages\\": {}
+    "C:\\Users\\yuced\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Core\\eCommerce.Core.csproj",
+      "projectUniqueName": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj",
       "projectName": "eCommerce.Core",
-      "projectPath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Core\\eCommerce.Core.csproj",
-      "packagesPath": "C:\\Users\\Serkan Serkanoğlu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Core\\obj\\",
+      "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj",
+      "packagesPath": "C:\\Users\\yuced\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Serkan Serkanoğlu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\yuced\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -110,7 +115,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }

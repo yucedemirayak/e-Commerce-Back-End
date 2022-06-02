@@ -11,7 +11,6 @@ namespace eCommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
- //   [Authorize(Policy = "AdminPolicy" ,Roles = "ADMIN")]
     public class AdminController : Controller
     {
         private readonly IAdminService _adminService;
@@ -22,12 +21,14 @@ namespace eCommerce.Api.Controllers
             _adminService = userService;
             _mapper = mapper;
         }
-        [HttpGet]
+
         [Authorize("Role")]
+        [HttpGet]
         public string Get()
         {
             return "hi";
         }
+
         [HttpPost]
         public async Task<ActionResult<AdminDTO>> Post([FromBody] SaveAdminDTO admin)
         {

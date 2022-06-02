@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "16dU517vBsO6kpnIXiqYZoor2iOpJYG/ZIQ9susv0FPkDQQxJtbHpSUbBshLVLNybnsomzt2mDwTDeQiLGETRg==",
+  "dgSpecHash": "RpyvemalCo8J+33COlOSuCOpmSF9PxAvfPX3VGRnn6ddLxQVvHqH8B8yviYQPlBG6NEUaRNagLbX7nbJmqNRWg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Serkan Serkanoğlu\\OneDrive\\Masaüstü\\e commerce\\e commerce\\e-Commerce-API\\eCommerce.Core\\eCommerce.Core.csproj",
+  "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Serkan Serkanoğlu\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+    "C:\\Users\\yuced\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
   ],
   "logs": []
 }
