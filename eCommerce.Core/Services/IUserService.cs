@@ -2,9 +2,8 @@
 
 namespace eCommerce.Core.Services
 {
-    public interface IUserService
+    public interface IUserService : IService<User>
     {
-        Task<IEnumerable<User>> GetAll();
         Task<User> CreateUser(User newUser);
     }
 }

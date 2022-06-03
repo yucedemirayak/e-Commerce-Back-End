@@ -12,7 +12,6 @@ namespace eCommerce.Core.Models
         public int PhoneNumber { get; set; }
         public Gender Gender { get; set; }
         public DateTime BirthDate { get; set; }
-
         public UserRole Role { get; set; } = UserRole.USER;
     }
 }

@@ -5,7 +5,8 @@ namespace eCommerce.Core.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
-        ValueTask<TEntity> GetByIdAsync(int id);
+        ValueTask<TEntity> GetByIdAsync(int id); 
+        Task<TEntity> GetByEmailAsync(Expression<Func<TEntity, bool>> predicate);
         Task<IEnumerable<TEntity>> GetAllAsync();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> SignleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
@@ -13,5 +14,6 @@ namespace eCommerce.Core.Repositories
         Task AddRangeAsync(IEnumerable<TEntity> entities);
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
+        
     }
 }
