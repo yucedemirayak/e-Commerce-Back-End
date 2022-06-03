@@ -22,14 +22,10 @@ namespace eCommerce.Services
             await _unitOfWork.CommitAsync();
             return newUser;
         }
+
         public async Task<IEnumerable<User>> GetAll()
         {
             return await _unitOfWork.Users.GetAllAsync();
-        }
-
-        Task<User> IUserService.CreateUser(User newUser)
-        {
-            throw new NotImplementedException();
         }
     }
 }

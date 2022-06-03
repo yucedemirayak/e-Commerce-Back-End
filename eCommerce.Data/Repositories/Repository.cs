@@ -33,6 +33,11 @@ namespace eCommerce.Data.Repositories
             return await Context.Set<TEntity>().ToListAsync();
         }
 
+        public Task<TEntity> GetByEmailAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
+        }
+
         public ValueTask<TEntity> GetByIdAsync(int id)
         {
             return Context.Set<TEntity>().FindAsync(id);
@@ -52,5 +57,6 @@ namespace eCommerce.Data.Repositories
         {
             return Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
         }
+
     }
 }

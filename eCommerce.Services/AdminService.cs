@@ -22,19 +22,15 @@ namespace eCommerce.Services
             return newAdmin;
         }
 
+        public async Task<Admin> GetAdminByEmail(string email)
+        {
+            return await _unitOfWork.Admins.GetByEmailAsync(x => x.Email == email);
+        }
+
         public async Task<IEnumerable<Admin>> GetAll()
         {
             return await _unitOfWork.Admins.GetAllAsync();
         }
 
-        public async Task<IEnumerable<User>> GetAllUsers()
-        {
-            return await _unitOfWork.Users.GetAllAsync();
-        }
-
-        public async Task<Admin> GetAdminByEmail(string email)
-        {
-            return await _unitOfWork.Admins.GetAdminByEmail(email);
-        }
     }
 }

@@ -58,6 +58,7 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("Role", UserRole.ADMIN.ToString()));
     options.AddPolicy("UserPolicy", policy => policy.RequireClaim("Role", UserRole.USER.ToString()));
+    options.AddPolicy("ShopOwnerPolicy", policy => policy.RequireClaim("Role", UserRole.SHOPOWNER.ToString()));
 });
 
 builder.Services.AddDbContext<eCommerceDbContext>(options => options

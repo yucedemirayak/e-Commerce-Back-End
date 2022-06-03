@@ -6,7 +6,7 @@ namespace eCommerce.Core
     {
         IAdminRepository Admins { get; }
         IUserRepository Users { get; }
-
+        IShopOwnerRepository ShopOwners { get; }
         Task<int> CommitAsync();
     }
 }
