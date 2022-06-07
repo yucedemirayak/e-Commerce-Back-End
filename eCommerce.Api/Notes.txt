@@ -1,2 +1,9 @@
-﻿dotnet ef --startup-project eCommerce.Api/eCommerce.Api.csproj migrations add newupdates -p eCommerce.Data/eCommerce.Data.csproj
+﻿
+//New migration
+dotnet ef --startup-project eCommerce.Api/eCommerce.Api.csproj migrations add NewModelsAdded -p eCommerce.Data/eCommerce.Data.csproj
+
+//Database Update
 dotnet ef --startup-project eCommerce.Api/eCommerce.Api.csproj database update
+
+//Watch run
+dotnet watch run --project eCommerce.Api/eCommerce.Api.csproj

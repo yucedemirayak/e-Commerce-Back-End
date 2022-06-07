@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using eCommerce.Api.DTOs;
 using eCommerce.Api.DTOs.Admin;
+using eCommerce.Api.DTOs.ShopOwner;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Api.Validations;
 using eCommerce.Core.Enums;
@@ -18,29 +19,30 @@ namespace eCommerce.Api.Controllers
     {
         private readonly IAdminService _adminService;
         private readonly IUserService _userService;
+        private readonly IShopOwnerService _shopOwnerService;
         private readonly IMapper _mapper;
 
         //calling the services we will use in the project
-        public AdminController(IAdminService adminService, IUserService userService, IMapper mapper)
+        public AdminController(IAdminService adminService, IShopOwnerService shopOwnerService, IUserService userService,  IMapper mapper)
         {
             _adminService = adminService;
             _userService = userService;
+            _shopOwnerService = shopOwnerService;
             _mapper = mapper;
         }
 
         //Create a new admin
-        [HttpPost]
-        public async Task<ActionResult<AdminDTO>> Post([FromBody] SaveAdminDTO admin)
+        [HttpPost("newAdmin")]
+        public async Task<ActionResult<AdminDTO>> PostAdmin([FromBody] SaveAdminDTO admin)
         {
             var validator = new SaveAdminDTOValidator();
-            admin.Role = UserRole.ADMIN;
             var validationResult = await validator.ValidateAsync(admin);
 
             if (!validationResult.IsValid)
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdAdmin = _mapper.Map<SaveAdminDTO, Admin>(admin);
-            var addedAdmin = await _adminService.CreateAdmin(createdAdmin);
+            var addedAdmin = await _adminService.CreateNew(createdAdmin);
 
             var adminDTO = _mapper.Map<Admin, AdminDTO>(addedAdmin);
 
@@ -58,14 +60,36 @@ namespace eCommerce.Api.Controllers
         }
 
         //Create new Shop owner
+        [HttpPost("newShopOwner")]
+        public async Task<ActionResult<ShopOwnerDTO>> PostShopOwner([FromBody] SaveShopOwnerDTO shopOwner)
+        {
+            var validator = new SaveShopOwnerDTOValidator();
+            var validationResult = await validator.ValidateAsync(shopOwner);
 
+            if (!validationResult.IsValid)
+                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
+
+            var createdShopOwner = _mapper.Map<SaveShopOwnerDTO, ShopOwner>(shopOwner);
+            var addedShopOwner = await _shopOwnerService.CreateNew(createdShopOwner);
+
+            var shopOwnerDTO = _mapper.Map<ShopOwner, ShopOwnerDTO>(addedShopOwner);
+
+            return Ok(ResponseDTO.GenerateResponse(shopOwnerDTO));
+        }
 
         //Get all shop owner list
+        [HttpGet("getShopOwners")]
+        public async Task<ActionResult<IEnumerable<ShopOwnerDTO>>> GetAllShopOwners()
+        {
+            var shopOwners = await _shopOwnerService.GetAll();
+            var shopOwnerDTOs = _mapper.Map<IEnumerable<ShopOwner>, IEnumerable<ShopOwnerDTO>>(shopOwners);
 
+            return Ok(ResponseDTO.GenerateResponse(shopOwnerDTOs));
+        }
 
         //Create new user
-        [HttpPost]
-        public async Task<ActionResult<UserDTO>> Post([FromBody] SaveUserDTO user)
+        [HttpPost("newUser")]
+        public async Task<ActionResult<UserDTO>> PostUser([FromBody] SaveUserDTO user)
         {
             var validator = new SaveUserDTOValidator();
             var validationResult = await validator.ValidateAsync(user);
@@ -74,11 +98,11 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdUser = _mapper.Map<SaveUserDTO, User>(user);
-            var addedUser = await _userService.CreateUser(createdUser);
+            var addedUser = await _userService.CreateNew(createdUser);
 
-            var userResource = _mapper.Map<User, UserDTO>(addedUser);
+            var userDTO = _mapper.Map<User, UserDTO>(addedUser);
 
-            return Ok(ResponseDTO.GenerateResponse(userResource));
+            return Ok(ResponseDTO.GenerateResponse(userDTO));
         }
 
         //Get all users list

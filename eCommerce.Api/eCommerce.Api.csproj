@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\ShopOwner\" />
     <Folder Include="Files\Images\" />
   </ItemGroup>
 

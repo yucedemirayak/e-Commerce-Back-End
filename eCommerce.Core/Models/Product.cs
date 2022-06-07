@@ -7,7 +7,11 @@ namespace eCommerce.Core.Models
         public string Description { get; set; }
         public double Price { get; set; }
         public int Qty { get; set; }
-        public int Rating { get; set; }
+        public double Rating { get; set; }
+        public int ShopOwnerId { get; set; }
+        public ShopOwner ShopOwner { get; set; }
+        public int SubCategoryId { get; set; }
+        public SubCatoregory SubCatoregory { get; set; }
 
     }
 }

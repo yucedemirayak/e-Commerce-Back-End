@@ -1,4 +1,5 @@
 ﻿using eCommerce.Api.DTOs.User;
+using eCommerce.Core.Enums;
 using FluentValidation;
 
 namespace eCommerce.Api.Validations
@@ -31,6 +32,11 @@ namespace eCommerce.Api.Validations
                 .MinimumLength(8)
                 .WithMessage("Password lenght must be higher than 8 characters");
 
+            RuleFor(a => a.PhoneNumber)
+                .NotEmpty()
+                .WithMessage("Please enter your phone number")
+                .MaximumLength(32)
+                .WithMessage("Phone number length must be lesser than 32");
         }
     }
 }
