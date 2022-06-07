@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using eCommerce.Api.DTOs.Admin;
+using eCommerce.Api.DTOs.ShopOwner;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Core.Models;
 
@@ -14,12 +15,16 @@ namespace eCommerce.Api.Mapping
             CreateMap<Admin, SaveAdminDTO>();
             CreateMap<User, UserDTO>();
             CreateMap<User, SaveUserDTO>();
+            CreateMap<ShopOwner, ShopOwnerDTO>();
+            CreateMap<ShopOwner, SaveShopOwnerDTO>();
 
             // Resource to Domain
             CreateMap<AdminDTO, Admin>();
             CreateMap<SaveAdminDTO, Admin>();
             CreateMap<UserDTO, User>();
             CreateMap<SaveUserDTO, User>();
+            CreateMap<ShopOwnerDTO, ShopOwner>();
+            CreateMap<SaveShopOwnerDTO, ShopOwner>();
         }
     }
 }

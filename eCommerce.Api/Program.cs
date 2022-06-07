@@ -19,12 +19,11 @@ builder.Services.AddCors(o => o.AddPolicy(_policyName, builder =>
     builder.WithOrigins("http://localhost:4000").AllowAnyMethod().AllowAnyHeader();
 }));
 
+
 builder.Services.AddAuthentication(x =>
 {
-    x.DefaultAuthenticateScheme =
-    JwtBearerDefaults.AuthenticationScheme;
-    x.DefaultChallengeScheme =
-    JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(x =>
 {
     x.Audience = "eCommerce";
@@ -51,7 +50,6 @@ builder.Services.AddAuthentication(x =>
             return Task.CompletedTask;
         }
     };
-
 });
 
 builder.Services.AddAuthorization(options =>
@@ -106,6 +104,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddTransient<IAdminService, AdminService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IShopOwnerService, ShopOwnerService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

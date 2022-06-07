@@ -8,6 +8,6 @@ namespace eCommerce.Core.Models
         public string FullName { get; set; }
         public string Password { get; set; }
         public string PasswordSalt { get; set; }
-        public UserRole Role { get; set; } = UserRole.ADMIN;
+        public UserRole Role { get; set; }
     }
 }
