@@ -18,18 +18,58 @@ namespace eCommerce.Api.Controllers
     public class AdminController : Controller
     {
         private readonly IAdminService _adminService;
-        private readonly IUserService _userService;
+        private readonly ICartDetailService _cartDetailService;
+        private readonly ICartService _cartService;
+        private readonly ICategoryService _categoryService;
+        private readonly IFavouriteListService _favouriteListService;
+        private readonly IOrderDetailService _orderDetailService;
+        private readonly IOrderService _orderService;
+        private readonly IProductImageService _productImageService;
+        private readonly IProductService _productService;
+        private readonly IShopOwnerAdressService _shopOwnerAdressService;
         private readonly IShopOwnerService _shopOwnerService;
+        private readonly ISubCategoryService _subCategoryService;
+        private readonly IUserAdressService _userAdressService;
+        private readonly IUserService _userService;
+
         private readonly IMapper _mapper;
 
         //calling the services we will use in the project
-        public AdminController(IAdminService adminService, IShopOwnerService shopOwnerService, IUserService userService,  IMapper mapper)
+        public AdminController(IAdminService adminService, 
+            ICartDetailService cartDetailService,
+            ICartService cartService,
+            ICategoryService categoryService, 
+            IFavouriteListService favouriteListService, 
+            IOrderDetailService orderDetailService, 
+            IOrderService orderService, 
+            IProductImageService productImageService,
+            IProductService productService,
+            IShopOwnerAdressService shopOwnerAdressService,
+            IShopOwnerService shopOwnerService, 
+            ISubCategoryService subCategoryService,
+            IUserAdressService userAdressService,
+            IUserService userService, 
+            IMapper mapper)
         {
             _adminService = adminService;
-            _userService = userService;
+            _cartDetailService = cartDetailService;
+            _cartService = cartService;
+            _categoryService = categoryService;
+            _favouriteListService = favouriteListService;
+            _orderDetailService = orderDetailService;
+            _orderService = orderService;
+            _productImageService = productImageService;
+            _productService = productService;
+            _shopOwnerAdressService = shopOwnerAdressService;
             _shopOwnerService = shopOwnerService;
+            _subCategoryService = subCategoryService;
+            _userAdressService = userAdressService;
+            _userService = userService;
+            
             _mapper = mapper;
         }
+
+        /*-----------------------------------------------------------ADMIN SECTION------------------------------------------------------------------ */
 
         //Create a new admin
         [HttpPost("newAdmin")]
@@ -59,6 +99,10 @@ namespace eCommerce.Api.Controllers
             return Ok(ResponseDTO.GenerateResponse(adminDTOs));
         }
 
+        /*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------- */
+
+        /*-----------------------------------------------------------SHOPOWNER SECTION---------------------------------------------------------------- */
+
         //Create new Shop owner
         [HttpPost("newShopOwner")]
         public async Task<ActionResult<ShopOwnerDTO>> PostShopOwner([FromBody] SaveShopOwnerDTO shopOwner)
@@ -87,6 +131,10 @@ namespace eCommerce.Api.Controllers
             return Ok(ResponseDTO.GenerateResponse(shopOwnerDTOs));
         }
 
+        /*-------------------------------------------------------END OF SHOPOWNER SECTION----------------------------------------------------------- */
+
+        /*-----------------------------------------------------------USER SECTION------------------------------------------------------------------ */
+
         //Create new user
         [HttpPost("newUser")]
         public async Task<ActionResult<UserDTO>> PostUser([FromBody] SaveUserDTO user)
@@ -114,5 +162,7 @@ namespace eCommerce.Api.Controllers
 
             return Ok(ResponseDTO.GenerateResponse(userDTOs));
         }
+
+        /*-----------------------------------------------------------END OF USER SECTION--------------------------------------------------------------- */
     }
 }

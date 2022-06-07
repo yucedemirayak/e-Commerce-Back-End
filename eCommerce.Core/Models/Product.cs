@@ -8,10 +8,11 @@ namespace eCommerce.Core.Models
         public double Price { get; set; }
         public int Qty { get; set; }
         public double Rating { get; set; }
+        public bool IsAvailable { get; set; }
         public int ShopOwnerId { get; set; }
         public ShopOwner ShopOwner { get; set; }
         public int SubCategoryId { get; set; }
-        public SubCatoregory SubCatoregory { get; set; }
+        public SubCategory SubCategory { get; set; }
 
     }
 }

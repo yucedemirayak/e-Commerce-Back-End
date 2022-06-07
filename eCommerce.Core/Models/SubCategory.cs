@@ -1,7 +1,7 @@
 ﻿
 namespace eCommerce.Core.Models
 {
-    public class SubCatoregory : BaseEntity
+    public class SubCategory : BaseEntity
     {
         public string Name { get; set; }
         public string ImgSource { get; set; }

@@ -1,7 +1,7 @@
 ﻿
 namespace eCommerce.Core.Models
 {
-    public class CartDetails : BaseEntity
+    public class CartDetail : BaseEntity
     {
         public int Quantity { get; set; }
         public int ProductId { get; set; }

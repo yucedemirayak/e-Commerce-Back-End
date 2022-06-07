@@ -1,5 +1,4 @@
-﻿
-using eCommerce.Core.Repositories;
+﻿using eCommerce.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 

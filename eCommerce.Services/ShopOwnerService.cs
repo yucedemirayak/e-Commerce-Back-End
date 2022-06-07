@@ -11,7 +11,7 @@ namespace eCommerce.Services
         private readonly IUnitOfWork _unitOfWork;
         public ShopOwnerService(IUnitOfWork unitOfWork)
         {
-            this._unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<ShopOwner> CreateNew(ShopOwner newShopOwner)

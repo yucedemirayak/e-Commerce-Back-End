@@ -7,5 +7,6 @@ namespace eCommerce.Api.Controllers
     [ApiController]
     public class AnonymousController : Controller
     {
+
     }
 }
