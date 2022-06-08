@@ -15,7 +15,7 @@ namespace eCommerce.Core
         IProductRepository Products { get; }
         IShopOwnerAdressRepository ShopOwnerAdresses { get; }
         IShopOwnerRepository ShopOwners { get; }
-        ISubCategoryRepository Subcategories { get; }
+        ISubCategoryRepository SubCategories { get; }
         IUserAdressRepository UserAdresses { get; }
         IUserRepository Users { get; }
 

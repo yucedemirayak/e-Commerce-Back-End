@@ -3,6 +3,7 @@ using eCommerce.Api.DTOs;
 using eCommerce.Api.DTOs.Admin;
 using eCommerce.Api.DTOs.Category;
 using eCommerce.Api.DTOs.ShopOwner;
+using eCommerce.Api.DTOs.SubCategory;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Api.Validations;
 using eCommerce.Core.Enums;
@@ -139,6 +140,22 @@ namespace eCommerce.Api.Controllers
         /*-------------------------------------------------------------SUBCATEGORY SECTION------------------------------------------------------------------*/
 
         //New SubCategory
+        [HttpPost("newSubCategory")]
+        public async Task<ActionResult<CategoryDTO>> CraeateNewSubCategory([FromBody] SubCategoryDTO subCategory)
+        {
+            var validator = new SubCategoryDTOValidator();
+            var validationResult = await validator.ValidateAsync(subCategory);
+
+            if (!validationResult.IsValid)
+                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
+
+            var createdSubCategory = _mapper.Map<SubCategoryDTO, SubCategory>(subCategory);
+            var addedSubCategory = await _subCategoryService.CreateNew(createdSubCategory);
+
+            var subCategoryDTO = _mapper.Map<SubCategory, SubCategoryDTO>(addedSubCategory);
+
+            return Ok(ResponseDTO.GenerateResponse(subCategoryDTO));
+        }
 
         /*-------------------------------------------------------------END OF SUBCATEGORY SECTION------------------------------------------------------------------*/
 
@@ -147,6 +164,7 @@ namespace eCommerce.Api.Controllers
         /*-------------------------------------------------------------ORDER SECTION------------------------------------------------------------------*/
 
         //Get User's & ShopOwners Orders and Details
+
 
         /*-------------------------------------------------------------END OF ORDER SECTION------------------------------------------------------------------*/
 
@@ -163,6 +181,8 @@ namespace eCommerce.Api.Controllers
         /*-------------------------------------------------------------PRODUCT SECTION------------------------------------------------------------------*/
 
         //Get all products
+
+
 
         //Get Product's images
 

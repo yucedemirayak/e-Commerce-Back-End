@@ -1,6 +1,4 @@
-﻿
-
-using eCommerce.Core;
+﻿using eCommerce.Core;
 using eCommerce.Core.Enums;
 using eCommerce.Core.Helpers;
 using eCommerce.Core.Models;

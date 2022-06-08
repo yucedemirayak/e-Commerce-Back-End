@@ -48,7 +48,7 @@ namespace eCommerce.Data
 
         public IShopOwnerAdressRepository ShopOwnerAdresses => _shopOwnerAdressRepository ?? new ShopOwnerAdressRepository(_context);
 
-        public ISubCategoryRepository Subcategories => _subCategoryRepository ?? new SubCategoryRepository(_context);
+        public ISubCategoryRepository SubCategories => _subCategoryRepository ?? new SubCategoryRepository(_context);
 
         public IUserAdressRepository UserAdresses => _userAdressRepository ?? new UserAdressRepository(_context);
         public IUserRepository Users => _userRepository ?? new UserRepository(_context);
