@@ -19,28 +19,14 @@ namespace eCommerce.Api.Controllers
         private readonly IShopOwnerService _shopOwnerService;
         private readonly IMapper _mapper;
 
-        public ShopOwnerController(IShopOwnerService shopOwnerService, IMapper mapper)
+        public ShopOwnerController(
+            IShopOwnerService shopOwnerService, 
+            IMapper mapper)
         {
             _shopOwnerService = shopOwnerService;
             _mapper = mapper;
         }
 
-        [HttpPost("newShopOwner")]
-        [AllowAnonymous]
-        public async Task<ActionResult<ShopOwnerDTO>> PostShopOwner([FromBody] SaveShopOwnerDTO shopOwner)
-        {
-            var validator = new SaveShopOwnerDTOValidator();
-            var validationResult = await validator.ValidateAsync(shopOwner);
 
-            if (!validationResult.IsValid)
-                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
-
-            var createdShopOwner = _mapper.Map<SaveShopOwnerDTO, ShopOwner>(shopOwner);
-            var addedShopOwner = await _shopOwnerService.CreateNew(createdShopOwner);
-
-            var shopOwnerDTO = _mapper.Map<ShopOwner, ShopOwnerDTO>(addedShopOwner);
-
-            return Ok(ResponseDTO.GenerateResponse(shopOwnerDTO));
-        }
     }
 }

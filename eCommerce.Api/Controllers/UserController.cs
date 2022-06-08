@@ -24,22 +24,6 @@ namespace eCommerce.Api.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost("newUser")]
-        [AllowAnonymous]
-        public async Task<ActionResult<UserDTO>> Post([FromBody] SaveUserDTO user)
-        {
-            var validator = new SaveUserDTOValidator();
-            var validationResult = await validator.ValidateAsync(user);
 
-            if (!validationResult.IsValid)
-                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
-
-            var createdUser = _mapper.Map<SaveUserDTO, User>(user);
-            var addedUser = await _userService.CreateNew(createdUser);
-
-            var userResource = _mapper.Map<User, UserDTO>(addedUser);
-
-            return Ok(ResponseDTO.GenerateResponse(userResource));
-        }
     }
 }

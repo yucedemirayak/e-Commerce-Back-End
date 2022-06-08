@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using eCommerce.Api.DTOs;
 using eCommerce.Api.DTOs.Admin;
+using eCommerce.Api.DTOs.Category;
 using eCommerce.Api.DTOs.ShopOwner;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Api.Validations;
@@ -101,25 +102,75 @@ namespace eCommerce.Api.Controllers
 
         /*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------- */
 
-        /*-----------------------------------------------------------SHOPOWNER SECTION---------------------------------------------------------------- */
 
-        //Create new Shop owner
-        [HttpPost("newShopOwner")]
-        public async Task<ActionResult<ShopOwnerDTO>> PostShopOwner([FromBody] SaveShopOwnerDTO shopOwner)
+
+        /*---------------------------------------------------------------CART SECTION------------------------------------------------------------------*/
+
+        //Show User Cart
+
+        /*-------------------------------------------------------------END OF CART SECTION------------------------------------------------------------------*/
+
+
+
+        /*-------------------------------------------------------------CATEGORY SECTION------------------------------------------------------------------*/
+
+        //Create New Category
+        [HttpPost("newCategory")]
+        public async Task<ActionResult<CategoryDTO>> CraeateNewCategory([FromBody] CategoryDTO category)
         {
-            var validator = new SaveShopOwnerDTOValidator();
-            var validationResult = await validator.ValidateAsync(shopOwner);
+            var validator = new CategoryDTOValidator();
+            var validationResult = await validator.ValidateAsync(category);
 
             if (!validationResult.IsValid)
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
-            var createdShopOwner = _mapper.Map<SaveShopOwnerDTO, ShopOwner>(shopOwner);
-            var addedShopOwner = await _shopOwnerService.CreateNew(createdShopOwner);
+            var createdCategory = _mapper.Map<CategoryDTO, Category>(category);
+            var addedCategory = await _categoryService.CreateNew(createdCategory);
 
-            var shopOwnerDTO = _mapper.Map<ShopOwner, ShopOwnerDTO>(addedShopOwner);
+            var categoryDTO = _mapper.Map<Category, CategoryDTO>(addedCategory);
 
-            return Ok(ResponseDTO.GenerateResponse(shopOwnerDTO));
+            return Ok(ResponseDTO.GenerateResponse(categoryDTO));
         }
+
+        /*-------------------------------------------------------------END OF CATEGORY SECTION------------------------------------------------------------------*/
+
+
+
+        /*-------------------------------------------------------------SUBCATEGORY SECTION------------------------------------------------------------------*/
+
+        //New SubCategory
+
+        /*-------------------------------------------------------------END OF SUBCATEGORY SECTION------------------------------------------------------------------*/
+
+
+
+        /*-------------------------------------------------------------ORDER SECTION------------------------------------------------------------------*/
+
+        //Get User's & ShopOwners Orders and Details
+
+        /*-------------------------------------------------------------END OF ORDER SECTION------------------------------------------------------------------*/
+
+
+
+        /*-------------------------------------------------------------FAVOURITELIST SECTION------------------------------------------------------------------*/
+
+        //Get User's Favourite List
+
+        /*-------------------------------------------------------------END OF FAVOURITELIST SECTION------------------------------------------------------------------*/
+
+
+
+        /*-------------------------------------------------------------PRODUCT SECTION------------------------------------------------------------------*/
+
+        //Get all products
+
+        //Get Product's images
+
+        /*-------------------------------------------------------------END OF PRODUCT SECTION------------------------------------------------------------------*/
+
+        /*-----------------------------------------------------------SHOPOWNER SECTION---------------------------------------------------------------- */
+
+
 
         //Get all shop owner list
         [HttpGet("getShopOwners")]
@@ -131,27 +182,13 @@ namespace eCommerce.Api.Controllers
             return Ok(ResponseDTO.GenerateResponse(shopOwnerDTOs));
         }
 
+        //Validate ShopOwner
+
+        //Get ShopOwner's Products
+
         /*-------------------------------------------------------END OF SHOPOWNER SECTION----------------------------------------------------------- */
 
         /*-----------------------------------------------------------USER SECTION------------------------------------------------------------------ */
-
-        //Create new user
-        [HttpPost("newUser")]
-        public async Task<ActionResult<UserDTO>> PostUser([FromBody] SaveUserDTO user)
-        {
-            var validator = new SaveUserDTOValidator();
-            var validationResult = await validator.ValidateAsync(user);
-
-            if (!validationResult.IsValid)
-                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
-
-            var createdUser = _mapper.Map<SaveUserDTO, User>(user);
-            var addedUser = await _userService.CreateNew(createdUser);
-
-            var userDTO = _mapper.Map<User, UserDTO>(addedUser);
-
-            return Ok(ResponseDTO.GenerateResponse(userDTO));
-        }
 
         //Get all users list
         [HttpGet("getUsers")]
@@ -162,6 +199,8 @@ namespace eCommerce.Api.Controllers
 
             return Ok(ResponseDTO.GenerateResponse(userDTOs));
         }
+
+        //Get User's Adresses
 
         /*-----------------------------------------------------------END OF USER SECTION--------------------------------------------------------------- */
     }

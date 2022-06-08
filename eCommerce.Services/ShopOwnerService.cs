@@ -17,6 +17,7 @@ namespace eCommerce.Services
         public async Task<ShopOwner> CreateNew(ShopOwner newShopOwner)
         {
             newShopOwner.Role = UserRole.SHOPOWNER;
+            newShopOwner.IsValidated = false;
             newShopOwner.PasswordSalt = PasswordHelper.GenerateSalt();
             newShopOwner.Password = PasswordHelper.HashPassword(newShopOwner.Password, newShopOwner.PasswordSalt);
             await _unitOfWork.ShopOwners.AddAsync(newShopOwner);

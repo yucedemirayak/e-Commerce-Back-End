@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using eCommerce.Api.DTOs;
 using eCommerce.Core.Services;
+using eCommerce.Api.DTOs.Auth;
 
 namespace eCommerce.Api.Controllers
 {

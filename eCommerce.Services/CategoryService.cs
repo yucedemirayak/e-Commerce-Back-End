@@ -11,5 +11,11 @@ namespace eCommerce.Services
         {
             _unitOfWork = unitOfWork;
         }
+        public async Task<Category> CreateNew(Category newCategory)
+        {
+            await _unitOfWork.Categories.AddAsync(newCategory);
+            await _unitOfWork.CommitAsync();
+            return newCategory;
+        }
     }
 }

@@ -4,5 +4,6 @@ namespace eCommerce.Core.Services
 {
     public interface ICartService : IService<Cart>
     {
+
     }
 }

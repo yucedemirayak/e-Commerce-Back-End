@@ -3,6 +3,7 @@ namespace eCommerce.Core.Models
 {
     public class ShopOwnerAdress : BaseEntity
     {
+        public string Title { get; set; }
         public string City { get; set; }
         public string District { get; set; }
         public int? PostCode { get; set; }

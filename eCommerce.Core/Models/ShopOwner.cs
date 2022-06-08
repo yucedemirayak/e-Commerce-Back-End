@@ -16,6 +16,6 @@ namespace eCommerce.Core.Models
         public string PasswordSalt { get; set; }
         public string ContactNumber { get; set; }
         public UserRole Role { get; set; }
-        
+        public bool IsValidated { get; set; } = false;
     }
 }
