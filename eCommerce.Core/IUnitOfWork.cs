@@ -9,7 +9,7 @@ namespace eCommerce.Core
         ICartRepository Carts { get; }
         ICategoryRepository Categories { get; }
         IFavouriteListRepository FavoriteLists { get; }
-        IOrderDetailRepository OrderDeatils { get; }
+        IOrderDetailRepository OrderDetails { get; }
         IOrderRepository Orders { get; }
         IProductImageRepository ProductImages { get; }
         IProductRepository Products { get; }

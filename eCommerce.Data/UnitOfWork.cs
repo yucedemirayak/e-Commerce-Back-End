@@ -38,7 +38,7 @@ namespace eCommerce.Data
 
         public IFavouriteListRepository FavoriteLists => _favouriteListRepository ?? new FavouriteListRepository(_context);
 
-        public IOrderDetailRepository OrderDeatils => _orderDetailRepository ?? new OrderDetailRepository(_context);
+        public IOrderDetailRepository OrderDetails => _orderDetailRepository ?? new OrderDetailRepository(_context);
 
         public IOrderRepository Orders => _orderRepository ?? new OrderRepository(_context);
 

@@ -6,6 +6,7 @@ using eCommerce.Api.DTOs.ShopOwner;
 using eCommerce.Api.DTOs.SubCategory;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Api.Validations;
+using eCommerce.Core;
 using eCommerce.Core.Enums;
 using eCommerce.Core.Models;
 using eCommerce.Core.Services;
@@ -19,55 +20,11 @@ namespace eCommerce.Api.Controllers
     [Authorize(AuthenticationSchemes = "Bearer", Policy = "AdminPolicy")]
     public class AdminController : Controller
     {
-        private readonly IAdminService _adminService;
-        private readonly ICartDetailService _cartDetailService;
-        private readonly ICartService _cartService;
-        private readonly ICategoryService _categoryService;
-        private readonly IFavouriteListService _favouriteListService;
-        private readonly IOrderDetailService _orderDetailService;
-        private readonly IOrderService _orderService;
-        private readonly IProductImageService _productImageService;
-        private readonly IProductService _productService;
-        private readonly IShopOwnerAdressService _shopOwnerAdressService;
-        private readonly IShopOwnerService _shopOwnerService;
-        private readonly ISubCategoryService _subCategoryService;
-        private readonly IUserAdressService _userAdressService;
-        private readonly IUserService _userService;
-
+        private readonly Core.IServiceProvider _servicesPipeline;
         private readonly IMapper _mapper;
-
-        //calling the services we will use in the project
-        public AdminController(IAdminService adminService, 
-            ICartDetailService cartDetailService,
-            ICartService cartService,
-            ICategoryService categoryService, 
-            IFavouriteListService favouriteListService, 
-            IOrderDetailService orderDetailService, 
-            IOrderService orderService, 
-            IProductImageService productImageService,
-            IProductService productService,
-            IShopOwnerAdressService shopOwnerAdressService,
-            IShopOwnerService shopOwnerService, 
-            ISubCategoryService subCategoryService,
-            IUserAdressService userAdressService,
-            IUserService userService, 
-            IMapper mapper)
+        public AdminController(Core.IServiceProvider servicesPipeline, IMapper mapper)
         {
-            _adminService = adminService;
-            _cartDetailService = cartDetailService;
-            _cartService = cartService;
-            _categoryService = categoryService;
-            _favouriteListService = favouriteListService;
-            _orderDetailService = orderDetailService;
-            _orderService = orderService;
-            _productImageService = productImageService;
-            _productService = productService;
-            _shopOwnerAdressService = shopOwnerAdressService;
-            _shopOwnerService = shopOwnerService;
-            _subCategoryService = subCategoryService;
-            _userAdressService = userAdressService;
-            _userService = userService;
-            
+            _servicesPipeline = servicesPipeline;
             _mapper = mapper;
         }
 
@@ -84,7 +41,7 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdAdmin = _mapper.Map<SaveAdminDTO, Admin>(admin);
-            var addedAdmin = await _adminService.CreateNew(createdAdmin);
+            var addedAdmin = await _servicesPipeline.AdminServices.CreateNew(createdAdmin);
 
             var adminDTO = _mapper.Map<Admin, AdminDTO>(addedAdmin);
 
@@ -95,7 +52,7 @@ namespace eCommerce.Api.Controllers
         [HttpGet("getAdmins")]
         public async Task<ActionResult<IEnumerable<AdminDTO>>> GetAllAdmins()
         {
-            var admins = await _adminService.GetAll();
+            var admins = await _servicesPipeline.AdminServices.GetAll();
             var adminDTOs = _mapper.Map<IEnumerable<Admin>, IEnumerable<AdminDTO>>(admins);
 
             return Ok(ResponseDTO.GenerateResponse(adminDTOs));
@@ -105,120 +62,206 @@ namespace eCommerce.Api.Controllers
 
 
 
-        /*---------------------------------------------------------------CART SECTION------------------------------------------------------------------*/
+        //private readonly IAdminService _adminService;
+        //private readonly ICartDetailService _cartDetailService;
+        //private readonly ICartService _cartService;
+        //private readonly ICategoryService _categoryService;
+        //private readonly IFavouriteListService _favouriteListService;
+        //private readonly IOrderDetailService _orderDetailService;
+        //private readonly IOrderService _orderService;
+        //private readonly IProductImageService _productImageService;
+        //private readonly IProductService _productService;
+        //private readonly IShopOwnerAdressService _shopOwnerAdressService;
+        //private readonly IShopOwnerService _shopOwnerService;
+        //private readonly ISubCategoryService _subCategoryService;
+        //private readonly IUserAdressService _userAdressService;
+        //private readonly IUserService _userService;
 
-        //Show User Cart
+        //private readonly IMapper _mapper;
 
-        /*-------------------------------------------------------------END OF CART SECTION------------------------------------------------------------------*/
+        ////calling the services we will use in the project
+        //public AdminController(IAdminService adminService, 
+        //    ICartDetailService cartDetailService,
+        //    ICartService cartService,
+        //    ICategoryService categoryService, 
+        //    IFavouriteListService favouriteListService, 
+        //    IOrderDetailService orderDetailService, 
+        //    IOrderService orderService, 
+        //    IProductImageService productImageService,
+        //    IProductService productService,
+        //    IShopOwnerAdressService shopOwnerAdressService,
+        //    IShopOwnerService shopOwnerService, 
+        //    ISubCategoryService subCategoryService,
+        //    IUserAdressService userAdressService,
+        //    IUserService userService, 
+        //    IMapper mapper)
+        //{
+        //    _adminService = adminService;
+        //    _cartDetailService = cartDetailService;
+        //    _cartService = cartService;
+        //    _categoryService = categoryService;
+        //    _favouriteListService = favouriteListService;
+        //    _orderDetailService = orderDetailService;
+        //    _orderService = orderService;
+        //    _productImageService = productImageService;
+        //    _productService = productService;
+        //    _shopOwnerAdressService = shopOwnerAdressService;
+        //    _shopOwnerService = shopOwnerService;
+        //    _subCategoryService = subCategoryService;
+        //    _userAdressService = userAdressService;
+        //    _userService = userService;
 
+        //    _mapper = mapper;
+        //}
 
+        ///*-----------------------------------------------------------ADMIN SECTION------------------------------------------------------------------ */
 
-        /*-------------------------------------------------------------CATEGORY SECTION------------------------------------------------------------------*/
+        ////Create a new admin
+        //[HttpPost("newAdmin")]
+        //public async Task<ActionResult<AdminDTO>> PostAdmin([FromBody] SaveAdminDTO admin)
+        //{
+        //    var validator = new SaveAdminDTOValidator();
+        //    var validationResult = await validator.ValidateAsync(admin);
 
-        //Create New Category
-        [HttpPost("newCategory")]
-        public async Task<ActionResult<CategoryDTO>> CraeateNewCategory([FromBody] CategoryDTO category)
-        {
-            var validator = new CategoryDTOValidator();
-            var validationResult = await validator.ValidateAsync(category);
+        //    if (!validationResult.IsValid)
+        //        return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
-            if (!validationResult.IsValid)
-                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
+        //    var createdAdmin = _mapper.Map<SaveAdminDTO, Admin>(admin);
+        //    var addedAdmin = await _adminService.CreateNew(createdAdmin);
 
-            var createdCategory = _mapper.Map<CategoryDTO, Category>(category);
-            var addedCategory = await _categoryService.CreateNew(createdCategory);
+        //    var adminDTO = _mapper.Map<Admin, AdminDTO>(addedAdmin);
 
-            var categoryDTO = _mapper.Map<Category, CategoryDTO>(addedCategory);
+        //    return Ok(ResponseDTO.GenerateResponse(adminDTO));
+        //}
 
-            return Ok(ResponseDTO.GenerateResponse(categoryDTO));
-        }
+        ////Get all admins list
+        //[HttpGet("getAdmins")]
+        //public async Task<ActionResult<IEnumerable<AdminDTO>>> GetAllAdmins()
+        //{
+        //    var admins = await _adminService.GetAll();
+        //    var adminDTOs = _mapper.Map<IEnumerable<Admin>, IEnumerable<AdminDTO>>(admins);
 
-        /*-------------------------------------------------------------END OF CATEGORY SECTION------------------------------------------------------------------*/
+        //    return Ok(ResponseDTO.GenerateResponse(adminDTOs));
+        //}
 
-
-
-        /*-------------------------------------------------------------SUBCATEGORY SECTION------------------------------------------------------------------*/
-
-        //New SubCategory
-        [HttpPost("newSubCategory")]
-        public async Task<ActionResult<CategoryDTO>> CraeateNewSubCategory([FromBody] SubCategoryDTO subCategory)
-        {
-            var validator = new SubCategoryDTOValidator();
-            var validationResult = await validator.ValidateAsync(subCategory);
-
-            if (!validationResult.IsValid)
-                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
-
-            var createdSubCategory = _mapper.Map<SubCategoryDTO, SubCategory>(subCategory);
-            var addedSubCategory = await _subCategoryService.CreateNew(createdSubCategory);
-
-            var subCategoryDTO = _mapper.Map<SubCategory, SubCategoryDTO>(addedSubCategory);
-
-            return Ok(ResponseDTO.GenerateResponse(subCategoryDTO));
-        }
-
-        /*-------------------------------------------------------------END OF SUBCATEGORY SECTION------------------------------------------------------------------*/
-
-
-
-        /*-------------------------------------------------------------ORDER SECTION------------------------------------------------------------------*/
-
-        //Get User's & ShopOwners Orders and Details
-
-
-        /*-------------------------------------------------------------END OF ORDER SECTION------------------------------------------------------------------*/
-
-
-
-        /*-------------------------------------------------------------FAVOURITELIST SECTION------------------------------------------------------------------*/
-
-        //Get User's Favourite List
-
-        /*-------------------------------------------------------------END OF FAVOURITELIST SECTION------------------------------------------------------------------*/
-
-
-
-        /*-------------------------------------------------------------PRODUCT SECTION------------------------------------------------------------------*/
-
-        //Get all products
-
-
-
-        //Get Product's images
-
-        /*-------------------------------------------------------------END OF PRODUCT SECTION------------------------------------------------------------------*/
-
-        /*-----------------------------------------------------------SHOPOWNER SECTION---------------------------------------------------------------- */
-
+        ///*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------- */
 
 
-        //Get all shop owner list
-        [HttpGet("getShopOwners")]
-        public async Task<ActionResult<IEnumerable<ShopOwnerDTO>>> GetAllShopOwners()
-        {
-            var shopOwners = await _shopOwnerService.GetAll();
-            var shopOwnerDTOs = _mapper.Map<IEnumerable<ShopOwner>, IEnumerable<ShopOwnerDTO>>(shopOwners);
 
-            return Ok(ResponseDTO.GenerateResponse(shopOwnerDTOs));
-        }
+        ///*---------------------------------------------------------------CART SECTION------------------------------------------------------------------*/
 
-        //Validate ShopOwner
+        ////Show User Cart
 
-        //Get ShopOwner's Products
+        ///*-------------------------------------------------------------END OF CART SECTION------------------------------------------------------------------*/
 
-        /*-------------------------------------------------------END OF SHOPOWNER SECTION----------------------------------------------------------- */
 
-        /*-----------------------------------------------------------USER SECTION------------------------------------------------------------------ */
 
-        //Get all users list
-        [HttpGet("getUsers")]
-        public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
-        {
-            var users = await _userService.GetAll();
-            var userDTOs = _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
+        ///*-------------------------------------------------------------CATEGORY SECTION------------------------------------------------------------------*/
 
-            return Ok(ResponseDTO.GenerateResponse(userDTOs));
-        }
+        ////Create New Category
+        //[HttpPost("newCategory")]
+        //public async Task<ActionResult<CategoryDTO>> CraeateNewCategory([FromBody] CategoryDTO category)
+        //{
+        //    var validator = new CategoryDTOValidator();
+        //    var validationResult = await validator.ValidateAsync(category);
+
+        //    if (!validationResult.IsValid)
+        //        return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
+
+        //    var createdCategory = _mapper.Map<CategoryDTO, Category>(category);
+        //    var addedCategory = await _categoryService.CreateNew(createdCategory);
+
+        //    var categoryDTO = _mapper.Map<Category, CategoryDTO>(addedCategory);
+
+        //    return Ok(ResponseDTO.GenerateResponse(categoryDTO));
+        //}
+
+        ///*-------------------------------------------------------------END OF CATEGORY SECTION------------------------------------------------------------------*/
+
+
+
+        ///*-------------------------------------------------------------SUBCATEGORY SECTION------------------------------------------------------------------*/
+
+        ////New SubCategory
+        //[HttpPost("newSubCategory")]
+        //public async Task<ActionResult<CategoryDTO>> CraeateNewSubCategory([FromBody] SubCategoryDTO subCategory)
+        //{
+        //    var validator = new SubCategoryDTOValidator();
+        //    var validationResult = await validator.ValidateAsync(subCategory);
+
+        //    if (!validationResult.IsValid)
+        //        return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
+
+        //    var createdSubCategory = _mapper.Map<SubCategoryDTO, SubCategory>(subCategory);
+        //    var addedSubCategory = await _subCategoryService.CreateNew(createdSubCategory);
+
+        //    var subCategoryDTO = _mapper.Map<SubCategory, SubCategoryDTO>(addedSubCategory);
+
+        //    return Ok(ResponseDTO.GenerateResponse(subCategoryDTO));
+        //}
+
+        ///*-------------------------------------------------------------END OF SUBCATEGORY SECTION------------------------------------------------------------------*/
+
+
+
+        ///*-------------------------------------------------------------ORDER SECTION------------------------------------------------------------------*/
+
+        ////Get User's & ShopOwners Orders and Details
+
+
+        ///*-------------------------------------------------------------END OF ORDER SECTION------------------------------------------------------------------*/
+
+
+
+        ///*-------------------------------------------------------------FAVOURITELIST SECTION------------------------------------------------------------------*/
+
+        ////Get User's Favourite List
+
+        ///*-------------------------------------------------------------END OF FAVOURITELIST SECTION------------------------------------------------------------------*/
+
+
+
+        ///*-------------------------------------------------------------PRODUCT SECTION------------------------------------------------------------------*/
+
+        ////Get all products
+
+
+
+        ////Get Product's images
+
+        ///*-------------------------------------------------------------END OF PRODUCT SECTION------------------------------------------------------------------*/
+
+        ///*-----------------------------------------------------------SHOPOWNER SECTION---------------------------------------------------------------- */
+
+
+
+        ////Get all shop owner list
+        //[HttpGet("getShopOwners")]
+        //public async Task<ActionResult<IEnumerable<ShopOwnerDTO>>> GetAllShopOwners()
+        //{
+        //    var shopOwners = await _shopOwnerService.GetAll();
+        //    var shopOwnerDTOs = _mapper.Map<IEnumerable<ShopOwner>, IEnumerable<ShopOwnerDTO>>(shopOwners);
+
+        //    return Ok(ResponseDTO.GenerateResponse(shopOwnerDTOs));
+        //}
+
+        ////Validate ShopOwner
+
+        ////Get ShopOwner's Products
+
+        ///*-------------------------------------------------------END OF SHOPOWNER SECTION----------------------------------------------------------- */
+
+        ///*-----------------------------------------------------------USER SECTION------------------------------------------------------------------ */
+
+        ////Get all users list
+        //[HttpGet("getUsers")]
+        //public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
+        //{
+        //    var users = await _userService.GetAll();
+        //    var userDTOs = _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
+
+        //    return Ok(ResponseDTO.GenerateResponse(userDTOs));
+        //}
 
         //Get User's Adresses
 
