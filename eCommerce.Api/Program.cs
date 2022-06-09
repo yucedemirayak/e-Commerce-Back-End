@@ -104,9 +104,6 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddScoped<eCommerce.Core.IServiceProvider, eCommerce.Services.ServiceProvider>();
 
-//builder.Services.AddTransient<IAdminService, AdminService>();
-//builder.Services.AddTransient<IUserService, UserService>();
-//builder.Services.AddTransient<IShopOwnerService, ShopOwnerService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

@@ -20,11 +20,11 @@ namespace eCommerce.Api.Controllers
     [Authorize(AuthenticationSchemes = "Bearer", Policy = "AdminPolicy")]
     public class AdminController : Controller
     {
-        private readonly Core.IServiceProvider _servicesPipeline;
+        private readonly Core.IServiceProvider _serviceProvider;
         private readonly IMapper _mapper;
-        public AdminController(Core.IServiceProvider servicesPipeline, IMapper mapper)
+        public AdminController(Core.IServiceProvider serviceProvider, IMapper mapper)
         {
-            _servicesPipeline = servicesPipeline;
+            _serviceProvider = serviceProvider;
             _mapper = mapper;
         }
 
@@ -41,7 +41,7 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdAdmin = _mapper.Map<SaveAdminDTO, Admin>(admin);
-            var addedAdmin = await _servicesPipeline.AdminServices.CreateNew(createdAdmin);
+            var addedAdmin = await _serviceProvider.AdminServices.CreateNew(createdAdmin);
 
             var adminDTO = _mapper.Map<Admin, AdminDTO>(addedAdmin);
 
@@ -52,216 +52,126 @@ namespace eCommerce.Api.Controllers
         [HttpGet("getAdmins")]
         public async Task<ActionResult<IEnumerable<AdminDTO>>> GetAllAdmins()
         {
-            var admins = await _servicesPipeline.AdminServices.GetAll();
+            var admins = await _serviceProvider.AdminServices.GetAll();
             var adminDTOs = _mapper.Map<IEnumerable<Admin>, IEnumerable<AdminDTO>>(admins);
 
             return Ok(ResponseDTO.GenerateResponse(adminDTOs));
         }
 
-        /*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------- */
-
-
-
-        //private readonly IAdminService _adminService;
-        //private readonly ICartDetailService _cartDetailService;
-        //private readonly ICartService _cartService;
-        //private readonly ICategoryService _categoryService;
-        //private readonly IFavouriteListService _favouriteListService;
-        //private readonly IOrderDetailService _orderDetailService;
-        //private readonly IOrderService _orderService;
-        //private readonly IProductImageService _productImageService;
-        //private readonly IProductService _productService;
-        //private readonly IShopOwnerAdressService _shopOwnerAdressService;
-        //private readonly IShopOwnerService _shopOwnerService;
-        //private readonly ISubCategoryService _subCategoryService;
-        //private readonly IUserAdressService _userAdressService;
-        //private readonly IUserService _userService;
-
-        //private readonly IMapper _mapper;
+        /*---------------------------------------------------------------CART SECTION------------------------------------------------------------------*/
 
-        ////calling the services we will use in the project
-        //public AdminController(IAdminService adminService, 
-        //    ICartDetailService cartDetailService,
-        //    ICartService cartService,
-        //    ICategoryService categoryService, 
-        //    IFavouriteListService favouriteListService, 
-        //    IOrderDetailService orderDetailService, 
-        //    IOrderService orderService, 
-        //    IProductImageService productImageService,
-        //    IProductService productService,
-        //    IShopOwnerAdressService shopOwnerAdressService,
-        //    IShopOwnerService shopOwnerService, 
-        //    ISubCategoryService subCategoryService,
-        //    IUserAdressService userAdressService,
-        //    IUserService userService, 
-        //    IMapper mapper)
-        //{
-        //    _adminService = adminService;
-        //    _cartDetailService = cartDetailService;
-        //    _cartService = cartService;
-        //    _categoryService = categoryService;
-        //    _favouriteListService = favouriteListService;
-        //    _orderDetailService = orderDetailService;
-        //    _orderService = orderService;
-        //    _productImageService = productImageService;
-        //    _productService = productService;
-        //    _shopOwnerAdressService = shopOwnerAdressService;
-        //    _shopOwnerService = shopOwnerService;
-        //    _subCategoryService = subCategoryService;
-        //    _userAdressService = userAdressService;
-        //    _userService = userService;
+        //Show User Cart
 
-        //    _mapper = mapper;
-        //}
+        /*-------------------------------------------------------------END OF CART SECTION------------------------------------------------------------------*/
 
-        ///*-----------------------------------------------------------ADMIN SECTION------------------------------------------------------------------ */
 
-        ////Create a new admin
-        //[HttpPost("newAdmin")]
-        //public async Task<ActionResult<AdminDTO>> PostAdmin([FromBody] SaveAdminDTO admin)
-        //{
-        //    var validator = new SaveAdminDTOValidator();
-        //    var validationResult = await validator.ValidateAsync(admin);
 
-        //    if (!validationResult.IsValid)
-        //        return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
+        /*-------------------------------------------------------------CATEGORY SECTION------------------------------------------------------------------*/
 
-        //    var createdAdmin = _mapper.Map<SaveAdminDTO, Admin>(admin);
-        //    var addedAdmin = await _adminService.CreateNew(createdAdmin);
+        //Create New Category
+        [HttpPost("newCategory")]
+        public async Task<ActionResult<CategoryDTO>> CraeateNewCategory([FromBody] CategoryDTO category)
+        {
+            var validator = new CategoryDTOValidator();
+            var validationResult = await validator.ValidateAsync(category);
 
-        //    var adminDTO = _mapper.Map<Admin, AdminDTO>(addedAdmin);
+            if (!validationResult.IsValid)
+                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
-        //    return Ok(ResponseDTO.GenerateResponse(adminDTO));
-        //}
+            var createdCategory = _mapper.Map<CategoryDTO, Category>(category);
+            var addedCategory = await _serviceProvider.CategoryServices.CreateNew(createdCategory);
 
-        ////Get all admins list
-        //[HttpGet("getAdmins")]
-        //public async Task<ActionResult<IEnumerable<AdminDTO>>> GetAllAdmins()
-        //{
-        //    var admins = await _adminService.GetAll();
-        //    var adminDTOs = _mapper.Map<IEnumerable<Admin>, IEnumerable<AdminDTO>>(admins);
+            var categoryDTO = _mapper.Map<Category, CategoryDTO>(addedCategory);
 
-        //    return Ok(ResponseDTO.GenerateResponse(adminDTOs));
-        //}
+            return Ok(ResponseDTO.GenerateResponse(categoryDTO));
+        }
 
-        ///*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------- */
+        /*-------------------------------------------------------------END OF CATEGORY SECTION------------------------------------------------------------------*/
 
 
 
-        ///*---------------------------------------------------------------CART SECTION------------------------------------------------------------------*/
+        /*-------------------------------------------------------------SUBCATEGORY SECTION------------------------------------------------------------------*/
 
-        ////Show User Cart
+        //New SubCategory
+        [HttpPost("newSubCategory")]
+        public async Task<ActionResult<CategoryDTO>> CraeateNewSubCategory([FromBody] SubCategoryDTO subCategory)
+        {
+            var validator = new SubCategoryDTOValidator();
+            var validationResult = await validator.ValidateAsync(subCategory);
 
-        ///*-------------------------------------------------------------END OF CART SECTION------------------------------------------------------------------*/
+            if (!validationResult.IsValid)
+                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
+            var createdSubCategory = _mapper.Map<SubCategoryDTO, SubCategory>(subCategory);
+            var addedSubCategory = await _serviceProvider.SubCategoryServices.CreateNew(createdSubCategory);
 
+            var subCategoryDTO = _mapper.Map<SubCategory, SubCategoryDTO>(addedSubCategory);
 
-        ///*-------------------------------------------------------------CATEGORY SECTION------------------------------------------------------------------*/
+            return Ok(ResponseDTO.GenerateResponse(subCategoryDTO));
+        }
 
-        ////Create New Category
-        //[HttpPost("newCategory")]
-        //public async Task<ActionResult<CategoryDTO>> CraeateNewCategory([FromBody] CategoryDTO category)
-        //{
-        //    var validator = new CategoryDTOValidator();
-        //    var validationResult = await validator.ValidateAsync(category);
+        /*-------------------------------------------------------------END OF SUBCATEGORY SECTION------------------------------------------------------------------*/
 
-        //    if (!validationResult.IsValid)
-        //        return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
-        //    var createdCategory = _mapper.Map<CategoryDTO, Category>(category);
-        //    var addedCategory = await _categoryService.CreateNew(createdCategory);
 
-        //    var categoryDTO = _mapper.Map<Category, CategoryDTO>(addedCategory);
+        /*-------------------------------------------------------------ORDER SECTION------------------------------------------------------------------*/
 
-        //    return Ok(ResponseDTO.GenerateResponse(categoryDTO));
-        //}
+        //Get User's & ShopOwners Orders and Details
 
-        ///*-------------------------------------------------------------END OF CATEGORY SECTION------------------------------------------------------------------*/
 
+        /*-------------------------------------------------------------END OF ORDER SECTION------------------------------------------------------------------*/
 
 
-        ///*-------------------------------------------------------------SUBCATEGORY SECTION------------------------------------------------------------------*/
 
-        ////New SubCategory
-        //[HttpPost("newSubCategory")]
-        //public async Task<ActionResult<CategoryDTO>> CraeateNewSubCategory([FromBody] SubCategoryDTO subCategory)
-        //{
-        //    var validator = new SubCategoryDTOValidator();
-        //    var validationResult = await validator.ValidateAsync(subCategory);
+        /*-------------------------------------------------------------FAVOURITELIST SECTION------------------------------------------------------------------*/
 
-        //    if (!validationResult.IsValid)
-        //        return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
+        //Get User's Favourite List
 
-        //    var createdSubCategory = _mapper.Map<SubCategoryDTO, SubCategory>(subCategory);
-        //    var addedSubCategory = await _subCategoryService.CreateNew(createdSubCategory);
+        /*-------------------------------------------------------------END OF FAVOURITELIST SECTION------------------------------------------------------------------*/
 
-        //    var subCategoryDTO = _mapper.Map<SubCategory, SubCategoryDTO>(addedSubCategory);
 
-        //    return Ok(ResponseDTO.GenerateResponse(subCategoryDTO));
-        //}
 
-        ///*-------------------------------------------------------------END OF SUBCATEGORY SECTION------------------------------------------------------------------*/
+        /*-------------------------------------------------------------PRODUCT SECTION------------------------------------------------------------------*/
 
+        //Get all products
 
 
-        ///*-------------------------------------------------------------ORDER SECTION------------------------------------------------------------------*/
 
-        ////Get User's & ShopOwners Orders and Details
+        //Get Product's images
 
+        /*-------------------------------------------------------------END OF PRODUCT SECTION------------------------------------------------------------------*/
 
-        ///*-------------------------------------------------------------END OF ORDER SECTION------------------------------------------------------------------*/
+        /*-----------------------------------------------------------SHOPOWNER SECTION---------------------------------------------------------------- */
 
 
 
-        ///*-------------------------------------------------------------FAVOURITELIST SECTION------------------------------------------------------------------*/
+        //Get all shop owner list
+        [HttpGet("getShopOwners")]
+        public async Task<ActionResult<IEnumerable<ShopOwnerDTO>>> GetAllShopOwners()
+        {
+            var shopOwners = await _serviceProvider.ShopOwnerServices.GetAll();
+            var shopOwnerDTOs = _mapper.Map<IEnumerable<ShopOwner>, IEnumerable<ShopOwnerDTO>>(shopOwners);
 
-        ////Get User's Favourite List
+            return Ok(ResponseDTO.GenerateResponse(shopOwnerDTOs));
+        }
 
-        ///*-------------------------------------------------------------END OF FAVOURITELIST SECTION------------------------------------------------------------------*/
+        //Validate ShopOwner
 
+        //Get ShopOwner's Products
 
+        /*-------------------------------------------------------END OF SHOPOWNER SECTION----------------------------------------------------------- */
 
-        ///*-------------------------------------------------------------PRODUCT SECTION------------------------------------------------------------------*/
+        /*-----------------------------------------------------------USER SECTION------------------------------------------------------------------ */
 
-        ////Get all products
+        //Get all users list
+        [HttpGet("getUsers")]
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
+        {
+            var users = await _serviceProvider.UserServices.GetAll();
+            var userDTOs = _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
 
-
-
-        ////Get Product's images
-
-        ///*-------------------------------------------------------------END OF PRODUCT SECTION------------------------------------------------------------------*/
-
-        ///*-----------------------------------------------------------SHOPOWNER SECTION---------------------------------------------------------------- */
-
-
-
-        ////Get all shop owner list
-        //[HttpGet("getShopOwners")]
-        //public async Task<ActionResult<IEnumerable<ShopOwnerDTO>>> GetAllShopOwners()
-        //{
-        //    var shopOwners = await _shopOwnerService.GetAll();
-        //    var shopOwnerDTOs = _mapper.Map<IEnumerable<ShopOwner>, IEnumerable<ShopOwnerDTO>>(shopOwners);
-
-        //    return Ok(ResponseDTO.GenerateResponse(shopOwnerDTOs));
-        //}
-
-        ////Validate ShopOwner
-
-        ////Get ShopOwner's Products
-
-        ///*-------------------------------------------------------END OF SHOPOWNER SECTION----------------------------------------------------------- */
-
-        ///*-----------------------------------------------------------USER SECTION------------------------------------------------------------------ */
-
-        ////Get all users list
-        //[HttpGet("getUsers")]
-        //public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
-        //{
-        //    var users = await _userService.GetAll();
-        //    var userDTOs = _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
-
-        //    return Ok(ResponseDTO.GenerateResponse(userDTOs));
-        //}
+            return Ok(ResponseDTO.GenerateResponse(userDTOs));
+        }
 
         //Get User's Adresses
 
