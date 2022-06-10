@@ -14,7 +14,7 @@ namespace eCommerce.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Admin> CreateNew(Admin newAdmin)
+        public async Task<Admin> Create(Admin newAdmin)
         {
             newAdmin.Role = UserRole.ADMIN;
             newAdmin.PasswordSalt = PasswordHelper.GenerateSalt();
@@ -24,6 +24,14 @@ namespace eCommerce.Services
             return newAdmin;
         }
 
+        public async Task<Admin> Delete(int id)
+        {
+            var deletedAdmin = await GetById(id);
+            _unitOfWork.Admins.Remove(deletedAdmin);
+            await _unitOfWork.CommitAsync();
+            return deletedAdmin;
+        }
+
         public async Task<IEnumerable<Admin>> GetAll()
         {
             return await _unitOfWork.Admins.GetAllAsync();
@@ -31,6 +39,11 @@ namespace eCommerce.Services
         public async Task<Admin> GetByEmail(string email)
         {
             return await _unitOfWork.Admins.GetByEmailAsync(x => x.Email == email);
+        }
+
+        public async Task<Admin> GetById(int id)
+        {
+            return await _unitOfWork.Admins.GetByIdAsync(id);
         }
     }
 }

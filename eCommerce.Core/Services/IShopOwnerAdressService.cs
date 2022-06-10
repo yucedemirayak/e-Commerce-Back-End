@@ -2,7 +2,7 @@
 
 namespace eCommerce.Core.Services
 {
-    public interface IShopOwnerAdressService : IService<ShopOwnerAdress>
+    public interface IShopOwnerAdressService : IBaseService<ShopOwnerAdress>
     {
 
     }

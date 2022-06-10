@@ -13,7 +13,7 @@ namespace eCommerce.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<User> CreateNew(User newUser)
+        public async Task<User> Create(User newUser)
         {
             newUser.Role = UserRole.USER;
             newUser.PasswordSalt = PasswordHelper.GenerateSalt();
@@ -23,6 +23,14 @@ namespace eCommerce.Services
             return newUser;
         }
 
+        public async Task<User> Delete(int id)
+        {
+            var deletedUser = await GetById(id);
+            _unitOfWork.Users.Remove(deletedUser);
+            _unitOfWork.CommitAsync();
+            return deletedUser;
+        }
+
         public async Task<IEnumerable<User>> GetAll()
         {
             return await _unitOfWork.Users.GetAllAsync();
@@ -30,6 +38,11 @@ namespace eCommerce.Services
         public async Task<User> GetByEmail(string email)
         {
             return await _unitOfWork.Users.GetByEmailAsync(x => x.Email == email);
+        }
+
+        public async Task<User> GetById(int id)
+        {
+            return await _unitOfWork.Users.GetByIdAsync(id);
         }
     }
 }

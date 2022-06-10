@@ -2,8 +2,8 @@
 
 namespace eCommerce.Core.Services
 {
-    public interface ISubCategoryService : IService<SubCategory>
+    public interface ISubCategoryService : IBaseService<SubCategory>
     {
-        Task<SubCategory> CreateNew(SubCategory entity);
+        Task<SubCategory> Create(SubCategory entity);
     }
 }

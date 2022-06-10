@@ -77,7 +77,7 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdShopOwner = _mapper.Map<SaveShopOwnerDTO, ShopOwner>(shopOwner);
-            var addedShopOwner = await _shopOwnerService.CreateNew(createdShopOwner);
+            var addedShopOwner = await _shopOwnerService.Create(createdShopOwner);
 
             var shopOwnerDTO = _mapper.Map<ShopOwner, ShopOwnerDTO>(addedShopOwner);
 
@@ -95,7 +95,7 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdUser = _mapper.Map<SaveUserDTO, User>(user);
-            var addedUser = await _userService.CreateNew(createdUser);
+            var addedUser = await _userService.Create(createdUser);
 
             var userDTO = _mapper.Map<User, UserDTO>(addedUser);
 

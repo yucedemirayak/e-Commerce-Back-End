@@ -2,9 +2,9 @@
 
 namespace eCommerce.Core.Services
 {
-    public interface IUserService : IService<User>
+    public interface IUserService : IBaseService<User>
     {
-        Task<User> CreateNew(User entity);
+        Task<User> Create(User entity);
         Task<User> GetByEmail(string email);
         Task<IEnumerable<User>> GetAll();
     }

@@ -136,6 +136,10 @@ namespace eCommerce.Data.Migrations
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImgSource")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

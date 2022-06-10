@@ -2,9 +2,9 @@
 
 namespace eCommerce.Core.Services
 {
-    public interface IShopOwnerService : IService<ShopOwner>
+    public interface IShopOwnerService : IBaseService<ShopOwner>
     {
-        Task<ShopOwner> CreateNew(ShopOwner entity);
+        Task<ShopOwner> Create(ShopOwner entity);
         Task<ShopOwner> GetByEmail(string email);
         Task<IEnumerable<ShopOwner>> GetAll();
     }

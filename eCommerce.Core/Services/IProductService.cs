@@ -2,7 +2,7 @@
 
 namespace eCommerce.Core.Services
 {
-    public interface IProductService : IService<Product>
+    public interface IProductService : IBaseService<Product>
     {
 
     }

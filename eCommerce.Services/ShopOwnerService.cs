@@ -14,7 +14,7 @@ namespace eCommerce.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ShopOwner> CreateNew(ShopOwner newShopOwner)
+        public async Task<ShopOwner> Create(ShopOwner newShopOwner)
         {
             newShopOwner.Role = UserRole.SHOPOWNER;
             newShopOwner.IsValidated = false;
@@ -25,6 +25,14 @@ namespace eCommerce.Services
             return newShopOwner;
         }
 
+        public async Task<ShopOwner> Delete(int id)
+        {
+            var deletedShopOwner = await GetById(id);
+            _unitOfWork.ShopOwners.Remove(deletedShopOwner);
+            await _unitOfWork.CommitAsync();
+            return deletedShopOwner;
+        }
+
         public async Task<IEnumerable<ShopOwner>> GetAll()
         {
             return await _unitOfWork.ShopOwners.GetAllAsync();
@@ -32,6 +40,11 @@ namespace eCommerce.Services
         public async Task<ShopOwner> GetByEmail(string email)
         {
             return await _unitOfWork.ShopOwners.GetByEmailAsync(x => x.Email == email);
+        }
+
+        public async Task<ShopOwner> GetById(int id)
+        {
+            return await _unitOfWork.ShopOwners.GetByIdAsync(id);
         }
     }
 }

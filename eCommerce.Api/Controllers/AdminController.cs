@@ -41,12 +41,18 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdAdmin = _mapper.Map<SaveAdminDTO, Admin>(admin);
-            var addedAdmin = await _serviceProvider.AdminServices.CreateNew(createdAdmin);
+            var addedAdmin = await _serviceProvider.AdminServices.Create(createdAdmin);
 
             var adminDTO = _mapper.Map<Admin, AdminDTO>(addedAdmin);
 
             return Ok(ResponseDTO.GenerateResponse(adminDTO));
         }
+
+        //Delete Admin
+        [HttpDelete("deleteAdmin")]
+
+
+        //Update Admin
 
         //Get all admins list
         [HttpGet("getAdmins")]
@@ -58,11 +64,19 @@ namespace eCommerce.Api.Controllers
             return Ok(ResponseDTO.GenerateResponse(adminDTOs));
         }
 
+        /*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------------ */
+
+
+        
+
+
         /*---------------------------------------------------------------CART SECTION------------------------------------------------------------------*/
 
         //Show User Cart
 
         /*-------------------------------------------------------------END OF CART SECTION------------------------------------------------------------------*/
+
+
 
 
 
@@ -79,14 +93,18 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdCategory = _mapper.Map<CategoryDTO, Category>(category);
-            var addedCategory = await _serviceProvider.CategoryServices.CreateNew(createdCategory);
+            var addedCategory = await _serviceProvider.CategoryServices.Create(createdCategory);
 
             var categoryDTO = _mapper.Map<Category, CategoryDTO>(addedCategory);
 
             return Ok(ResponseDTO.GenerateResponse(categoryDTO));
         }
 
+
+
         /*-------------------------------------------------------------END OF CATEGORY SECTION------------------------------------------------------------------*/
+
+
 
 
 
@@ -103,7 +121,7 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdSubCategory = _mapper.Map<SubCategoryDTO, SubCategory>(subCategory);
-            var addedSubCategory = await _serviceProvider.SubCategoryServices.CreateNew(createdSubCategory);
+            var addedSubCategory = await _serviceProvider.SubCategoryServices.Create(createdSubCategory);
 
             var subCategoryDTO = _mapper.Map<SubCategory, SubCategoryDTO>(addedSubCategory);
 
@@ -114,12 +132,15 @@ namespace eCommerce.Api.Controllers
 
 
 
+
+
         /*-------------------------------------------------------------ORDER SECTION------------------------------------------------------------------*/
 
         //Get User's & ShopOwners Orders and Details
 
-
         /*-------------------------------------------------------------END OF ORDER SECTION------------------------------------------------------------------*/
+
+
 
 
 
@@ -131,19 +152,21 @@ namespace eCommerce.Api.Controllers
 
 
 
+
+
         /*-------------------------------------------------------------PRODUCT SECTION------------------------------------------------------------------*/
 
         //Get all products
-
-
 
         //Get Product's images
 
         /*-------------------------------------------------------------END OF PRODUCT SECTION------------------------------------------------------------------*/
 
+
+
+
+
         /*-----------------------------------------------------------SHOPOWNER SECTION---------------------------------------------------------------- */
-
-
 
         //Get all shop owner list
         [HttpGet("getShopOwners")]
@@ -160,6 +183,10 @@ namespace eCommerce.Api.Controllers
         //Get ShopOwner's Products
 
         /*-------------------------------------------------------END OF SHOPOWNER SECTION----------------------------------------------------------- */
+
+
+
+
 
         /*-----------------------------------------------------------USER SECTION------------------------------------------------------------------ */
 
