@@ -1,6 +1,6 @@
 ﻿
 //New migration
-dotnet ef --startup-project eCommerce.Api/eCommerce.Api.csproj migrations add ProductIsAvailableAdded -p eCommerce.Data/eCommerce.Data.csproj
+dotnet ef --startup-project eCommerce.Api/eCommerce.Api.csproj migrations add UserEmailUnique -p eCommerce.Data/eCommerce.Data.csproj
 
 //Database Update
 dotnet ef --startup-project eCommerce.Api/eCommerce.Api.csproj database update
