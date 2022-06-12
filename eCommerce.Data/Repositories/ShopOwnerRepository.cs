@@ -3,7 +3,7 @@ using eCommerce.Core.Repositories;
 
 namespace eCommerce.Data.Repositories
 {
-    public class ShopOwnerRepository : Repository<ShopOwner>, IShopOwnerRepository
+    public class ShopOwnerRepository : RepositoryProvider<ShopOwner>, IShopOwnerRepository
     {
         public ShopOwnerRepository(eCommerceDbContext context) : base(context) { }
     }

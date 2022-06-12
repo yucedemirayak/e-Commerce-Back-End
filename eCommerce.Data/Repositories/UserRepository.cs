@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eCommerce.Data.Repositories
 {
-    public class UserRepository : Repository<User>, IUserRepository
+    public class UserRepository : RepositoryProvider<User>, IUserRepository
     {
         public UserRepository(eCommerceDbContext context) : base(context) { }
 

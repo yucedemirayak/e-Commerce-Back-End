@@ -16,14 +16,12 @@ namespace eCommerce.Api.Controllers
 
     public class ShopOwnerController : Controller
     {
-        private readonly IShopOwnerService _shopOwnerService;
+        private readonly Core.IServiceProvider _serviceProvider;
         private readonly IMapper _mapper;
 
-        public ShopOwnerController(
-            IShopOwnerService shopOwnerService, 
-            IMapper mapper)
+        public ShopOwnerController(Core.IServiceProvider serviceProvider, IMapper mapper)
         {
-            _shopOwnerService = shopOwnerService;
+            _serviceProvider = serviceProvider;
             _mapper = mapper;
         }
 

@@ -2,7 +2,7 @@
 
 namespace eCommerce.Core.Repositories
 {
-    public interface IFavouriteListRepository : IRepository<FavouriteList>
+    public interface IFavouriteListRepository : IBaseRepository<FavouriteList>
     {
     }
 }

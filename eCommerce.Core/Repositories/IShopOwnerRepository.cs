@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eCommerce.Core.Repositories
 {
-    public interface IShopOwnerRepository : IRepository<ShopOwner>
+    public interface IShopOwnerRepository : IBaseRepository<ShopOwner>
     {
 
     }

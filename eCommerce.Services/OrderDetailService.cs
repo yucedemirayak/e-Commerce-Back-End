@@ -36,5 +36,10 @@ namespace eCommerce.Services
         {
             return await _unitOfWork.OrderDetails.GetByIdAsync(id);
         }
+
+        public async Task<OrderDetail> Update(int id, OrderDetail updatedOrderDetail)
+        {
+            return await _unitOfWork.OrderDetails.UpdateByIdAsync(id, updatedOrderDetail);
+        }
     }
 }

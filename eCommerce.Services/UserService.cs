@@ -44,5 +44,10 @@ namespace eCommerce.Services
         {
             return await _unitOfWork.Users.GetByIdAsync(id);
         }
+
+        public async Task<User> Update(int id, User updatedUser)
+        {
+            return await _unitOfWork.Users.UpdateByIdAsync(id, updatedUser);
+        }
     }
 }

@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "C6c/h/06qNHkwA5mqsD97IEe6Md/ImQkniWCHEOn5918BUVbvFNm8wKHVlUcIkLYwzFMY9Sjo47G8CZQYrmB6A==",
+  "dgSpecHash": "rCvNUx6FilbxhrOZq1BtAulsWzfwDS4Pw8ZQj1iVhJwyvraMUlK3IOFPTDP2FgH4sFFH5Er0OMDuZeuNuD27yg==",
   "success": true,
   "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Services\\eCommerce.Services.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\yuced\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+    "C:\\Users\\yuced\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
+    "C:\\Users\\yuced\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\6.0.5\\microsoft.entityframeworkcore.abstractions.6.0.5.nupkg.sha512",
+    "C:\\Users\\yuced\\.nuget\\packages\\servicestack.interfaces\\6.1.0\\servicestack.interfaces.6.1.0.nupkg.sha512"
   ],
   "logs": []
 }

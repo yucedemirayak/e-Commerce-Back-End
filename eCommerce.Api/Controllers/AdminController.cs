@@ -50,9 +50,20 @@ namespace eCommerce.Api.Controllers
 
         //Delete Admin
         [HttpDelete("deleteAdmin")]
-
+        public async Task<ActionResult<ResponseDTO>> Delete(int id)
+        {
+            var deletedExam = await _serviceProvider.AdminServices.Delete(id);
+            return Ok(ResponseDTO.GenerateResponse(deletedExam));
+        }
 
         //Update Admin
+        [HttpPut]
+        public async Task<ActionResult<Admin>> UpdateAdmin(int id, Admin updatedAdmin)
+        {
+            _serviceProvider.AdminServices.Update(id, updatedAdmin);
+
+            return Ok(ResponseDTO.GenerateResponse(updatedAdmin));
+        }
 
         //Get all admins list
         [HttpGet("getAdmins")]
@@ -99,7 +110,6 @@ namespace eCommerce.Api.Controllers
 
             return Ok(ResponseDTO.GenerateResponse(categoryDTO));
         }
-
 
 
         /*-------------------------------------------------------------END OF CATEGORY SECTION------------------------------------------------------------------*/
@@ -179,6 +189,7 @@ namespace eCommerce.Api.Controllers
         }
 
         //Validate ShopOwner
+
 
         //Get ShopOwner's Products
 

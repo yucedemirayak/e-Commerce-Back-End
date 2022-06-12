@@ -36,5 +36,10 @@ namespace eCommerce.Services
         {
             return await _unitOfWork.ShopOwnerAdresses.GetByIdAsync(id);
         }
+
+        public async Task<ShopOwnerAdress> Update(int id, ShopOwnerAdress updatedShopOwnerAdress)
+        {
+            return await _unitOfWork.ShopOwnerAdresses.UpdateByIdAsync(id, updatedShopOwnerAdress);
+        }
     }
 }

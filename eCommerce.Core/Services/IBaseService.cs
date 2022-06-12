@@ -1,5 +1,4 @@
-﻿
-namespace eCommerce.Core.Services
+﻿namespace eCommerce.Core.Services
 {
     public interface IBaseService<TEntity> where TEntity : class
     {
@@ -7,5 +6,6 @@ namespace eCommerce.Core.Services
         Task<TEntity> GetById(int id);
         Task<TEntity> Delete(int id);
         Task<TEntity> Create(TEntity entity);
+        Task<TEntity> Update(int id,TEntity entity);
     }
 }

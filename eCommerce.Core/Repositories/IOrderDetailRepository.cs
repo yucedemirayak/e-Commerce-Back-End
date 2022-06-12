@@ -2,7 +2,7 @@
 
 namespace eCommerce.Core.Repositories
 {
-    public interface IOrderDetailRepository : IRepository<OrderDetail>
+    public interface IOrderDetailRepository : IBaseRepository<OrderDetail>
     {
     }
 }

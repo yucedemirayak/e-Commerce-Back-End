@@ -36,5 +36,10 @@ namespace eCommerce.Services
         {
             return await _unitOfWork.FavoriteLists.GetByIdAsync(id);
         }
+
+        public async Task<FavouriteList> Update(int id, FavouriteList updatedFavouriteList)
+        {
+            return await _unitOfWork.FavoriteLists.UpdateByIdAsync(id , updatedFavouriteList);
+        }
     }
 }

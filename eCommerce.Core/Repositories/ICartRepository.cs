@@ -1,9 +1,8 @@
-﻿
-using eCommerce.Core.Models;
+﻿using eCommerce.Core.Models;
 
 namespace eCommerce.Core.Repositories
 {
-    public interface ICartRepository : IRepository<Cart>
+    public interface ICartRepository : IBaseRepository<Cart>
     {
     }
 }

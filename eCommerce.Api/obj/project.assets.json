@@ -472,6 +472,15 @@
           }
         }
       },
+      "ServiceStack.Interfaces/6.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/ServiceStack.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/ServiceStack.Interfaces.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/6.2.3": {
         "type": "package",
         "dependencies": {
@@ -753,7 +762,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "BCrypt.Net-Next": "4.0.3"
+          "BCrypt.Net-Next": "4.0.3",
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.5",
+          "ServiceStack.Interfaces": "6.1.0"
         },
         "compile": {
           "bin/placeholder/eCommerce.Core.dll": {}
@@ -1650,6 +1661,20 @@
         "runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.xml",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "ServiceStack.Interfaces/6.1.0": {
+      "sha512": "U5EPMxVzMFXoJxpwUUyD+AZ7CLCAlA6WwWF9+MlQIf3EYjzXAK+ApYwcBEc6ekj6mBxmlE5/w0Q8uGlPXFLiNw==",
+      "type": "package",
+      "path": "servicestack.interfaces/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net472/ServiceStack.Interfaces.dll",
+        "lib/net6.0/ServiceStack.Interfaces.dll",
+        "lib/netstandard2.0/ServiceStack.Interfaces.dll",
+        "servicestack.interfaces.6.1.0.nupkg.sha512",
+        "servicestack.interfaces.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/6.2.3": {

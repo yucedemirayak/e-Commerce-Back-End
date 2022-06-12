@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using eCommerce.Api.DTOs;
+using eCommerce.Api.DTOs.Category;
+using eCommerce.Api.DTOs.Product;
 using eCommerce.Api.DTOs.ShopOwner;
+using eCommerce.Api.DTOs.SubCategory;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Api.Validations;
 using eCommerce.Core.Models;
@@ -14,58 +17,15 @@ namespace eCommerce.Api.Controllers
     [ApiController]
     public class AnonymousController : Controller
     {
-        private readonly IAdminService _adminService;
-        private readonly ICartDetailService _cartDetailService;
-        private readonly ICartService _cartService;
-        private readonly ICategoryService _categoryService;
-        private readonly IFavouriteListService _favouriteListService;
-        private readonly IOrderDetailService _orderDetailService;
-        private readonly IOrderService _orderService;
-        private readonly IProductImageService _productImageService;
-        private readonly IProductService _productService;
-        private readonly IShopOwnerAdressService _shopOwnerAdressService;
-        private readonly IShopOwnerService _shopOwnerService;
-        private readonly ISubCategoryService _subCategoryService;
-        private readonly IUserAdressService _userAdressService;
-        private readonly IUserService _userService;
-
+        private readonly Core.IServiceProvider _serviceProvider;
         private readonly IMapper _mapper;
 
-        //calling the services we will use in the project
-        public AnonymousController(
-            IAdminService adminService,
-            ICartDetailService cartDetailService,
-            ICartService cartService,
-            ICategoryService categoryService,
-            IFavouriteListService favouriteListService,
-            IOrderDetailService orderDetailService,
-            IOrderService orderService,
-            IProductImageService productImageService,
-            IProductService productService,
-            IShopOwnerAdressService shopOwnerAdressService,
-            IShopOwnerService shopOwnerService,
-            ISubCategoryService subCategoryService,
-            IUserAdressService userAdressService,
-            IUserService userService,
-            IMapper mapper)
+        public AnonymousController(Core.IServiceProvider serviceProvider, IMapper mapper)
         {
-            _adminService = adminService;
-            _cartDetailService = cartDetailService;
-            _cartService = cartService;
-            _categoryService = categoryService;
-            _favouriteListService = favouriteListService;
-            _orderDetailService = orderDetailService;
-            _orderService = orderService;
-            _productImageService = productImageService;
-            _productService = productService;
-            _shopOwnerAdressService = shopOwnerAdressService;
-            _shopOwnerService = shopOwnerService;
-            _subCategoryService = subCategoryService;
-            _userAdressService = userAdressService;
-            _userService = userService;
-
+            _serviceProvider = serviceProvider;
             _mapper = mapper;
         }
+
         //Create new Shop owner
         [HttpPost("newShopOwner")]
         public async Task<ActionResult<ShopOwnerDTO>> PostShopOwner([FromBody] SaveShopOwnerDTO shopOwner)
@@ -77,7 +37,7 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdShopOwner = _mapper.Map<SaveShopOwnerDTO, ShopOwner>(shopOwner);
-            var addedShopOwner = await _shopOwnerService.Create(createdShopOwner);
+            var addedShopOwner = await _serviceProvider.ShopOwnerServices.Create(createdShopOwner);
 
             var shopOwnerDTO = _mapper.Map<ShopOwner, ShopOwnerDTO>(addedShopOwner);
 
@@ -95,13 +55,42 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdUser = _mapper.Map<SaveUserDTO, User>(user);
-            var addedUser = await _userService.Create(createdUser);
+            var addedUser = await _serviceProvider.UserServices.Create(createdUser);
 
             var userDTO = _mapper.Map<User, UserDTO>(addedUser);
 
             return Ok(ResponseDTO.GenerateResponse(userDTO));
         }
 
+        //Get All Categories
+        [HttpGet("allCategories")]
+        public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetAllCategories()
+        {
+            var categories = await _serviceProvider.CategoryServices.GetAll();
+            var categoryDTOs = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(categories);
+
+            return Ok(ResponseDTO.GenerateResponse(categoryDTOs));
+        }
+
+        //Get All SubCategories
+        [HttpGet("allSubCategories")]
+        public async Task<ActionResult<IEnumerable<SubCategoryDTO>>> GetAllSubCategories()
+        {
+            var subCategories = await _serviceProvider.SubCategoryServices.GetAll();
+            var subCategoryDTOs = _mapper.Map<IEnumerable<SubCategory>, IEnumerable<SubCategoryDTO>>(subCategories);;
+
+            return Ok(ResponseDTO.GenerateResponse(subCategoryDTOs));
+        }
+
         //Get All Products
+        [HttpGet("allProducts")]
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllProducts()
+        {
+            var products = await _serviceProvider.ProductServices.GetAll();
+            var productDTOs = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(products);
+
+            return Ok(ResponseDTO.GenerateResponse(productDTOs));
+        }
+
     }
 }

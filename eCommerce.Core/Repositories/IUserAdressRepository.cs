@@ -1,9 +1,8 @@
-﻿
-using eCommerce.Core.Models;
+﻿using eCommerce.Core.Models;
 
 namespace eCommerce.Core.Repositories
 {
-    public interface IUserAdressRepository : IRepository<UserAdress>
+    public interface IUserAdressRepository : IBaseRepository<UserAdress>
     {
     }
 }

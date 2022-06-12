@@ -35,5 +35,10 @@ namespace eCommerce.Services
         {
             return await _unitOfWork.Categories.GetByIdAsync(id);
         }
+
+        public async Task<Category> Update(int id, Category updatedCategory)
+        {
+            return await _unitOfWork.Categories.UpdateByIdAsync(id , updatedCategory);
+        }
     }
 }

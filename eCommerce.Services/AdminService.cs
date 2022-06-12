@@ -45,5 +45,13 @@ namespace eCommerce.Services
         {
             return await _unitOfWork.Admins.GetByIdAsync(id);
         }
+
+        public async Task<Admin> Update(int id, Admin updatedAdmin)
+        {
+            updatedAdmin.PasswordSalt = PasswordHelper.GenerateSalt();
+            updatedAdmin.Password = PasswordHelper.HashPassword(updatedAdmin.Password, updatedAdmin.PasswordSalt);
+            await _unitOfWork.Admins.UpdateByIdAsync(id, updatedAdmin);
+            return updatedAdmin;
+        }
     }
 }

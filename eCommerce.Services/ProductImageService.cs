@@ -36,5 +36,10 @@ namespace eCommerce.Services
         {
             return await _unitOfWork.ProductImages.GetByIdAsync(id);
         }
+
+        public async Task<ProductImage> Update(int id, ProductImage updatedProductImage)
+        {
+            return await _unitOfWork.ProductImages.UpdateByIdAsync(id, updatedProductImage);
+        }
     }
 }
