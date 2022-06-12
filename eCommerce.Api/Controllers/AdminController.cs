@@ -3,8 +3,10 @@ using eCommerce.Api.DTOs;
 using eCommerce.Api.DTOs.Admin;
 using eCommerce.Api.DTOs.Category;
 using eCommerce.Api.DTOs.ShopOwner;
+using eCommerce.Api.DTOs.SubCategory;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Api.Validations;
+using eCommerce.Core;
 using eCommerce.Core.Enums;
 using eCommerce.Core.Models;
 using eCommerce.Core.Services;
@@ -18,55 +20,11 @@ namespace eCommerce.Api.Controllers
     [Authorize(AuthenticationSchemes = "Bearer", Policy = "AdminPolicy")]
     public class AdminController : Controller
     {
-        private readonly IAdminService _adminService;
-        private readonly ICartDetailService _cartDetailService;
-        private readonly ICartService _cartService;
-        private readonly ICategoryService _categoryService;
-        private readonly IFavouriteListService _favouriteListService;
-        private readonly IOrderDetailService _orderDetailService;
-        private readonly IOrderService _orderService;
-        private readonly IProductImageService _productImageService;
-        private readonly IProductService _productService;
-        private readonly IShopOwnerAdressService _shopOwnerAdressService;
-        private readonly IShopOwnerService _shopOwnerService;
-        private readonly ISubCategoryService _subCategoryService;
-        private readonly IUserAdressService _userAdressService;
-        private readonly IUserService _userService;
-
+        private readonly Core.IServiceProvider _serviceProvider;
         private readonly IMapper _mapper;
-
-        //calling the services we will use in the project
-        public AdminController(IAdminService adminService, 
-            ICartDetailService cartDetailService,
-            ICartService cartService,
-            ICategoryService categoryService, 
-            IFavouriteListService favouriteListService, 
-            IOrderDetailService orderDetailService, 
-            IOrderService orderService, 
-            IProductImageService productImageService,
-            IProductService productService,
-            IShopOwnerAdressService shopOwnerAdressService,
-            IShopOwnerService shopOwnerService, 
-            ISubCategoryService subCategoryService,
-            IUserAdressService userAdressService,
-            IUserService userService, 
-            IMapper mapper)
+        public AdminController(Core.IServiceProvider serviceProvider, IMapper mapper)
         {
-            _adminService = adminService;
-            _cartDetailService = cartDetailService;
-            _cartService = cartService;
-            _categoryService = categoryService;
-            _favouriteListService = favouriteListService;
-            _orderDetailService = orderDetailService;
-            _orderService = orderService;
-            _productImageService = productImageService;
-            _productService = productService;
-            _shopOwnerAdressService = shopOwnerAdressService;
-            _shopOwnerService = shopOwnerService;
-            _subCategoryService = subCategoryService;
-            _userAdressService = userAdressService;
-            _userService = userService;
-            
+            _serviceProvider = serviceProvider;
             _mapper = mapper;
         }
 
@@ -83,25 +41,44 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdAdmin = _mapper.Map<SaveAdminDTO, Admin>(admin);
-            var addedAdmin = await _adminService.CreateNew(createdAdmin);
+            var addedAdmin = await _serviceProvider.AdminServices.Create(createdAdmin);
 
             var adminDTO = _mapper.Map<Admin, AdminDTO>(addedAdmin);
 
             return Ok(ResponseDTO.GenerateResponse(adminDTO));
         }
 
+        //Delete Admin
+        [HttpDelete("deleteAdmin")]
+        public async Task<ActionResult<ResponseDTO>> Delete(int id)
+        {
+            var deletedExam = await _serviceProvider.AdminServices.Delete(id);
+            return Ok(ResponseDTO.GenerateResponse(deletedExam));
+        }
+
+        //Update Admin
+        [HttpPut]
+        public async Task<ActionResult<Admin>> UpdateAdmin(int id, Admin updatedAdmin)
+        {
+            _serviceProvider.AdminServices.Update(id, updatedAdmin);
+
+            return Ok(ResponseDTO.GenerateResponse(updatedAdmin));
+        }
+
         //Get all admins list
         [HttpGet("getAdmins")]
         public async Task<ActionResult<IEnumerable<AdminDTO>>> GetAllAdmins()
         {
-            var admins = await _adminService.GetAll();
+            var admins = await _serviceProvider.AdminServices.GetAll();
             var adminDTOs = _mapper.Map<IEnumerable<Admin>, IEnumerable<AdminDTO>>(admins);
 
             return Ok(ResponseDTO.GenerateResponse(adminDTOs));
         }
 
-        /*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------- */
+        /*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------------ */
 
+
+        
 
 
         /*---------------------------------------------------------------CART SECTION------------------------------------------------------------------*/
@@ -109,6 +86,8 @@ namespace eCommerce.Api.Controllers
         //Show User Cart
 
         /*-------------------------------------------------------------END OF CART SECTION------------------------------------------------------------------*/
+
+
 
 
 
@@ -125,22 +104,43 @@ namespace eCommerce.Api.Controllers
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
 
             var createdCategory = _mapper.Map<CategoryDTO, Category>(category);
-            var addedCategory = await _categoryService.CreateNew(createdCategory);
+            var addedCategory = await _serviceProvider.CategoryServices.Create(createdCategory);
 
             var categoryDTO = _mapper.Map<Category, CategoryDTO>(addedCategory);
 
             return Ok(ResponseDTO.GenerateResponse(categoryDTO));
         }
 
+
         /*-------------------------------------------------------------END OF CATEGORY SECTION------------------------------------------------------------------*/
+
+
 
 
 
         /*-------------------------------------------------------------SUBCATEGORY SECTION------------------------------------------------------------------*/
 
         //New SubCategory
+        [HttpPost("newSubCategory")]
+        public async Task<ActionResult<CategoryDTO>> CraeateNewSubCategory([FromBody] SubCategoryDTO subCategory)
+        {
+            var validator = new SubCategoryDTOValidator();
+            var validationResult = await validator.ValidateAsync(subCategory);
+
+            if (!validationResult.IsValid)
+                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
+
+            var createdSubCategory = _mapper.Map<SubCategoryDTO, SubCategory>(subCategory);
+            var addedSubCategory = await _serviceProvider.SubCategoryServices.Create(createdSubCategory);
+
+            var subCategoryDTO = _mapper.Map<SubCategory, SubCategoryDTO>(addedSubCategory);
+
+            return Ok(ResponseDTO.GenerateResponse(subCategoryDTO));
+        }
 
         /*-------------------------------------------------------------END OF SUBCATEGORY SECTION------------------------------------------------------------------*/
+
+
 
 
 
@@ -152,11 +152,15 @@ namespace eCommerce.Api.Controllers
 
 
 
+
+
         /*-------------------------------------------------------------FAVOURITELIST SECTION------------------------------------------------------------------*/
 
         //Get User's Favourite List
 
         /*-------------------------------------------------------------END OF FAVOURITELIST SECTION------------------------------------------------------------------*/
+
+
 
 
 
@@ -168,15 +172,17 @@ namespace eCommerce.Api.Controllers
 
         /*-------------------------------------------------------------END OF PRODUCT SECTION------------------------------------------------------------------*/
 
+
+
+
+
         /*-----------------------------------------------------------SHOPOWNER SECTION---------------------------------------------------------------- */
-
-
 
         //Get all shop owner list
         [HttpGet("getShopOwners")]
         public async Task<ActionResult<IEnumerable<ShopOwnerDTO>>> GetAllShopOwners()
         {
-            var shopOwners = await _shopOwnerService.GetAll();
+            var shopOwners = await _serviceProvider.ShopOwnerServices.GetAll();
             var shopOwnerDTOs = _mapper.Map<IEnumerable<ShopOwner>, IEnumerable<ShopOwnerDTO>>(shopOwners);
 
             return Ok(ResponseDTO.GenerateResponse(shopOwnerDTOs));
@@ -184,9 +190,14 @@ namespace eCommerce.Api.Controllers
 
         //Validate ShopOwner
 
+
         //Get ShopOwner's Products
 
         /*-------------------------------------------------------END OF SHOPOWNER SECTION----------------------------------------------------------- */
+
+
+
+
 
         /*-----------------------------------------------------------USER SECTION------------------------------------------------------------------ */
 
@@ -194,7 +205,7 @@ namespace eCommerce.Api.Controllers
         [HttpGet("getUsers")]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
         {
-            var users = await _userService.GetAll();
+            var users = await _serviceProvider.UserServices.GetAll();
             var userDTOs = _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
 
             return Ok(ResponseDTO.GenerateResponse(userDTOs));

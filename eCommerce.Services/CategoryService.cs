@@ -11,11 +11,34 @@ namespace eCommerce.Services
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<Category> CreateNew(Category newCategory)
+        public async Task<Category> Create(Category newCategory)
         {
             await _unitOfWork.Categories.AddAsync(newCategory);
             await _unitOfWork.CommitAsync();
             return newCategory;
+        }
+
+        public async Task<Category> Delete(int id)
+        {
+            var deletedCategory = await GetById(id);
+            _unitOfWork.Categories.Remove(deletedCategory);
+            await _unitOfWork.CommitAsync();
+            return deletedCategory;
+        }
+
+        public async Task<IEnumerable<Category>> GetAll()
+        {
+            return await _unitOfWork.Categories.GetAllAsync();
+        }
+
+        public async Task<Category> GetById(int id)
+        {
+            return await _unitOfWork.Categories.GetByIdAsync(id);
+        }
+
+        public async Task<Category> Update(int id, Category updatedCategory)
+        {
+            return await _unitOfWork.Categories.UpdateByIdAsync(id , updatedCategory);
         }
     }
 }

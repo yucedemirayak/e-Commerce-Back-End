@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rhW2okWqlWvGlsDNpghBIIcalQgoV5JiUd96Wjy2zzaSfdgpixPr5aD6M5xjQHW1AQpLM/x6JsvGXij7RFUAdw==",
+  "dgSpecHash": "VTAIZU8KBzNzQMKbmsirSSdH9454I45YpNI6hDIf92j+j9ctXgNXX2i8XXDXnI2KpGAQuXpN7+SpGr0HQDTjYA==",
   "success": true,
   "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\eCommerce.Api.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\yuced\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\yuced\\.nuget\\packages\\servicestack.interfaces\\6.1.0\\servicestack.interfaces.6.1.0.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

@@ -11,5 +11,35 @@ namespace eCommerce.Services
         {
             _unitOfWork = unitOfWork;
         }
+
+        public async Task<Order> Create(Order newOrder)
+        {
+            await _unitOfWork.Orders.AddAsync(newOrder);
+            await _unitOfWork.CommitAsync();
+            return newOrder;
+        }
+
+        public async Task<Order> Delete(int id)
+        {
+            var deletedOrder = await GetById(id);
+            _unitOfWork.Orders.Remove(deletedOrder);
+            await _unitOfWork.CommitAsync();
+            return deletedOrder;
+        }
+
+        public async Task<IEnumerable<Order>> GetAll()
+        {
+            return await _unitOfWork.Orders.GetAllAsync();
+        }
+
+        public async Task<Order> GetById(int id)
+        {
+            return await _unitOfWork.Orders.GetByIdAsync(id);
+        }
+
+        public async Task<Order> Update(int id, Order updatedOrder)
+        {
+            return await _unitOfWork.Orders.UpdateByIdAsync(id, updatedOrder);
+        }
     }
 }

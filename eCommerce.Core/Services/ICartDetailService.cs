@@ -2,7 +2,7 @@
 
 namespace eCommerce.Core.Services
 {
-    public interface ICartDetailService : IService<CartDetail>
+    public interface ICartDetailService : IBaseService<CartDetail>
     {
     }
 }

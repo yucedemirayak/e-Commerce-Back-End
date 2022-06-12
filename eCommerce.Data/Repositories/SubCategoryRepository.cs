@@ -3,7 +3,7 @@ using eCommerce.Core.Repositories;
 
 namespace eCommerce.Data.Repositories
 {
-    public class SubCategoryRepository : Repository<SubCategory>, ISubCategoryRepository
+    public class SubCategoryRepository : RepositoryProvider<SubCategory>, ISubCategoryRepository
     {
         public SubCategoryRepository(eCommerceDbContext context) : base(context)
         {

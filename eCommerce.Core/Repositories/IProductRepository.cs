@@ -2,7 +2,7 @@
 
 namespace eCommerce.Core.Repositories
 {
-    public interface IProductRepository : IRepository<Product>
+    public interface IProductRepository : IBaseRepository<Product>
     {
     }
 }

@@ -2,7 +2,7 @@
 
 namespace eCommerce.Core.Services
 {
-    public interface IFavouriteListService : IService<FavouriteList>
+    public interface IFavouriteListService : IBaseService<FavouriteList>
     {
     }
 }

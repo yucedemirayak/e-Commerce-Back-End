@@ -2,6 +2,7 @@
 using eCommerce.Api.DTOs.Admin;
 using eCommerce.Api.DTOs.Category;
 using eCommerce.Api.DTOs.ShopOwner;
+using eCommerce.Api.DTOs.SubCategory;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Core.Models;
 
@@ -23,6 +24,8 @@ namespace eCommerce.Api.Mapping
             CreateMap<ShopOwner, ShopOwnerDTO>();
             CreateMap<ShopOwner, SaveShopOwnerDTO>();
 
+            CreateMap<SubCategory, SubCategoryDTO>();
+
             // Resource to Domain
             CreateMap<AdminDTO, Admin>();
             CreateMap<SaveAdminDTO, Admin>();
@@ -34,6 +37,8 @@ namespace eCommerce.Api.Mapping
 
             CreateMap<ShopOwnerDTO, ShopOwner>();
             CreateMap<SaveShopOwnerDTO, ShopOwner>();
+
+            CreateMap<SubCategoryDTO, SubCategory>();
         }
     }
 }

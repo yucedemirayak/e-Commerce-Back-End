@@ -1,4 +1,5 @@
 ﻿using eCommerce.Core.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace eCommerce.Core.Models
 {

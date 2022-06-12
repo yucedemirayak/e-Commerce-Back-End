@@ -2,7 +2,7 @@
 
 namespace eCommerce.Core.Services
 {
-    public interface ISubCategoryService : IService<SubCategory>
+    public interface ISubCategoryService : IBaseService<SubCategory>
     {
     }
 }

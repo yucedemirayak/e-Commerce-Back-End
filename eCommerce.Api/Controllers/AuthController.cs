@@ -13,16 +13,12 @@ namespace eCommerce.Api.Controllers
     [ApiController]
     public class AuthController : Controller
     {
-        private readonly IAdminService _adminService;
-        private readonly IUserService _userService;
-        private readonly IShopOwnerService _shopOwnerService;
+        private readonly Core.IServiceProvider _serviceProvider;
         private readonly IConfiguration _config;
 
-        public AuthController(IAdminService adminService, IShopOwnerService shopOwnerService, IUserService userService, IConfiguration config)
+        public AuthController(Core.IServiceProvider serviceProvider, IConfiguration config)
         {
-            _adminService = adminService;
-            _shopOwnerService = shopOwnerService;
-            _userService = userService;
+            _serviceProvider = serviceProvider;
             _config = config;
         }
 
@@ -30,7 +26,7 @@ namespace eCommerce.Api.Controllers
         [HttpPost("loginAdmin")]
         public async Task<IActionResult> LoginAdmin([FromBody] LoginDTO loginResource)
         {
-            var findedAdmin = await _adminService.GetByEmail(loginResource.Email);
+            var findedAdmin = await _serviceProvider.AdminServices.GetByEmail(loginResource.Email);
             if (findedAdmin == null)
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, "Admin not found"));
 
@@ -65,7 +61,7 @@ namespace eCommerce.Api.Controllers
         [HttpPost("loginShopOwner")]
         public async Task<IActionResult> LoginShopOwner([FromBody] LoginDTO loginResource)
         {
-            var findedShopOwner = await _shopOwnerService.GetByEmail(loginResource.Email);
+            var findedShopOwner = await _serviceProvider.ShopOwnerServices.GetByEmail(loginResource.Email);
             if (findedShopOwner == null)
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, "Shop not found"));
 
@@ -100,7 +96,7 @@ namespace eCommerce.Api.Controllers
         [HttpPost("loginUser")]
         public async Task<IActionResult> LoginUser([FromBody] LoginDTO loginResource)
         {
-            var findedUser = await _userService.GetByEmail(loginResource.Email);
+            var findedUser = await _serviceProvider.UserServices.GetByEmail(loginResource.Email);
             if (findedUser == null)
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, "User not found"));
 

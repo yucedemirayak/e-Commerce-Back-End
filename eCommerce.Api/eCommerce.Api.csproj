@@ -19,7 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Files\Images\" />
+    <Folder Include="Files\Images\Categories\" />
+    <Folder Include="Files\Images\Products\" />
+    <Folder Include="Files\Images\SubCategories\" />
   </ItemGroup>
 
   <ItemGroup>

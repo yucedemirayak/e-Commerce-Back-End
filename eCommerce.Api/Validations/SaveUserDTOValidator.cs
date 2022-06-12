@@ -34,9 +34,7 @@ namespace eCommerce.Api.Validations
 
             RuleFor(a => a.PhoneNumber)
                 .NotEmpty()
-                .WithMessage("Please enter your phone number")
-                .MaximumLength(32)
-                .WithMessage("Phone number length must be lesser than 32");
+                .WithMessage("Please enter your phone number");
         }
     }
 }

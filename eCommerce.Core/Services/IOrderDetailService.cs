@@ -2,7 +2,7 @@
 
 namespace eCommerce.Core.Services
 {
-    public interface IOrderDetailService : IService<OrderDetail>
+    public interface IOrderDetailService : IBaseService<OrderDetail>
     {
 
     }

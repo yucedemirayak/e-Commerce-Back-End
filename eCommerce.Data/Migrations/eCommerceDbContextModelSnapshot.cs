@@ -90,7 +90,7 @@ namespace eCommerce.Data.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("eCommerce.Core.Models.CartDetails", b =>
+            modelBuilder.Entity("eCommerce.Core.Models.CartDetail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,6 +135,10 @@ namespace eCommerce.Data.Migrations
 
                     b.Property<DateTime>("CreatedTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImgSource")
                         .IsRequired()
@@ -298,9 +302,6 @@ namespace eCommerce.Data.Migrations
                     b.Property<int>("SubCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubCatoregoryId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("UpdatedTime")
                         .HasColumnType("datetime2");
 
@@ -308,7 +309,7 @@ namespace eCommerce.Data.Migrations
 
                     b.HasIndex("ShopOwnerId");
 
-                    b.HasIndex("SubCatoregoryId");
+                    b.HasIndex("SubCategoryId");
 
                     b.ToTable("Products");
                 });
@@ -364,6 +365,9 @@ namespace eCommerce.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsValidated")
                         .HasColumnType("bit");
 
                     b.Property<string>("Password")
@@ -437,6 +441,10 @@ namespace eCommerce.Data.Migrations
                     b.Property<int>("ShopOwnerId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("UpdatedTime")
                         .HasColumnType("datetime2");
 
@@ -447,7 +455,7 @@ namespace eCommerce.Data.Migrations
                     b.ToTable("ShopOwnerAdresses");
                 });
 
-            modelBuilder.Entity("eCommerce.Core.Models.SubCatoregory", b =>
+            modelBuilder.Entity("eCommerce.Core.Models.SubCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -479,7 +487,7 @@ namespace eCommerce.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("SubCatoregories");
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("eCommerce.Core.Models.User", b =>
@@ -570,6 +578,10 @@ namespace eCommerce.Data.Migrations
                     b.Property<int?>("PostCode")
                         .HasColumnType("int");
 
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("UpdatedTime")
                         .HasColumnType("datetime2");
 
@@ -594,7 +606,7 @@ namespace eCommerce.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("eCommerce.Core.Models.CartDetails", b =>
+            modelBuilder.Entity("eCommerce.Core.Models.CartDetail", b =>
                 {
                     b.HasOne("eCommerce.Core.Models.Cart", "Cart")
                         .WithMany()
@@ -670,15 +682,15 @@ namespace eCommerce.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eCommerce.Core.Models.SubCatoregory", "SubCatoregory")
+                    b.HasOne("eCommerce.Core.Models.SubCategory", "SubCategory")
                         .WithMany()
-                        .HasForeignKey("SubCatoregoryId")
+                        .HasForeignKey("SubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ShopOwner");
 
-                    b.Navigation("SubCatoregory");
+                    b.Navigation("SubCategory");
                 });
 
             modelBuilder.Entity("eCommerce.Core.Models.ProductImage", b =>
@@ -703,7 +715,7 @@ namespace eCommerce.Data.Migrations
                     b.Navigation("ShopOwner");
                 });
 
-            modelBuilder.Entity("eCommerce.Core.Models.SubCatoregory", b =>
+            modelBuilder.Entity("eCommerce.Core.Models.SubCategory", b =>
                 {
                     b.HasOne("eCommerce.Core.Models.Category", "Category")
                         .WithMany()

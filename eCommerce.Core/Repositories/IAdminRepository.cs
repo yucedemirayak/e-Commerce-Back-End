@@ -2,9 +2,8 @@
 
 namespace eCommerce.Core.Repositories
 {
-    public interface IAdminRepository: IRepository<Admin>
+    public interface IAdminRepository : IBaseRepository<Admin>
     {
         
-
     }
 }

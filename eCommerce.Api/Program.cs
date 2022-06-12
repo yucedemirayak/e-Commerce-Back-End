@@ -102,9 +102,8 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-builder.Services.AddTransient<IAdminService, AdminService>();
-builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IShopOwnerService, ShopOwnerService>();
+builder.Services.AddScoped<eCommerce.Core.IServiceProvider, eCommerce.Services.ServiceProvider>();
+
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

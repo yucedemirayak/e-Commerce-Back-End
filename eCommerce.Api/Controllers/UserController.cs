@@ -15,12 +15,12 @@ namespace eCommerce.Api.Controllers
     [Authorize(AuthenticationSchemes = "Bearer", Policy = "UserPolicy")]
     public class UserController : Controller
     {
-        private readonly IUserService _userService;
+        private readonly Core.IServiceProvider _serviceProvider;
         private readonly IMapper _mapper;
 
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(Core.IServiceProvider serviceProvider, IMapper mapper)
         {
-            _userService = userService;
+            _serviceProvider = serviceProvider;
             _mapper = mapper;
         }
 
