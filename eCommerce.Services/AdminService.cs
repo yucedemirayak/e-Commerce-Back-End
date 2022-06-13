@@ -24,7 +24,7 @@ namespace eCommerce.Services
             return newAdmin;
         }
 
-        public async Task<Admin> Delete(int id)
+        public async Task<Admin> DeleteById(int id)
         {
             var deletedAdmin = await GetById(id);
             _unitOfWork.Admins.Remove(deletedAdmin);
@@ -46,12 +46,9 @@ namespace eCommerce.Services
             return await _unitOfWork.Admins.GetByIdAsync(id);
         }
 
-        public async Task<Admin> Update(int id, Admin updatedAdmin)
+        public async Task<Admin> UpdateById(int id, Admin updatedAdmin)
         {
             var existingAdmin = await GetById(id);
-
-            updatedAdmin.CreatedTime = existingAdmin.CreatedTime;
-            updatedAdmin.Id = id;
 
             if (!BCrypt.Net.BCrypt.Verify(updatedAdmin.Password + existingAdmin.PasswordSalt, existingAdmin.Password))
             {

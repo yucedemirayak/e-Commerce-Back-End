@@ -19,7 +19,7 @@ namespace eCommerce.Services
             return newUserAdress;
         }
 
-        public async Task<UserAdress> Delete(int id)
+        public async Task<UserAdress> DeleteById(int id)
         {
             var deletedUserAdress = await GetById(id);
             _unitOfWork.UserAdresses.Remove(deletedUserAdress);
@@ -37,7 +37,7 @@ namespace eCommerce.Services
             return await _unitOfWork.UserAdresses.GetByIdAsync(id);
         }
 
-        public async Task<UserAdress> Update(int id, UserAdress updatedUserAdress)
+        public async Task<UserAdress> UpdateById(int id, UserAdress updatedUserAdress)
         {
             return await _unitOfWork.UserAdresses.UpdateByIdAsync(id, updatedUserAdress);
         }

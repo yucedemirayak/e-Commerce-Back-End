@@ -19,7 +19,7 @@ namespace eCommerce.Services
             return newProductImage;
         }
 
-        public async Task<ProductImage> Delete(int id)
+        public async Task<ProductImage> DeleteById(int id)
         {
             var deletedProductImage = await GetById(id);
             _unitOfWork.ProductImages.Remove(deletedProductImage);
@@ -37,7 +37,7 @@ namespace eCommerce.Services
             return await _unitOfWork.ProductImages.GetByIdAsync(id);
         }
 
-        public async Task<ProductImage> Update(int id, ProductImage updatedProductImage)
+        public async Task<ProductImage> UpdateById(int id, ProductImage updatedProductImage)
         {
             return await _unitOfWork.ProductImages.UpdateByIdAsync(id, updatedProductImage);
         }

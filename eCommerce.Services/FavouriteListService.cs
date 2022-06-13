@@ -19,7 +19,7 @@ namespace eCommerce.Services
             return newFavouriteList;
         }
 
-        public async Task<FavouriteList> Delete(int id)
+        public async Task<FavouriteList> DeleteById(int id)
         {
             var deletedFavouriteList = await GetById(id);
             _unitOfWork.FavoriteLists.Remove(deletedFavouriteList);
@@ -37,7 +37,7 @@ namespace eCommerce.Services
             return await _unitOfWork.FavoriteLists.GetByIdAsync(id);
         }
 
-        public async Task<FavouriteList> Update(int id, FavouriteList updatedFavouriteList)
+        public async Task<FavouriteList> UpdateById(int id, FavouriteList updatedFavouriteList)
         {
             return await _unitOfWork.FavoriteLists.UpdateByIdAsync(id , updatedFavouriteList);
         }

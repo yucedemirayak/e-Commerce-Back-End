@@ -1,6 +1,7 @@
 ﻿using eCommerce.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace eCommerce.Data.Repositories
 {
@@ -57,14 +58,28 @@ namespace eCommerce.Data.Repositories
             return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
         }
 
-        public async Task<TEntity> UpdateByIdAsync(int id, TEntity updatedEntity)
+        public async Task<TEntity> UpdateByIdAsync(int id, TEntity entity)
         {
-            if (updatedEntity == null)
+            TEntity existingEntity = await GetByIdAsync(id);
+            
+            var idProp = entity.GetType().GetProperty("Id", BindingFlags.Public | BindingFlags.Instance);
+            if (idProp != null && idProp.CanWrite)
             {
-                throw new ArgumentNullException(nameof(updatedEntity));
+                idProp.SetValue(entity, id, null);
             }
-            Context.Set<TEntity>().Update(updatedEntity);
-            return updatedEntity;
+
+            var existingCreatedTimeProp = existingEntity.GetType().GetProperty("CreatedTime", BindingFlags.Public | BindingFlags.Instance);
+            var existingCreatedTimeValue = existingCreatedTimeProp?.GetValue(existingEntity);
+            var createdTimeProp = entity.GetType().GetProperty("CreatedTime" , BindingFlags.Public | BindingFlags.Instance);
+
+            if (createdTimeProp != null && createdTimeProp.CanWrite)
+            {
+                createdTimeProp.SetValue(entity, existingCreatedTimeValue, null);
+            }
+            
+            Context.Set<TEntity>().Remove(existingEntity);
+            await Context.Set<TEntity>().AddAsync(entity);
+            return entity;
         }
 
         public async Task<TEntity> UpdateValueByIdAsync(int id, Expression<Func<TEntity, bool>> predicate)
