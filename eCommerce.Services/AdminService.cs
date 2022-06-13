@@ -48,10 +48,20 @@ namespace eCommerce.Services
 
         public async Task<Admin> Update(int id, Admin updatedAdmin)
         {
-            updatedAdmin.PasswordSalt = PasswordHelper.GenerateSalt();
-            updatedAdmin.Password = PasswordHelper.HashPassword(updatedAdmin.Password, updatedAdmin.PasswordSalt);
+            var existingAdmin = await GetById(id);
+
+            updatedAdmin.CreatedTime = existingAdmin.CreatedTime;
+            updatedAdmin.Id = id;
+
+            if (!BCrypt.Net.BCrypt.Verify(updatedAdmin.Password + existingAdmin.PasswordSalt, existingAdmin.Password))
+            {
+                updatedAdmin.PasswordSalt = PasswordHelper.GenerateSalt();
+                updatedAdmin.Password = PasswordHelper.HashPassword(updatedAdmin.Password, updatedAdmin.PasswordSalt);
+            }
+
             await _unitOfWork.Admins.UpdateByIdAsync(id, updatedAdmin);
-            return updatedAdmin;
+            await _unitOfWork.CommitAsync();
+            return await GetById(id);
         }
     }
 }

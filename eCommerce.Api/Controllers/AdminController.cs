@@ -57,9 +57,19 @@ namespace eCommerce.Api.Controllers
         }
 
         //Update Admin
-        [HttpPut]
-        public async Task<ActionResult<Admin>> UpdateAdmin(int id, Admin updatedAdmin)
+        [HttpPut("updateAdmin")]
+        public async Task<ActionResult<SaveAdminDTO>> UpdateAdmin(int id,[FromBody] SaveAdminDTO admin)
         {
+            var validator = new SaveAdminDTOValidator();
+            var validationResult = await validator.ValidateAsync(admin);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
+            }
+
+            var updatedAdmin = _mapper.Map<SaveAdminDTO, Admin>(admin);
+
             _serviceProvider.AdminServices.Update(id, updatedAdmin);
 
             return Ok(ResponseDTO.GenerateResponse(updatedAdmin));
@@ -78,7 +88,7 @@ namespace eCommerce.Api.Controllers
         /*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------------ */
 
 
-        
+
 
 
         /*---------------------------------------------------------------CART SECTION------------------------------------------------------------------*/

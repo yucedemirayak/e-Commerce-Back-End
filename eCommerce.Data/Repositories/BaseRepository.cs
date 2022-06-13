@@ -4,10 +4,10 @@ using System.Linq.Expressions;
 
 namespace eCommerce.Data.Repositories
 {
-    public class RepositoryProvider<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         protected readonly eCommerceDbContext Context;
-        public RepositoryProvider(eCommerceDbContext context)
+        public BaseRepository(eCommerceDbContext context)
         {
             this.Context = context;
         }
@@ -44,7 +44,7 @@ namespace eCommerce.Data.Repositories
 
         public void Remove(TEntity entity)
         {
-           Context.Set<TEntity>().Remove(entity);
+            Context.Set<TEntity>().Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)
@@ -54,7 +54,7 @@ namespace eCommerce.Data.Repositories
 
         public async Task<TEntity> SignleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
-           return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
+            return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
         }
 
         public async Task<TEntity> UpdateByIdAsync(int id, TEntity updatedEntity)
@@ -63,17 +63,8 @@ namespace eCommerce.Data.Repositories
             {
                 throw new ArgumentNullException(nameof(updatedEntity));
             }
-
-            TEntity existingEntity = await Context.Set<TEntity>().FindAsync(id);
-            
-            if (existingEntity != null)
-            {
-                existingEntity = updatedEntity;
-
-                return existingEntity;
-            }
-
-            throw new ArgumentNullException(nameof(existingEntity));
+            Context.Set<TEntity>().Update(updatedEntity);
+            return updatedEntity;
         }
 
         public async Task<TEntity> UpdateValueByIdAsync(int id, Expression<Func<TEntity, bool>> predicate)
@@ -87,8 +78,8 @@ namespace eCommerce.Data.Repositories
 
             if (existingEntity != null)
             {
-               Expression<Func<TEntity, bool>> expression = predicate;
-               return await Context.Set<TEntity>().FindAsync(id);
+                Expression<Func<TEntity, bool>> expression = predicate;
+                return await Context.Set<TEntity>().FindAsync(id);
             }
 
             throw new ArgumentNullException(nameof(existingEntity));

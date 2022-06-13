@@ -3,7 +3,7 @@ using eCommerce.Core.Repositories;
 
 namespace eCommerce.Data.Repositories
 {
-    public class FavouriteListRepository : RepositoryProvider<FavouriteList>, IFavouriteListRepository
+    public class FavouriteListRepository : BaseRepository<FavouriteList>, IFavouriteListRepository
     {
         public FavouriteListRepository(eCommerceDbContext context) : base(context)
         {
