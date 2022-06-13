@@ -61,25 +61,23 @@ namespace eCommerce.Data.Repositories
         public async Task<TEntity> UpdateByIdAsync(int id, TEntity entity)
         {
             TEntity existingEntity = await GetByIdAsync(id);
-            
-            var idProp = entity.GetType().GetProperty("Id", BindingFlags.Public | BindingFlags.Instance);
-            if (idProp != null && idProp.CanWrite)
-            {
-                idProp.SetValue(entity, id, null);
-            }
 
-            var existingCreatedTimeProp = existingEntity.GetType().GetProperty("CreatedTime", BindingFlags.Public | BindingFlags.Instance);
-            var existingCreatedTimeValue = existingCreatedTimeProp?.GetValue(existingEntity);
-            var createdTimeProp = entity.GetType().GetProperty("CreatedTime" , BindingFlags.Public | BindingFlags.Instance);
+            var properties = entity.GetType().GetProperties();
 
-            if (createdTimeProp != null && createdTimeProp.CanWrite)
+            for (int i = 0; i < properties.Length; i++)
             {
-                createdTimeProp.SetValue(entity, existingCreatedTimeValue, null);
+
+                var result = entity?.GetType()?.GetProperty(properties[i].Name)?.GetValue(entity);
+
+                string[] sameProperties = new string[] { "Id", "CreatedTime" };
+
+                if (!sameProperties.Contains(properties[i].Name))
+                {
+                    existingEntity?.GetType()?.GetProperty(properties[i].Name)?.SetValue(existingEntity, result);
+                }
             }
-            
-            Context.Set<TEntity>().Remove(existingEntity);
-            await Context.Set<TEntity>().AddAsync(entity);
-            return entity;
+            Context.Set<TEntity>().Update(existingEntity);
+            return existingEntity;
         }
 
         public async Task<TEntity> UpdateValueByIdAsync(int id, Expression<Func<TEntity, bool>> predicate)

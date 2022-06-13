@@ -58,7 +58,8 @@ namespace eCommerce.Services
 
             await _unitOfWork.Admins.UpdateByIdAsync(id, updatedAdmin);
             await _unitOfWork.CommitAsync();
-            return await GetById(id);
+            updatedAdmin.Id = id;
+            return updatedAdmin;
         }
     }
 }
