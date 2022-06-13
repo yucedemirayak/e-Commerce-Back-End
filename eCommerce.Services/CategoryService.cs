@@ -18,7 +18,7 @@ namespace eCommerce.Services
             return newCategory;
         }
 
-        public async Task<Category> Delete(int id)
+        public async Task<Category> DeleteById(int id)
         {
             var deletedCategory = await GetById(id);
             _unitOfWork.Categories.Remove(deletedCategory);
@@ -36,7 +36,7 @@ namespace eCommerce.Services
             return await _unitOfWork.Categories.GetByIdAsync(id);
         }
 
-        public async Task<Category> Update(int id, Category updatedCategory)
+        public async Task<Category> UpdateById(int id, Category updatedCategory)
         {
             return await _unitOfWork.Categories.UpdateByIdAsync(id , updatedCategory);
         }

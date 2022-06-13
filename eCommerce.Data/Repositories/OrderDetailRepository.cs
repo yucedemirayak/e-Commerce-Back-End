@@ -3,7 +3,7 @@ using eCommerce.Core.Repositories;
 
 namespace eCommerce.Data.Repositories
 {
-    public class OrderDetailRepository : RepositoryProvider<OrderDetail>, IOrderDetailRepository
+    public class OrderDetailRepository : BaseRepository<OrderDetail>, IOrderDetailRepository
     {
         public OrderDetailRepository(eCommerceDbContext context) : base(context)
         {

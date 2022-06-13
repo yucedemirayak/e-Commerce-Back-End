@@ -1,13 +1,14 @@
 ﻿using eCommerce.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace eCommerce.Data.Repositories
 {
-    public class RepositoryProvider<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         protected readonly eCommerceDbContext Context;
-        public RepositoryProvider(eCommerceDbContext context)
+        public BaseRepository(eCommerceDbContext context)
         {
             this.Context = context;
         }
@@ -44,7 +45,7 @@ namespace eCommerce.Data.Repositories
 
         public void Remove(TEntity entity)
         {
-           Context.Set<TEntity>().Remove(entity);
+            Context.Set<TEntity>().Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<TEntity> entities)
@@ -54,26 +55,31 @@ namespace eCommerce.Data.Repositories
 
         public async Task<TEntity> SignleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
-           return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
+            return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
         }
 
-        public async Task<TEntity> UpdateByIdAsync(int id, TEntity updatedEntity)
+        public async Task<TEntity> UpdateByIdAsync(int id, TEntity entity)
         {
-            if (updatedEntity == null)
-            {
-                throw new ArgumentNullException(nameof(updatedEntity));
-            }
-
-            TEntity existingEntity = await Context.Set<TEntity>().FindAsync(id);
+            TEntity existingEntity = await GetByIdAsync(id);
             
-            if (existingEntity != null)
+            var idProp = entity.GetType().GetProperty("Id", BindingFlags.Public | BindingFlags.Instance);
+            if (idProp != null && idProp.CanWrite)
             {
-                existingEntity = updatedEntity;
-
-                return existingEntity;
+                idProp.SetValue(entity, id, null);
             }
 
-            throw new ArgumentNullException(nameof(existingEntity));
+            var existingCreatedTimeProp = existingEntity.GetType().GetProperty("CreatedTime", BindingFlags.Public | BindingFlags.Instance);
+            var existingCreatedTimeValue = existingCreatedTimeProp?.GetValue(existingEntity);
+            var createdTimeProp = entity.GetType().GetProperty("CreatedTime" , BindingFlags.Public | BindingFlags.Instance);
+
+            if (createdTimeProp != null && createdTimeProp.CanWrite)
+            {
+                createdTimeProp.SetValue(entity, existingCreatedTimeValue, null);
+            }
+            
+            Context.Set<TEntity>().Remove(existingEntity);
+            await Context.Set<TEntity>().AddAsync(entity);
+            return entity;
         }
 
         public async Task<TEntity> UpdateValueByIdAsync(int id, Expression<Func<TEntity, bool>> predicate)
@@ -87,8 +93,8 @@ namespace eCommerce.Data.Repositories
 
             if (existingEntity != null)
             {
-               Expression<Func<TEntity, bool>> expression = predicate;
-               return await Context.Set<TEntity>().FindAsync(id);
+                Expression<Func<TEntity, bool>> expression = predicate;
+                return await Context.Set<TEntity>().FindAsync(id);
             }
 
             throw new ArgumentNullException(nameof(existingEntity));

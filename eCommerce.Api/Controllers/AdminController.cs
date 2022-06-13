@@ -17,7 +17,7 @@ namespace eCommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = "Bearer", Policy = "AdminPolicy")]
+  //  [Authorize(AuthenticationSchemes = "Bearer", Policy = "AdminPolicy")]
     public class AdminController : Controller
     {
         private readonly Core.IServiceProvider _serviceProvider;
@@ -52,15 +52,25 @@ namespace eCommerce.Api.Controllers
         [HttpDelete("deleteAdmin")]
         public async Task<ActionResult<ResponseDTO>> Delete(int id)
         {
-            var deletedExam = await _serviceProvider.AdminServices.Delete(id);
+            var deletedExam = await _serviceProvider.AdminServices.DeleteById(id);
             return Ok(ResponseDTO.GenerateResponse(deletedExam));
         }
 
         //Update Admin
-        [HttpPut]
-        public async Task<ActionResult<Admin>> UpdateAdmin(int id, Admin updatedAdmin)
+        [HttpPut("updateAdmin")]
+        public async Task<ActionResult<SaveAdminDTO>> UpdateAdmin(int id,[FromBody] SaveAdminDTO admin)
         {
-            _serviceProvider.AdminServices.Update(id, updatedAdmin);
+            var validator = new SaveAdminDTOValidator();
+            var validationResult = await validator.ValidateAsync(admin);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(ResponseDTO.GenerateResponse(null, false, validationResult.Errors.ToString()));
+            }
+
+            var updatedAdmin = _mapper.Map<SaveAdminDTO, Admin>(admin);
+
+            await _serviceProvider.AdminServices.UpdateById(id, updatedAdmin);
 
             return Ok(ResponseDTO.GenerateResponse(updatedAdmin));
         }
@@ -78,7 +88,7 @@ namespace eCommerce.Api.Controllers
         /*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------------ */
 
 
-        
+
 
 
         /*---------------------------------------------------------------CART SECTION------------------------------------------------------------------*/

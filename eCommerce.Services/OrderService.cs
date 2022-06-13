@@ -19,7 +19,7 @@ namespace eCommerce.Services
             return newOrder;
         }
 
-        public async Task<Order> Delete(int id)
+        public async Task<Order> DeleteById(int id)
         {
             var deletedOrder = await GetById(id);
             _unitOfWork.Orders.Remove(deletedOrder);
@@ -37,7 +37,7 @@ namespace eCommerce.Services
             return await _unitOfWork.Orders.GetByIdAsync(id);
         }
 
-        public async Task<Order> Update(int id, Order updatedOrder)
+        public async Task<Order> UpdateById(int id, Order updatedOrder)
         {
             return await _unitOfWork.Orders.UpdateByIdAsync(id, updatedOrder);
         }

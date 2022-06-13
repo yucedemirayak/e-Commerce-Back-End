@@ -19,7 +19,7 @@ namespace eCommerce.Services
             return newCart;
         }
 
-        public async Task<Cart> Delete(int id)
+        public async Task<Cart> DeleteById(int id)
         {
             var deletedCart = await GetById(id);
             _unitOfWork.Carts.Remove(deletedCart);
@@ -37,7 +37,7 @@ namespace eCommerce.Services
             return await _unitOfWork.Carts.GetByIdAsync(id);
         }
 
-        public async Task<Cart> Update(int id, Cart updatedCart)
+        public async Task<Cart> UpdateById(int id, Cart updatedCart)
         {
             return await _unitOfWork.Carts.UpdateByIdAsync(id, updatedCart);
         }

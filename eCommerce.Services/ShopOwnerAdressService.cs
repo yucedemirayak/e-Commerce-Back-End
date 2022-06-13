@@ -19,7 +19,7 @@ namespace eCommerce.Services
             return newShopOwnerAdress;
         }
 
-        public async Task<ShopOwnerAdress> Delete(int id)
+        public async Task<ShopOwnerAdress> DeleteById(int id)
         {
             var deletedShopOwnerAdress = await GetById(id);
             _unitOfWork.ShopOwnerAdresses.Remove(deletedShopOwnerAdress);
@@ -37,7 +37,7 @@ namespace eCommerce.Services
             return await _unitOfWork.ShopOwnerAdresses.GetByIdAsync(id);
         }
 
-        public async Task<ShopOwnerAdress> Update(int id, ShopOwnerAdress updatedShopOwnerAdress)
+        public async Task<ShopOwnerAdress> UpdateById(int id, ShopOwnerAdress updatedShopOwnerAdress)
         {
             return await _unitOfWork.ShopOwnerAdresses.UpdateByIdAsync(id, updatedShopOwnerAdress);
         }

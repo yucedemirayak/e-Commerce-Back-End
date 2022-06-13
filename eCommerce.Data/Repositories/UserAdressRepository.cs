@@ -3,7 +3,7 @@ using eCommerce.Core.Repositories;
 
 namespace eCommerce.Data.Repositories
 {
-    public class UserAdressRepository : RepositoryProvider<UserAdress>, IUserAdressRepository
+    public class UserAdressRepository : BaseRepository<UserAdress>, IUserAdressRepository
     {
         public UserAdressRepository(eCommerceDbContext context) : base(context)
         {
