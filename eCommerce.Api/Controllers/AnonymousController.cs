@@ -66,7 +66,7 @@ namespace eCommerce.Api.Controllers
         [HttpGet("allCategories")]
         public async Task<ActionResult<IEnumerable<CategoryDTO>>> GetAllCategories()
         {
-            var categories = await _serviceProvider.CategoryServices.GetAll();
+            var categories = await _serviceProvider.CategoryServices.ReceiveAll();
             var categoryDTOs = _mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDTO>>(categories);
 
             return Ok(ResponseDTO.GenerateResponse(categoryDTOs));
@@ -76,7 +76,7 @@ namespace eCommerce.Api.Controllers
         [HttpGet("allSubCategories")]
         public async Task<ActionResult<IEnumerable<SubCategoryDTO>>> GetAllSubCategories()
         {
-            var subCategories = await _serviceProvider.SubCategoryServices.GetAll();
+            var subCategories = await _serviceProvider.SubCategoryServices.ReceiveAll();
             var subCategoryDTOs = _mapper.Map<IEnumerable<SubCategory>, IEnumerable<SubCategoryDTO>>(subCategories);;
 
             return Ok(ResponseDTO.GenerateResponse(subCategoryDTOs));
@@ -86,7 +86,7 @@ namespace eCommerce.Api.Controllers
         [HttpGet("allProducts")]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllProducts()
         {
-            var products = await _serviceProvider.ProductServices.GetAll();
+            var products = await _serviceProvider.ProductServices.ReceiveAll();
             var productDTOs = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(products);
 
             return Ok(ResponseDTO.GenerateResponse(productDTOs));

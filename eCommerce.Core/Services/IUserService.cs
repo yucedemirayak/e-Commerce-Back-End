@@ -4,6 +4,6 @@ namespace eCommerce.Core.Services
 {
     public interface IUserService : IBaseService<User>
     {
-        Task<User> GetByEmail(string email);
+        Task<User> ReceiveByEmail(string email);
     }
 }

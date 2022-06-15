@@ -61,43 +61,59 @@ namespace eCommerce.Data.Repositories
         public async Task<TEntity> UpdateByIdAsync(int id, TEntity entity)
         {
             TEntity existingEntity = await GetByIdAsync(id);
-            
-            var idProp = entity.GetType().GetProperty("Id", BindingFlags.Public | BindingFlags.Instance);
-            if (idProp != null && idProp.CanWrite)
-            {
-                idProp.SetValue(entity, id, null);
-            }
 
-            var existingCreatedTimeProp = existingEntity.GetType().GetProperty("CreatedTime", BindingFlags.Public | BindingFlags.Instance);
-            var existingCreatedTimeValue = existingCreatedTimeProp?.GetValue(existingEntity);
-            var createdTimeProp = entity.GetType().GetProperty("CreatedTime" , BindingFlags.Public | BindingFlags.Instance);
+            var properties = entity.GetType().GetProperties();
 
-            if (createdTimeProp != null && createdTimeProp.CanWrite)
+            for (int i = 0; i < properties.Length; i++)
             {
-                createdTimeProp.SetValue(entity, existingCreatedTimeValue, null);
+
+                var value = entity?.GetType()?.GetProperty(properties[i].Name)?.GetValue(entity);
+
+                string[] staticProperties = new string[] { "Id", "CreatedTime" };
+
+                if (!staticProperties.Contains(properties[i].Name))
+                {
+                    existingEntity?.GetType()?.GetProperty(properties[i].Name)?.SetValue(existingEntity, value);
+                }
             }
-            
-            Context.Set<TEntity>().Remove(existingEntity);
-            await Context.Set<TEntity>().AddAsync(entity);
-            return entity;
+            Context.Set<TEntity>().Update(existingEntity);
+            return existingEntity;
         }
 
-        public async Task<TEntity> UpdateValueByIdAsync(int id, Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> UpdateValueByIdAsync(int id, object value, string propName)
         {
-            if (predicate == null)
+            string[] staticProperties = new string[] { "Id", "CreatedTime", "PasswordSalt" };
+            if (staticProperties.Contains(propName))
             {
-                throw new ArgumentNullException(nameof(predicate));
+                throw new ArgumentException(propName + " cannot be changed");
             }
 
-            TEntity existingEntity = await Context.Set<TEntity>().FindAsync(id);
+            TEntity existingEntity = await GetByIdAsync(id);
 
-            if (existingEntity != null)
+            if (existingEntity == null)
             {
-                Expression<Func<TEntity, bool>> expression = predicate;
-                return await Context.Set<TEntity>().FindAsync(id);
+                throw new ArgumentOutOfRangeException("Entity Id:" + id + " not found.");
             }
 
-            throw new ArgumentNullException(nameof(existingEntity));
+            var property = existingEntity.GetType().GetProperty(propName);
+            if (property == null)
+            {
+                throw new ArgumentOutOfRangeException(propName + " not found");
+            }
+
+            if (propName == "Password")
+            {
+                var newValue = value;
+                existingEntity.GetType().GetProperty(propName).SetValue(existingEntity, newValue);
+            }
+            else
+            {
+                var newValue = value.GetType().GetProperty("Value").GetValue(value);
+                existingEntity.GetType().GetProperty(propName).SetValue(existingEntity, newValue);
+            }
+
+            Context.Set<TEntity>().Update(existingEntity);
+            return (existingEntity);
         }
     }
 }

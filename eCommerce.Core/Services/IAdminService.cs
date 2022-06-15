@@ -4,6 +4,6 @@ namespace eCommerce.Core.Services
 {
     public interface IAdminService : IBaseService<Admin>
     {
-        Task<Admin> GetByEmail(string email);
+        Task<Admin> ReceiveByEmail(string email);
     }
 }

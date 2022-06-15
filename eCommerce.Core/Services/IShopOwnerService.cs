@@ -4,6 +4,6 @@ namespace eCommerce.Core.Services
 {
     public interface IShopOwnerService : IBaseService<ShopOwner>
     {
-        Task<ShopOwner> GetByEmail(string email);
+        Task<ShopOwner> ReceiveByEmail(string email);
     }
 }
