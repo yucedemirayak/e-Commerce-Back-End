@@ -67,35 +67,53 @@ namespace eCommerce.Data.Repositories
             for (int i = 0; i < properties.Length; i++)
             {
 
-                var result = entity?.GetType()?.GetProperty(properties[i].Name)?.GetValue(entity);
+                var value = entity?.GetType()?.GetProperty(properties[i].Name)?.GetValue(entity);
 
-                string[] sameProperties = new string[] { "Id", "CreatedTime" };
+                string[] staticProperties = new string[] { "Id", "CreatedTime" };
 
-                if (!sameProperties.Contains(properties[i].Name))
+                if (!staticProperties.Contains(properties[i].Name))
                 {
-                    existingEntity?.GetType()?.GetProperty(properties[i].Name)?.SetValue(existingEntity, result);
+                    existingEntity?.GetType()?.GetProperty(properties[i].Name)?.SetValue(existingEntity, value);
                 }
             }
             Context.Set<TEntity>().Update(existingEntity);
             return existingEntity;
         }
 
-        public async Task<TEntity> UpdateValueByIdAsync(int id, Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> UpdateValueByIdAsync(int id, object value, string propName)
         {
-            if (predicate == null)
+            string[] staticProperties = new string[] { "Id", "CreatedTime", "PasswordSalt" };
+            if (staticProperties.Contains(propName))
             {
-                throw new ArgumentNullException(nameof(predicate));
+                throw new ArgumentException(propName + " cannot be changed");
             }
 
-            TEntity existingEntity = await Context.Set<TEntity>().FindAsync(id);
+            TEntity existingEntity = await GetByIdAsync(id);
 
-            if (existingEntity != null)
+            if (existingEntity == null)
             {
-                Expression<Func<TEntity, bool>> expression = predicate;
-                return await Context.Set<TEntity>().FindAsync(id);
+                throw new ArgumentOutOfRangeException("Entity Id:" + id + " not found.");
             }
 
-            throw new ArgumentNullException(nameof(existingEntity));
+            var property = existingEntity.GetType().GetProperty(propName);
+            if (property == null)
+            {
+                throw new ArgumentOutOfRangeException(propName + " not found");
+            }
+
+            if (propName == "Password")
+            {
+                var newValue = value;
+                existingEntity.GetType().GetProperty(propName).SetValue(existingEntity, newValue);
+            }
+            else
+            {
+                var newValue = value.GetType().GetProperty("Value").GetValue(value);
+                existingEntity.GetType().GetProperty(propName).SetValue(existingEntity, newValue);
+            }
+
+            Context.Set<TEntity>().Update(existingEntity);
+            return (existingEntity);
         }
     }
 }

@@ -3,6 +3,7 @@ using eCommerce.Core.Enums;
 using eCommerce.Core.Helpers;
 using eCommerce.Core.Models;
 using eCommerce.Core.Services;
+using System.Linq.Expressions;
 
 namespace eCommerce.Services
 {
@@ -27,29 +28,66 @@ namespace eCommerce.Services
 
         public async Task<ShopOwner> DeleteById(int id)
         {
-            var deletedShopOwner = await GetById(id);
+            var deletedShopOwner = await ReceiveById(id);
             _unitOfWork.ShopOwners.Remove(deletedShopOwner);
             await _unitOfWork.CommitAsync();
             return deletedShopOwner;
         }
 
-        public async Task<IEnumerable<ShopOwner>> GetAll()
+        public async Task<IEnumerable<ShopOwner>> ReceiveAll()
         {
             return await _unitOfWork.ShopOwners.GetAllAsync();
         }
-        public async Task<ShopOwner> GetByEmail(string email)
+        public async Task<ShopOwner> ReceiveByEmail(string email)
         {
             return await _unitOfWork.ShopOwners.GetByEmailAsync(x => x.Email == email);
         }
 
-        public async Task<ShopOwner> GetById(int id)
+        public async Task<ShopOwner> ReceiveById(int id)
         {
             return await _unitOfWork.ShopOwners.GetByIdAsync(id);
         }
 
-        public async Task<ShopOwner> UpdateById(int id, ShopOwner updatedShopOwner)
+        public async Task<ShopOwner> ChangeById(int id, ShopOwner updatedShopOwner)
         {
-            return await _unitOfWork.ShopOwners.UpdateByIdAsync(id, updatedShopOwner);
+            var existingShopOwner = await ReceiveById(id);
+
+            if (!BCrypt.Net.BCrypt.Verify(updatedShopOwner.Password + existingShopOwner.PasswordSalt, existingShopOwner.Password))
+            {
+                updatedShopOwner.PasswordSalt = PasswordHelper.GenerateSalt();
+                updatedShopOwner.Password = PasswordHelper.HashPassword(updatedShopOwner.Password, updatedShopOwner.PasswordSalt);
+            }
+
+            await _unitOfWork.ShopOwners.UpdateByIdAsync(id, updatedShopOwner);
+            await _unitOfWork.CommitAsync();
+            return await ReceiveById(id);
+        }
+
+        public async Task<ShopOwner> ChangeValueById(int id, object value, string propName)
+        {
+            var existingShopOwner = await ReceiveById(id);
+
+            if (propName == "Password")
+            {
+                if (existingShopOwner == null)
+                {
+                    throw new ArgumentOutOfRangeException("Entity Id:" + id + " not found.");
+                }
+                var newPassword = value.GetType().GetProperty("Value").GetValue(value).ToString();
+
+                if (!BCrypt.Net.BCrypt.Verify(newPassword + existingShopOwner.PasswordSalt, existingShopOwner.Password))
+                {
+                    string newHashedPassword = PasswordHelper.HashPassword(newPassword, existingShopOwner.PasswordSalt);
+                    await _unitOfWork.ShopOwners.UpdateValueByIdAsync(id, newHashedPassword, propName);
+                }
+            }
+            else
+            {
+                await _unitOfWork.ShopOwners.UpdateValueByIdAsync(id, value, propName);
+            }
+
+            await _unitOfWork.CommitAsync();
+            return await ReceiveById(id);
         }
     }
 }

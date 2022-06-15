@@ -26,7 +26,7 @@ namespace eCommerce.Api.Controllers
         [HttpPost("loginAdmin")]
         public async Task<IActionResult> LoginAdmin([FromBody] LoginDTO loginResource)
         {
-            var findedAdmin = await _serviceProvider.AdminServices.GetByEmail(loginResource.Email);
+            var findedAdmin = await _serviceProvider.AdminServices.ReceiveByEmail(loginResource.Email);
             if (findedAdmin == null)
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, "Admin not found"));
 
@@ -61,7 +61,7 @@ namespace eCommerce.Api.Controllers
         [HttpPost("loginShopOwner")]
         public async Task<IActionResult> LoginShopOwner([FromBody] LoginDTO loginResource)
         {
-            var findedShopOwner = await _serviceProvider.ShopOwnerServices.GetByEmail(loginResource.Email);
+            var findedShopOwner = await _serviceProvider.ShopOwnerServices.ReceiveByEmail(loginResource.Email);
             if (findedShopOwner == null)
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, "Shop not found"));
 
@@ -96,7 +96,7 @@ namespace eCommerce.Api.Controllers
         [HttpPost("loginUser")]
         public async Task<IActionResult> LoginUser([FromBody] LoginDTO loginResource)
         {
-            var findedUser = await _serviceProvider.UserServices.GetByEmail(loginResource.Email);
+            var findedUser = await _serviceProvider.UserServices.ReceiveByEmail(loginResource.Email);
             if (findedUser == null)
                 return BadRequest(ResponseDTO.GenerateResponse(null, false, "User not found"));
 

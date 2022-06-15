@@ -14,6 +14,6 @@ namespace eCommerce.Core.Repositories
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entities);
         Task<TEntity> UpdateByIdAsync(int id, TEntity entity);
-        Task<TEntity> UpdateValueByIdAsync(int id, Expression<Func<TEntity, bool>> predicate);
+        Task<TEntity> UpdateValueByIdAsync(int id, object value, string propName);
     }
 }

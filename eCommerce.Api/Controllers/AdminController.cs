@@ -4,6 +4,7 @@ using eCommerce.Api.DTOs.Admin;
 using eCommerce.Api.DTOs.Category;
 using eCommerce.Api.DTOs.ShopOwner;
 using eCommerce.Api.DTOs.SubCategory;
+using eCommerce.Api.DTOs.Update;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Api.Validations;
 using eCommerce.Core;
@@ -12,6 +13,7 @@ using eCommerce.Core.Models;
 using eCommerce.Core.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 
 namespace eCommerce.Api.Controllers
 {
@@ -56,9 +58,19 @@ namespace eCommerce.Api.Controllers
             return Ok(ResponseDTO.GenerateResponse(deletedExam));
         }
 
+        //Get all admins list
+        [HttpGet("getAdmins")]
+        public async Task<ActionResult<IEnumerable<AdminDTO>>> GetAllAdmins()
+        {
+            var admins = await _serviceProvider.AdminServices.ReceiveAll();
+            var adminDTOs = _mapper.Map<IEnumerable<Admin>, IEnumerable<AdminDTO>>(admins);
+
+            return Ok(ResponseDTO.GenerateResponse(adminDTOs));
+        }
+
         //Update Admin
         [HttpPut("updateAdmin")]
-        public async Task<ActionResult<SaveAdminDTO>> UpdateAdmin(int id,[FromBody] SaveAdminDTO admin)
+        public async Task<ActionResult<SaveAdminDTO>> UpdateAdmin(int id, [FromBody] SaveAdminDTO admin)
         {
             var validator = new SaveAdminDTOValidator();
             var validationResult = await validator.ValidateAsync(admin);
@@ -70,19 +82,16 @@ namespace eCommerce.Api.Controllers
 
             var updatedAdmin = _mapper.Map<SaveAdminDTO, Admin>(admin);
 
-            await _serviceProvider.AdminServices.UpdateById(id, updatedAdmin);
+            await _serviceProvider.AdminServices.ChangeById(id, updatedAdmin);
 
             return Ok(ResponseDTO.GenerateResponse(updatedAdmin));
         }
 
-        //Get all admins list
-        [HttpGet("getAdmins")]
-        public async Task<ActionResult<IEnumerable<AdminDTO>>> GetAllAdmins()
+        //Update Admin Email
+        [HttpPatch]
+        public async Task<ActionResult<UpdateDTO>> UpdateEmail(int id, [FromBody] UpdateDTO value, string propName)
         {
-            var admins = await _serviceProvider.AdminServices.GetAll();
-            var adminDTOs = _mapper.Map<IEnumerable<Admin>, IEnumerable<AdminDTO>>(admins);
-
-            return Ok(ResponseDTO.GenerateResponse(adminDTOs));
+            return Ok(ResponseDTO.GenerateResponse(await _serviceProvider.AdminServices.ChangeValueById(id, value, propName)));
         }
 
         /*-----------------------------------------------------------END OF ADMIN SECTION------------------------------------------------------------------ */
@@ -192,7 +201,7 @@ namespace eCommerce.Api.Controllers
         [HttpGet("getShopOwners")]
         public async Task<ActionResult<IEnumerable<ShopOwnerDTO>>> GetAllShopOwners()
         {
-            var shopOwners = await _serviceProvider.ShopOwnerServices.GetAll();
+            var shopOwners = await _serviceProvider.ShopOwnerServices.ReceiveAll();
             var shopOwnerDTOs = _mapper.Map<IEnumerable<ShopOwner>, IEnumerable<ShopOwnerDTO>>(shopOwners);
 
             return Ok(ResponseDTO.GenerateResponse(shopOwnerDTOs));
@@ -215,7 +224,7 @@ namespace eCommerce.Api.Controllers
         [HttpGet("getUsers")]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers()
         {
-            var users = await _serviceProvider.UserServices.GetAll();
+            var users = await _serviceProvider.UserServices.ReceiveAll();
             var userDTOs = _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(users);
 
             return Ok(ResponseDTO.GenerateResponse(userDTOs));

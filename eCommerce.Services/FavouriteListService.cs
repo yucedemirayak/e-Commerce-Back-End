@@ -1,6 +1,7 @@
 ﻿using eCommerce.Core;
 using eCommerce.Core.Models;
 using eCommerce.Core.Services;
+using System.Linq.Expressions;
 
 namespace eCommerce.Services
 {
@@ -21,25 +22,34 @@ namespace eCommerce.Services
 
         public async Task<FavouriteList> DeleteById(int id)
         {
-            var deletedFavouriteList = await GetById(id);
+            var deletedFavouriteList = await ReceiveById(id);
             _unitOfWork.FavoriteLists.Remove(deletedFavouriteList);
             await _unitOfWork.CommitAsync();
             return deletedFavouriteList;
         }
 
-        public async Task<IEnumerable<FavouriteList>> GetAll()
+        public async Task<IEnumerable<FavouriteList>> ReceiveAll()
         {
             return await _unitOfWork.FavoriteLists.GetAllAsync();
         }
 
-        public async Task<FavouriteList> GetById(int id)
+        public async Task<FavouriteList> ReceiveById(int id)
         {
             return await _unitOfWork.FavoriteLists.GetByIdAsync(id);
         }
 
-        public async Task<FavouriteList> UpdateById(int id, FavouriteList updatedFavouriteList)
+        public async Task<FavouriteList> ChangeById(int id, FavouriteList updatedFavouriteList)
         {
-            return await _unitOfWork.FavoriteLists.UpdateByIdAsync(id , updatedFavouriteList);
+            await _unitOfWork.FavoriteLists.UpdateByIdAsync(id, updatedFavouriteList);
+            await _unitOfWork.CommitAsync();
+            return await ReceiveById(id);
+        }
+
+        public async Task<FavouriteList> ChangeValueById(int id, object value, string propName)
+        {
+            await _unitOfWork.FavoriteLists.UpdateValueByIdAsync(id, value, propName);
+            await _unitOfWork.CommitAsync();
+            return await ReceiveById(id);
         }
     }
 }

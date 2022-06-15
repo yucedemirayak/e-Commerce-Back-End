@@ -1,6 +1,7 @@
 ﻿using eCommerce.Core;
 using eCommerce.Core.Models;
 using eCommerce.Core.Services;
+using System.Linq.Expressions;
 
 namespace eCommerce.Services
 {
@@ -21,25 +22,34 @@ namespace eCommerce.Services
 
         public async Task<CartDetail> DeleteById(int id)
         {
-            var deletedCartDetail = await GetById(id);
+            var deletedCartDetail = await ReceiveById(id);
             _unitOfWork.CartDetails.Remove(deletedCartDetail);
             await _unitOfWork.CommitAsync();
             return deletedCartDetail;
         }
 
-        public async Task<IEnumerable<CartDetail>> GetAll()
+        public async Task<IEnumerable<CartDetail>> ReceiveAll()
         {
             return await _unitOfWork.CartDetails.GetAllAsync();
         }
 
-        public async Task<CartDetail> GetById(int id)
+        public async Task<CartDetail> ReceiveById(int id)
         {
             return await _unitOfWork.CartDetails.GetByIdAsync(id);
         }
 
-        public async Task<CartDetail> UpdateById(int id, CartDetail updatedCartDetail)
+        public async Task<CartDetail> ChangeById(int id, CartDetail updatedCartDetail)
         {
-            return await _unitOfWork.CartDetails.UpdateByIdAsync(id, updatedCartDetail);
+            await _unitOfWork.CartDetails.UpdateByIdAsync(id, updatedCartDetail);
+            await _unitOfWork.CommitAsync();
+            return await ReceiveById(id);
+        }
+
+        public async Task<CartDetail> ChangeValueById(int id, object value, string propName)
+        {
+            await _unitOfWork.CartDetails.UpdateValueByIdAsync(id, value, propName);
+            await _unitOfWork.CommitAsync();
+            return await ReceiveById(id);
         }
     }
 }
