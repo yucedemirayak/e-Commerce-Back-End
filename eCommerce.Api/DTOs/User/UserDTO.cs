@@ -1,6 +1,6 @@
 ﻿namespace eCommerce.Api.DTOs.User
 {
-    public class UserDTO
+    public struct UserDTO
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

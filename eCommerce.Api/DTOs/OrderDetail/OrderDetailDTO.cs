@@ -1,6 +1,6 @@
 ﻿namespace eCommerce.Api.DTOs.OrderDetail
 {
-    public class OrderDetailDTO
+    public struct OrderDetailDTO
     {
         public double Price { get; set; }
         public int Quantitiy { get; set; }

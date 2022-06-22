@@ -1,6 +1,6 @@
 ﻿namespace eCommerce.Api.DTOs
 {
-    public class ResponseDTO
+    public struct ResponseDTO
     {
         public bool IsSuccess { get; set; }
         public object Data { get; set; }

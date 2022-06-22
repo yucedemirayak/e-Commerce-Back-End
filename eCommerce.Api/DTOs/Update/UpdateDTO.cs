@@ -1,6 +1,6 @@
 ﻿namespace eCommerce.Api.DTOs.Update
 {
-    public class UpdateDTO
+    public struct UpdateDTO
     {
         public object Value { get; set; }
     }

@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace eCommerce.Api.DTOs.ShopOwner
 {
-    public class SaveShopOwnerDTO
+    public struct SaveShopOwnerDTO
     {
         public string ShopName { get; set; }
         public string ShopOwnerFirstName { get; set; }

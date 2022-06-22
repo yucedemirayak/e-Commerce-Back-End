@@ -1,6 +1,6 @@
 ﻿namespace eCommerce.Api.DTOs.CartDetail
 {
-    public class CartDetailDTO
+    public struct CartDetailDTO
     {
         public int Quantity { get; set; }
         public int ProductId { get; set; }

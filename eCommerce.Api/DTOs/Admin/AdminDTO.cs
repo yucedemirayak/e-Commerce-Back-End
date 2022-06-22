@@ -1,6 +1,6 @@
 ﻿namespace eCommerce.Api.DTOs.Admin
 {
-    public class AdminDTO
+    public struct AdminDTO
     {
         public int Id { get; set; }
         public string FullName { get; set; }

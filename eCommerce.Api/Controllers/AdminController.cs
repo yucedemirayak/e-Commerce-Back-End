@@ -2,6 +2,7 @@
 using eCommerce.Api.DTOs;
 using eCommerce.Api.DTOs.Admin;
 using eCommerce.Api.DTOs.Category;
+using eCommerce.Api.DTOs.Product;
 using eCommerce.Api.DTOs.ShopOwner;
 using eCommerce.Api.DTOs.SubCategory;
 using eCommerce.Api.DTOs.Update;
@@ -19,7 +20,7 @@ namespace eCommerce.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-  //  [Authorize(AuthenticationSchemes = "Bearer", Policy = "AdminPolicy")]
+    //  [Authorize(AuthenticationSchemes = "Bearer", Policy = "AdminPolicy")]
     public class AdminController : Controller
     {
         private readonly Core.IServiceProvider _serviceProvider;
@@ -177,6 +178,7 @@ namespace eCommerce.Api.Controllers
 
         //Get User's Favourite List
 
+
         /*-------------------------------------------------------------END OF FAVOURITELIST SECTION------------------------------------------------------------------*/
 
 
@@ -186,6 +188,16 @@ namespace eCommerce.Api.Controllers
         /*-------------------------------------------------------------PRODUCT SECTION------------------------------------------------------------------*/
 
         //Get all products
+        [HttpGet("getAllProducts")]
+        public async Task<ActionResult<ProductDTO>> GetAllProducts()
+        {
+            var products = await _serviceProvider.ProductServices.ReceiveAll();
+            var productDTOs = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDTO>>(products);
+
+            return Ok(ResponseDTO.GenerateResponse(productDTOs));
+        }
+
+
 
         //Get Product's images
 
@@ -209,6 +221,7 @@ namespace eCommerce.Api.Controllers
 
         //Validate ShopOwner
 
+        //ShopOwner 
 
         //Get ShopOwner's Products
 

@@ -1,7 +1,7 @@
 ﻿
 namespace eCommerce.Api.DTOs.ShopOwner
 {
-    public class ShopOwnerDTO
+    public struct ShopOwnerDTO
     {
         public string ShopName { get; set; }
         public string ShopOwnerFirstName { get; set; }

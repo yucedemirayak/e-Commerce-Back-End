@@ -1,6 +1,6 @@
 ﻿namespace eCommerce.Api.DTOs.Order
 {
-    public class OrderDTO
+    public struct OrderDTO
     {
         public bool isActive { get; set; }
         public int UserId { get; set; }

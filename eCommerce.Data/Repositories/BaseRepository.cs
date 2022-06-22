@@ -66,7 +66,6 @@ namespace eCommerce.Data.Repositories
 
             for (int i = 0; i < properties.Length; i++)
             {
-
                 var value = entity?.GetType()?.GetProperty(properties[i].Name)?.GetValue(entity);
 
                 string[] staticProperties = new string[] { "Id", "CreatedTime" };

@@ -1,6 +1,6 @@
 ﻿namespace eCommerce.Api.DTOs.ShopOwnerAdress
 {
-    public class ShopOwnerAdressDTO
+    public struct ShopOwnerAdressDTO
     {
         public string City { get; set; }
         public string District { get; set; }

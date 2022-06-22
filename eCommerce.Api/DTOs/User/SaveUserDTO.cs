@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace eCommerce.Api.DTOs.User
 {
-    public class SaveUserDTO
+    public struct SaveUserDTO
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -15,6 +15,6 @@ namespace eCommerce.Api.DTOs.User
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
     }
 }

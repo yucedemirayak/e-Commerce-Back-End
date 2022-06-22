@@ -91,6 +91,5 @@ namespace eCommerce.Api.Controllers
 
             return Ok(ResponseDTO.GenerateResponse(productDTOs));
         }
-
     }
 }

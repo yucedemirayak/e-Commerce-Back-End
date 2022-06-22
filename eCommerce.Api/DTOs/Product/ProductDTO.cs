@@ -1,6 +1,6 @@
 ﻿namespace eCommerce.Api.DTOs.Product
 {
-    public class ProductDTO
+    public struct ProductDTO
     {
         public string Name { get; set; }
         public string Description { get; set; }
