@@ -8,13 +8,8 @@ using eCommerce.Api.DTOs.SubCategory;
 using eCommerce.Api.DTOs.Update;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Api.Validations;
-using eCommerce.Core;
-using eCommerce.Core.Enums;
 using eCommerce.Core.Models;
-using eCommerce.Core.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq.Expressions;
 
 namespace eCommerce.Api.Controllers
 {
