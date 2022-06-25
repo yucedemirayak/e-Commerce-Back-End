@@ -8,13 +8,8 @@ using eCommerce.Api.DTOs.SubCategory;
 using eCommerce.Api.DTOs.Update;
 using eCommerce.Api.DTOs.User;
 using eCommerce.Api.Validations;
-using eCommerce.Core;
-using eCommerce.Core.Enums;
 using eCommerce.Core.Models;
-using eCommerce.Core.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq.Expressions;
 
 namespace eCommerce.Api.Controllers
 {
@@ -67,6 +62,14 @@ namespace eCommerce.Api.Controllers
             var adminDTOs = _mapper.Map<IEnumerable<Admin>, IEnumerable<AdminDTO>>(admins);
 
             return Ok(ResponseDTO.GenerateResponse(adminDTOs));
+        }
+
+        //Get Batch of Admins
+        [HttpGet("getAdminsBatch")]
+        public async Task<ActionResult<IEnumerable<Admin>>> GetAdminsBatch(int order, int qty)
+        {
+            var admins = await _serviceProvider.AdminServices.ReceiveBatch(order, qty);
+            return Ok(ResponseDTO.GenerateResponse(admins));
         }
 
         //Update Admin
@@ -132,6 +135,14 @@ namespace eCommerce.Api.Controllers
         }
 
 
+        //Get Batch of Categories
+        [HttpGet("getCategoriesBatch")]
+        public async Task<ActionResult<IEnumerable<Admin>>> GetCategoriesBatch(int order, int qty)
+        {
+            var admins = await _serviceProvider.CategoryServices.ReceiveBatch(order, qty);
+            return Ok(ResponseDTO.GenerateResponse(admins));
+        }
+
         /*-------------------------------------------------------------END OF CATEGORY SECTION------------------------------------------------------------------*/
 
 
@@ -157,6 +168,8 @@ namespace eCommerce.Api.Controllers
 
             return Ok(ResponseDTO.GenerateResponse(subCategoryDTO));
         }
+
+
 
         /*-------------------------------------------------------------END OF SUBCATEGORY SECTION------------------------------------------------------------------*/
 

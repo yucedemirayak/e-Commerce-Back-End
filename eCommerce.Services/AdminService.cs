@@ -38,6 +38,7 @@ namespace eCommerce.Services
         {
             return await _unitOfWork.Admins.GetAllAsync();
         }
+
         public async Task<Admin> ReceiveByEmail(string email)
         {
             return await _unitOfWork.Admins.GetByEmailAsync(x => x.Email == email);
@@ -88,6 +89,11 @@ namespace eCommerce.Services
 
             await _unitOfWork.CommitAsync();
             return await ReceiveById(id);
+        }
+
+        public async Task<IEnumerable<Admin>> ReceiveBatch(int order, int qty)
+        {
+            return await _unitOfWork.Admins.GetBatch(order, qty);
         }
     }
 }

@@ -18,30 +18,30 @@ namespace eCommerce.Data.Repositories
             await Context.Set<TEntity>().AddAsync(entity);
         }
 
-        public async Task AddRangeAsync(IEnumerable<TEntity> entities)
+        public async Task AddRangeAsync(IEnumerable<TEntity> entities) => await Context.Set<TEntity>().AddRangeAsync(entities);
+
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate) => Context.Set<TEntity>().AsNoTracking().Where(predicate);
+
+        public async Task<IEnumerable<TEntity>> GetAllAsync() => await Context.Set<TEntity>().AsNoTracking().ToListAsync();
+
+        public async Task<IEnumerable<TEntity>> GetBatch(int order, int qty)
         {
-            await Context.Set<TEntity>().AddRangeAsync(entities);
+            //FIXME: Need fixes for out of range
+            int index = ((order - 1) * qty);
+            int listCount = Context.Set<TEntity>().ToList().Count();
+            int lastItem = index + qty;
+
+            if (lastItem > listCount)
+            {
+                qty = qty - (lastItem - listCount);
+            }
+
+            return Context.Set<TEntity>().ToList().GetRange(index, qty);
         }
 
-        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            return Context.Set<TEntity>().Where(predicate);
-        }
+        public async Task<TEntity> GetByEmailAsync(Expression<Func<TEntity, bool>> predicate) => await Context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(predicate);
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
-        {
-            return await Context.Set<TEntity>().ToListAsync();
-        }
-
-        public async Task<TEntity> GetByEmailAsync(Expression<Func<TEntity, bool>> predicate)
-        {
-            return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
-        }
-
-        public async ValueTask<TEntity> GetByIdAsync(int id)
-        {
-            return await Context.Set<TEntity>().FindAsync(id);
-        }
+        public async ValueTask<TEntity> GetByIdAsync(int id) => await Context.Set<TEntity>().FindAsync(id);
 
         public void Remove(TEntity entity)
         {
@@ -53,10 +53,7 @@ namespace eCommerce.Data.Repositories
             Context.Set<TEntity>().RemoveRange(entities);
         }
 
-        public async Task<TEntity> SignleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
-        {
-            return await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
-        }
+        public async Task<TEntity> SignleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate) => await Context.Set<TEntity>().SingleOrDefaultAsync(predicate);
 
         public async Task<TEntity> UpdateByIdAsync(int id, TEntity entity)
         {

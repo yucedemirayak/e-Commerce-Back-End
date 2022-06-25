@@ -7,6 +7,7 @@ namespace eCommerce.Core.Repositories
         ValueTask<TEntity> GetByIdAsync(int id);
         Task<TEntity> GetByEmailAsync(Expression<Func<TEntity, bool>> predicate);
         Task<IEnumerable<TEntity>> GetAllAsync();
+        Task<IEnumerable<TEntity>> GetBatch(int count, int order);
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> SignleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
         Task AddAsync(TEntity entity);
