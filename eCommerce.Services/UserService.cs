@@ -88,5 +88,10 @@ namespace eCommerce.Services
             await _unitOfWork.CommitAsync();
             return await ReceiveById(id);
         }
+
+        public async Task<IEnumerable<User>> ReceiveBatch(int count, int qty)
+        {
+            return await _unitOfWork.Users.GetBatch(count, qty);
+        }
     }
 }

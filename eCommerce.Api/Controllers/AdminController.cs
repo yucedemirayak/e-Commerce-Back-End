@@ -64,6 +64,14 @@ namespace eCommerce.Api.Controllers
             return Ok(ResponseDTO.GenerateResponse(adminDTOs));
         }
 
+        //Get Batch of Admins
+        [HttpGet("getAdminsBatch")]
+        public async Task<ActionResult<IEnumerable<Admin>>> GetAdminsBatch(int order, int qty)
+        {
+            var admins = await _serviceProvider.AdminServices.ReceiveBatch(order, qty);
+            return Ok(ResponseDTO.GenerateResponse(admins));
+        }
+
         //Update Admin
         [HttpPut("updateAdmin")]
         public async Task<ActionResult<SaveAdminDTO>> UpdateAdmin(int id, [FromBody] SaveAdminDTO admin)
@@ -127,6 +135,14 @@ namespace eCommerce.Api.Controllers
         }
 
 
+        //Get Batch of Categories
+        [HttpGet("getCategoriesBatch")]
+        public async Task<ActionResult<IEnumerable<Admin>>> GetCategoriesBatch(int order, int qty)
+        {
+            var admins = await _serviceProvider.CategoryServices.ReceiveBatch(order, qty);
+            return Ok(ResponseDTO.GenerateResponse(admins));
+        }
+
         /*-------------------------------------------------------------END OF CATEGORY SECTION------------------------------------------------------------------*/
 
 
@@ -152,6 +168,8 @@ namespace eCommerce.Api.Controllers
 
             return Ok(ResponseDTO.GenerateResponse(subCategoryDTO));
         }
+
+
 
         /*-------------------------------------------------------------END OF SUBCATEGORY SECTION------------------------------------------------------------------*/
 

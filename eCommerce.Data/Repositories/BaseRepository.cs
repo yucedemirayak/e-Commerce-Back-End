@@ -24,7 +24,20 @@ namespace eCommerce.Data.Repositories
 
         public async Task<IEnumerable<TEntity>> GetAllAsync() => await Context.Set<TEntity>().AsNoTracking().ToListAsync();
 
-        public async Task<IEnumerable<TEntity>> GetAllByCount(Expression<Func<TEntity, bool>> predicate) => Context.Set<TEntity>().AsNoTracking().TakeWhile(predicate);
+        public async Task<IEnumerable<TEntity>> GetBatch(int order, int qty)
+        {
+            //FIXME: Need fixes for out of range
+            int index = ((order - 1) * qty);
+            int listCount = Context.Set<TEntity>().ToList().Count();
+            int lastItem = index + qty;
+
+            if (lastItem > listCount)
+            {
+                qty = qty - (lastItem - listCount);
+            }
+
+            return Context.Set<TEntity>().ToList().GetRange(index, qty);
+        }
 
         public async Task<TEntity> GetByEmailAsync(Expression<Func<TEntity, bool>> predicate) => await Context.Set<TEntity>().AsNoTracking().SingleOrDefaultAsync(predicate);
 

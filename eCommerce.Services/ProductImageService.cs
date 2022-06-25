@@ -52,5 +52,10 @@ namespace eCommerce.Services
             await _unitOfWork.CommitAsync();
             return await ReceiveById(id);
         }
+
+        public async Task<IEnumerable<ProductImage>> ReceiveBatch(int count, int qty)
+        {
+            return await _unitOfWork.ProductImages.GetBatch(count, qty);
+        }
     }
 }
