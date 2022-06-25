@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "73DdRS9USNkoNme9fVGK+qJ+zNyuLU451FqZmd4y+ty4FdYIfHq7skMcworzRB3X9glyi0y0ca1W1WqpHmv1cA==",
+  "dgSpecHash": "OZZaJl/6AbNIK8v3xcwJOS/vBhaEtR8iUvwlQRkbB0ifMvRmdfpqlvKKB4ucIYFHjyZDJgZXFpMsFiit7ibcPg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Api\\eCommerce.Api.csproj",
+  "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\eCommerce.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yuced\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
@@ -39,6 +39,7 @@
     "C:\\Users\\yuced\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\yuced\\.nuget\\packages\\servicestack.interfaces\\6.1.0\\servicestack.interfaces.6.1.0.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

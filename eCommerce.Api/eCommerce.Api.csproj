@@ -19,11 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Files\Images\" />
+    <Folder Include="Files\Images\Categories\" />
+    <Folder Include="Files\Images\Products\" />
+    <Folder Include="Files\Images\SubCategories\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\eCommerce.Core\eCommerce.Core.csproj" />
     <ProjectReference Include="..\eCommerce.Data\eCommerce.Data.csproj" />
+    <ProjectReference Include="..\eCommerce.Services\eCommerce.Services.csproj" />
   </ItemGroup>
 
 </Project>

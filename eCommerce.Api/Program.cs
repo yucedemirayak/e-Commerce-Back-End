@@ -1,14 +1,17 @@
-using eCommerce.Data;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
 using eCommerce.Core;
-using Microsoft.Extensions.FileProviders;
+using eCommerce.Core.Enums;
+using eCommerce.Core.Services;
+using eCommerce.Data;
+using eCommerce.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
-var _policyName = "e-CommerceAppPolicy";
+var _policyName = "eCommerceAppPolicy";
 
 var key = Encoding.ASCII.GetBytes(builder.Configuration["Application:Secret"]);
 builder.Services.AddCors(o => o.AddPolicy(_policyName, builder =>
@@ -16,13 +19,14 @@ builder.Services.AddCors(o => o.AddPolicy(_policyName, builder =>
     builder.WithOrigins("http://localhost:4000").AllowAnyMethod().AllowAnyHeader();
 }));
 
+
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(x =>
 {
-    x.Audience = "e-CommerceApi";
+    x.Audience = "eCommerce";
     x.RequireHttpsMetadata = false;
     x.SaveToken = true;
     x.ClaimsIssuer = "issuer";
@@ -46,7 +50,13 @@ builder.Services.AddAuthentication(x =>
             return Task.CompletedTask;
         }
     };
+});
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy => policy.RequireClaim("Role", UserRole.ADMIN.ToString()));
+    options.AddPolicy("UserPolicy", policy => policy.RequireClaim("Role", UserRole.USER.ToString()));
+    options.AddPolicy("ShopOwnerPolicy", policy => policy.RequireClaim("Role", UserRole.SHOPOWNER.ToString()));
 });
 
 builder.Services.AddDbContext<eCommerceDbContext>(options => options
@@ -89,9 +99,11 @@ builder.Services.AddSwaggerGen(c =>
                 });
 });
 
-//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-//builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<eCommerce.Core.IServiceProvider, eCommerce.Services.ServiceProvider>();
+
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

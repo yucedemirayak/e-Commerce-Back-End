@@ -472,6 +472,15 @@
           }
         }
       },
+      "ServiceStack.Interfaces/6.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/ServiceStack.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/ServiceStack.Interfaces.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/6.2.3": {
         "type": "package",
         "dependencies": {
@@ -753,7 +762,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "BCrypt.Net-Next": "4.0.3"
+          "BCrypt.Net-Next": "4.0.3",
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.5",
+          "ServiceStack.Interfaces": "6.1.0"
         },
         "compile": {
           "bin/placeholder/eCommerce.Core.dll": {}
@@ -775,6 +786,19 @@
         },
         "runtime": {
           "bin/placeholder/eCommerce.Data.dll": {}
+        }
+      },
+      "eCommerce.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "eCommerce.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/eCommerce.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/eCommerce.Services.dll": {}
         }
       }
     }
@@ -1639,6 +1663,20 @@
         "version.txt"
       ]
     },
+    "ServiceStack.Interfaces/6.1.0": {
+      "sha512": "U5EPMxVzMFXoJxpwUUyD+AZ7CLCAlA6WwWF9+MlQIf3EYjzXAK+ApYwcBEc6ekj6mBxmlE5/w0Q8uGlPXFLiNw==",
+      "type": "package",
+      "path": "servicestack.interfaces/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net472/ServiceStack.Interfaces.dll",
+        "lib/net6.0/ServiceStack.Interfaces.dll",
+        "lib/netstandard2.0/ServiceStack.Interfaces.dll",
+        "servicestack.interfaces.6.1.0.nupkg.sha512",
+        "servicestack.interfaces.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.2.3": {
       "sha512": "cnzQDn0Le+hInsw2SYwlOhOCPXpYi/szcvnyqZJ12v+QyrLBwAmWXBg6RIyHB18s/mLeywC+Rg2O9ndz0IUNYQ==",
       "type": "package",
@@ -2215,6 +2253,11 @@
       "type": "project",
       "path": "../eCommerce.Data/eCommerce.Data.csproj",
       "msbuildProject": "../eCommerce.Data/eCommerce.Data.csproj"
+    },
+    "eCommerce.Services/1.0.0": {
+      "type": "project",
+      "path": "../eCommerce.Services/eCommerce.Services.csproj",
+      "msbuildProject": "../eCommerce.Services/eCommerce.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2225,7 +2268,9 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 6.0.5",
       "Microsoft.EntityFrameworkCore.Design >= 6.0.5",
       "Swashbuckle.AspNetCore >= 6.2.3",
-      "eCommerce.Data >= 1.0.0"
+      "eCommerce.Core >= 1.0.0",
+      "eCommerce.Data >= 1.0.0",
+      "eCommerce.Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2235,11 +2280,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Api\\eCommerce.Api.csproj",
+      "projectUniqueName": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\eCommerce.Api.csproj",
       "projectName": "eCommerce.Api",
-      "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Api\\eCommerce.Api.csproj",
+      "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\eCommerce.Api.csproj",
       "packagesPath": "C:\\Users\\yuced\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Api\\obj\\",
+      "outputPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2260,8 +2305,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Data\\eCommerce.Data.csproj": {
-              "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Data\\eCommerce.Data.csproj"
+            "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj": {
+              "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj"
+            },
+            "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj": {
+              "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj"
+            },
+            "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Services\\eCommerce.Services.csproj": {
+              "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Services\\eCommerce.Services.csproj"
             }
           }
         }
@@ -2321,7 +2372,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -14,7 +14,9 @@
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.5",
           "Microsoft.EntityFrameworkCore.Design": "6.0.5",
           "Swashbuckle.AspNetCore": "6.2.3",
-          "eCommerce.Data": "1.0.0"
+          "eCommerce.Core": "1.0.0",
+          "eCommerce.Data": "1.0.0",
+          "eCommerce.Services": "1.0.0"
         },
         "runtime": {
           "eCommerce.Api.dll": {}
@@ -351,6 +353,14 @@
           }
         }
       },
+      "ServiceStack.Interfaces/6.1.0": {
+        "runtime": {
+          "lib/net6.0/ServiceStack.Interfaces.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.1.0.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.2.3": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "3.0.0",
@@ -531,7 +541,9 @@
       },
       "eCommerce.Core/1.0.0": {
         "dependencies": {
-          "BCrypt.Net-Next": "4.0.3"
+          "BCrypt.Net-Next": "4.0.3",
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.5",
+          "ServiceStack.Interfaces": "6.1.0"
         },
         "runtime": {
           "eCommerce.Core.dll": {}
@@ -545,6 +557,14 @@
         },
         "runtime": {
           "eCommerce.Data.dll": {}
+        }
+      },
+      "eCommerce.Services/1.0.0": {
+        "dependencies": {
+          "eCommerce.Core": "1.0.0"
+        },
+        "runtime": {
+          "eCommerce.Services.dll": {}
         }
       }
     }
@@ -800,6 +820,13 @@
       "path": "microsoft.win32.systemevents/4.7.0",
       "hashPath": "microsoft.win32.systemevents.4.7.0.nupkg.sha512"
     },
+    "ServiceStack.Interfaces/6.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U5EPMxVzMFXoJxpwUUyD+AZ7CLCAlA6WwWF9+MlQIf3EYjzXAK+ApYwcBEc6ekj6mBxmlE5/w0Q8uGlPXFLiNw==",
+      "path": "servicestack.interfaces/6.1.0",
+      "hashPath": "servicestack.interfaces.6.1.0.nupkg.sha512"
+    },
     "Swashbuckle.AspNetCore/6.2.3": {
       "type": "package",
       "serviceable": true,
@@ -932,6 +959,11 @@
       "sha512": ""
     },
     "eCommerce.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "eCommerce.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

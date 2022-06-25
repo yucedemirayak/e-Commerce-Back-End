@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qryV3OfjRNN8NeL8HDlgNDxlFza3EA7Wwk6ZqCR+6d4HMQKGWDoOjC0kKY2IV8Sr889y8HAaei7ARkLuWMaipg==",
+  "dgSpecHash": "WbnOg176nTSg3EAhg7VWiq6HAzrr6JEDwtKb3/oj1Kdi+eNxIVChfdsRdUYI7vhOFThF95G2LHTJ1jcI5Ln2BA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Data\\eCommerce.Data.csproj",
+  "projectFilePath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yuced\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
@@ -33,6 +33,7 @@
     "C:\\Users\\yuced\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\yuced\\.nuget\\packages\\servicestack.interfaces\\6.1.0\\servicestack.interfaces.6.1.0.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\yuced\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",

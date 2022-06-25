@@ -403,6 +403,15 @@
           }
         }
       },
+      "ServiceStack.Interfaces/6.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/ServiceStack.Interfaces.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/ServiceStack.Interfaces.dll": {}
+        }
+      },
       "System.Collections.Immutable/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -633,7 +642,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "BCrypt.Net-Next": "4.0.3"
+          "BCrypt.Net-Next": "4.0.3",
+          "Microsoft.EntityFrameworkCore.Abstractions": "6.0.5",
+          "ServiceStack.Interfaces": "6.1.0"
         },
         "compile": {
           "bin/placeholder/eCommerce.Core.dll": {}
@@ -1384,6 +1395,20 @@
         "version.txt"
       ]
     },
+    "ServiceStack.Interfaces/6.1.0": {
+      "sha512": "U5EPMxVzMFXoJxpwUUyD+AZ7CLCAlA6WwWF9+MlQIf3EYjzXAK+ApYwcBEc6ekj6mBxmlE5/w0Q8uGlPXFLiNw==",
+      "type": "package",
+      "path": "servicestack.interfaces/6.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net472/ServiceStack.Interfaces.dll",
+        "lib/net6.0/ServiceStack.Interfaces.dll",
+        "lib/netstandard2.0/ServiceStack.Interfaces.dll",
+        "servicestack.interfaces.6.1.0.nupkg.sha512",
+        "servicestack.interfaces.nuspec"
+      ]
+    },
     "System.Collections.Immutable/6.0.0": {
       "sha512": "l4zZJ1WU2hqpQQHXz1rvC3etVZN+2DLmQMO79FhOTZHMn8tDRr+WU287sbomD0BETlmKDn0ygUgVy9k5xkkJdA==",
       "type": "package",
@@ -1889,11 +1914,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Data\\eCommerce.Data.csproj",
+      "projectUniqueName": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj",
       "projectName": "eCommerce.Data",
-      "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Data\\eCommerce.Data.csproj",
+      "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\eCommerce.Data.csproj",
       "packagesPath": "C:\\Users\\yuced\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Data\\obj\\",
+      "outputPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1914,8 +1939,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Core\\eCommerce.Core.csproj": {
-              "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce API\\eCommerce.Core\\eCommerce.Core.csproj"
+            "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj": {
+              "projectPath": "C:\\Users\\yuced\\Desktop\\e-Commerce\\e-Commerce Back-End\\eCommerce.Core\\eCommerce.Core.csproj"
             }
           }
         }
@@ -1960,7 +1985,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }
